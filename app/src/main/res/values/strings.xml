@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Agenda</string>
+    <string name="appName">Agenda</string>
+    <string name="usrPlaceholder">Usuario</string>
+    <string name="passPlaceholder">Password</string>
+    <string name="lostPass">¿Olvidaste la contraseña?</string>
+    <string name="btnLogIn">Iniciar sesión</string>
+    <string name="btnSignUp">Registrarse</string>
+    <string name="contentDes"></string>
 </resources>
