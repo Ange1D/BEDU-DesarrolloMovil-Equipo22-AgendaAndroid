@@ -1,9 +1,12 @@
 <resources>
     <string name="appName">Agenda</string>
+    <string name="activityMainLogIn">Log In</string>
+    <string name="activitySignUpTitle">Sign Up</string>
     <string name="usrPlaceholder">Usuario</string>
     <string name="passPlaceholder">Password</string>
     <string name="lostPass">¿Olvidaste la contraseña?</string>
     <string name="btnLogIn">Iniciar sesión</string>
     <string name="btnSignUp">Registrarse</string>
-    <string name="contentDes"></string>
+    <string name="contentDes">Descripción</string>
+    <string name="emailPlaceholder">Correo electrónico</string>
 </resources>
