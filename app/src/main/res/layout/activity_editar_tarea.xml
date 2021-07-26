@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditarTareaActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/titulo"
+            android:background="@drawable/style_border_edittext"
+            android:drawableStart="@drawable/ic_title"
+            android:ems="10"
+            android:hint="@string/titulo"
+            android:inputType="text"
+            android:layout_marginTop="10dp"
+            android:nextFocusDown="@id/fechaInicio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tituloDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/tituloDescripcion"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/titulo"
+            app:layout_constraintTop_toBottomOf="@+id/titulo" />
+
+        <EditText
+            android:id="@+id/fechaInicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/fecha"
+            android:background="@drawable/style_border_edittext"
+            android:drawableStart="@drawable/ic_calendar"
+            android:ems="10"
+            android:hint="@string/fecha"
+            android:inputType="date"
+            android:layout_marginTop="10dp"
+            android:nextFocusDown="@id/horaInicio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloDescripcion" />
+
+        <TextView
+            android:id="@+id/fechaInicioDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/fechaInicioDescripcion"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/fechaInicio"
+            app:layout_constraintTop_toBottomOf="@+id/fechaInicio" />
+
+        <EditText
+            android:id="@+id/horaInicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/hora"
+            android:background="@drawable/style_border_edittext"
+            android:drawableStart="@drawable/ic_time"
+            android:ems="10"
+            android:hint="@string/hora"
+            android:inputType="time"
+            android:layout_marginTop="10dp"
+            android:nextFocusDown="@id/fechaFin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fechaInicioDescripcion" />
+
+        <TextView
+            android:id="@+id/horaInicioDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/horaInicioDescripcion"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/horaInicio"
+            app:layout_constraintTop_toBottomOf="@+id/horaInicio" />
+
+        <EditText
+            android:id="@+id/fechaFin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/fecha"
+            android:background="@drawable/style_border_edittext"
+            android:drawableStart="@drawable/ic_calendar"
+            android:ems="10"
+            android:hint="@string/fecha"
+            android:inputType="date"
+            android:layout_marginTop="10dp"
+            android:nextFocusDown="@id/horaFin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horaInicioDescripcion" />
+
+        <TextView
+            android:id="@+id/fechaFinDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/fechaFinDescripcion"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/fechaFin"
+            app:layout_constraintTop_toBottomOf="@+id/fechaFin" />
+
+        <EditText
+            android:id="@+id/horaFin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/hora"
+            android:background="@drawable/style_border_edittext"
+            android:drawableStart="@drawable/ic_time"
+            android:ems="10"
+            android:hint="@string/hora"
+            android:inputType="time"
+            android:layout_marginTop="10dp"
+            android:nextFocusDown="@id/objetivo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fechaFinDescripcion" />
+
+        <TextView
+            android:id="@+id/horaFinDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/horaFinDescripcion"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/horaFin"
+            app:layout_constraintTop_toBottomOf="@+id/horaFin" />
+
+        <EditText
+            android:id="@+id/objetivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/objetivo"
+            android:background="@drawable/style_border_edittext"
+            android:drawableStart="@drawable/ic_meta"
+            android:ems="10"
+            android:hint="@string/objetivo"
+            android:inputType="text"
+            android:layout_marginTop="10dp"
+            android:nextFocusDown="@id/descripcion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horaFinDescripcion" />
+
+        <TextView
+            android:id="@+id/objetivoDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/objetivoDescripcion"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/objetivo"
+            app:layout_constraintTop_toBottomOf="@+id/objetivo" />
+
+        <EditText
+            android:id="@+id/descripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/descripcion"
+            android:background="@drawable/style_border_edittext"
+            android:drawableStart="@drawable/ic_desc"
+            android:ems="10"
+            android:hint="@string/descripcion"
+            android:inputType="text"
+            android:layout_marginTop="10dp"
+            android:nextFocusDown="@id/requisitos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/objetivoDescripcion" />
+
+        <TextView
+            android:id="@+id/descripcionDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/descripcionDescripcion"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/descripcion"
+            app:layout_constraintTop_toBottomOf="@+id/descripcion" />
+
+        <EditText
+            android:id="@+id/requisitos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/requisitos"
+            android:background="@drawable/style_border_edittext"
+            android:drawableStart="@drawable/ic_done"
+            android:ems="10"
+            android:hint="@string/requisitos"
+            android:inputType="text"
+            android:layout_marginTop="10dp"
+            android:nextFocusDown="@id/tareaPrevia"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descripcionDescripcion" />
+
+        <TextView
+            android:id="@+id/requisitosDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/requisitosDescripcion"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/requisitos"
+            app:layout_constraintTop_toBottomOf="@+id/requisitos" />
+
+
+        <EditText
+            android:id="@+id/tareaPrevia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/tareaPrevia"
+            android:background="@drawable/style_border_edittext"
+            android:drawableStart="@drawable/ic_desc"
+            android:ems="10"
+            android:hint="@string/tareaPrevia"
+            android:inputType="text"
+            android:layout_marginTop="10dp"
+            android:nextFocusDown="@id/frecuencia"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/requisitosDescripcion" />
+
+        <TextView
+            android:id="@+id/tareaPreviaDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/tareapreviaDescripcion"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tareaPrevia"
+            app:layout_constraintTop_toBottomOf="@+id/tareaPrevia" />
+
+
+        <EditText
+            android:id="@+id/frecuencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/frecuencia"
+            android:background="@drawable/style_border_edittext"
+            android:drawableStart="@drawable/ic_frecuencia"
+            android:ems="10"
+            android:hint="@string/frecuencia"
+            android:inputType="number"
+            android:layout_marginTop="10dp"
+            android:nextFocusDown="@id/prioridad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tareaPreviaDescripcion" />
+
+        <TextView
+            android:id="@+id/frecuenciaDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/frecuenciaDescripcion"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/frecuencia"
+            app:layout_constraintTop_toBottomOf="@+id/frecuencia" />
+
+
+        <EditText
+            android:id="@+id/prioridad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/prioridad"
+            android:background="@drawable/style_border_edittext"
+            android:drawableStart="@drawable/ic_add"
+            android:ems="10"
+            android:hint="@string/prioridad"
+            android:inputType="number"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frecuenciaDescripcion" />
+
+        <TextView
+            android:id="@+id/prioridadnDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/prioridadDescripcion"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/prioridad"
+            app:layout_constraintTop_toBottomOf="@+id/prioridad" />
+
+        <EditText
+            android:id="@+id/estado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/prioridad"
+            android:background="@drawable/style_border_edittext"
+            android:drawableStart="@drawable/ic_edit"
+            android:ems="10"
+            android:hint="@string/estado"
+            android:inputType="text"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prioridadnDescripcion" />
+
+        <TextView
+            android:id="@+id/estadoDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/estadoDescripcion"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/estado"
+            app:layout_constraintTop_toBottomOf="@+id/estado" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/turkish"
+            android:text="@string/btnSave"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/estadoDescripcion" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/turkish"
+            android:text="@string/btnCancel"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnSave" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -5,15 +5,20 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/appName"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Agenda"
-        android:fullBackupContent="true">
-        <activity android:name=".SignupActivity"
+        android:theme="@style/Theme.Agenda">
+        <activity android:name=".EditarTareaActivity"></activity>
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".AgregarTareaActivity" />
+        <activity
+            android:name=".SignupActivity"
             tools:ignore="ExtraText">
-            android:label="@string/activitySignUpTitle"></activity>
+            android:label="@string/activitySignUpTitle">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
