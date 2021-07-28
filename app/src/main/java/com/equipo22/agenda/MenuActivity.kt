@@ -30,5 +30,15 @@ class MenuActivity : AppCompatActivity() {
             val intent = Intent(this, EditarTareaActivity::class.java)
             startActivity(intent)
         }
+        
+        btnShow.setOnClickListener {
+            val intent = Intent(this, VerTareasActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnConfig.setOnClickListener {
+            val intent = Intent(this, ConfiguracionActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
