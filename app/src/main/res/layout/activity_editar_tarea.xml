@@ -242,21 +242,14 @@
             app:layout_constraintTop_toBottomOf="@+id/requisitos" />
 
 
-        <EditText
+        <Spinner
             android:id="@+id/tareaPrevia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:autofillHints="@string/tareaPrevia"
-            android:background="@drawable/style_border_edittext"
-            android:drawableStart="@drawable/ic_desc"
-            android:ems="10"
-            android:hint="@string/tareaPrevia"
-            android:inputType="text"
-            android:layout_marginTop="10dp"
-            android:nextFocusDown="@id/frecuencia"
+            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/requisitosDescripcion"
             app:layout_constraintTop_toBottomOf="@+id/requisitosDescripcion" />
 
         <TextView
@@ -272,22 +265,17 @@
             app:layout_constraintTop_toBottomOf="@+id/tareaPrevia" />
 
 
-        <EditText
+
+        <Spinner
             android:id="@+id/frecuencia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:autofillHints="@string/frecuencia"
-            android:background="@drawable/style_border_edittext"
-            android:drawableStart="@drawable/ic_frecuencia"
-            android:ems="10"
-            android:hint="@string/frecuencia"
-            android:inputType="number"
-            android:layout_marginTop="10dp"
-            android:nextFocusDown="@id/prioridad"
+            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tareaPreviaDescripcion"
             app:layout_constraintTop_toBottomOf="@+id/tareaPreviaDescripcion" />
+
 
         <TextView
             android:id="@+id/frecuenciaDescripcion"
@@ -330,21 +318,33 @@
             app:layout_constraintStart_toStartOf="@+id/prioridad"
             app:layout_constraintTop_toBottomOf="@+id/prioridad" />
 
-        <EditText
+        <RadioGroup
             android:id="@+id/estado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:autofillHints="@string/prioridad"
-            android:background="@drawable/style_border_edittext"
-            android:drawableStart="@drawable/ic_edit"
-            android:ems="10"
-            android:hint="@string/estado"
-            android:inputType="text"
+            android:orientation="horizontal"
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/prioridadnDescripcion" />
+            app:layout_constraintTop_toBottomOf="@+id/prioridadnDescripcion" >
+
+            <RadioButton
+                android:id="@+id/rb_pendiente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/estadoP"
+                android:onClick="onRadioButtonClicked"/>
+
+            <RadioButton
+                android:id="@+id/rb_finalizado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/estadoF"
+                android:onClick="onRadioButtonClicked"/>
+        </RadioGroup>
+
+
 
         <TextView
             android:id="@+id/estadoDescripcion"

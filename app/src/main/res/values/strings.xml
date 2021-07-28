@@ -37,7 +37,8 @@
     <string name="prioridadDescripcion">Prioridad [1(Poco urgente) - 10(Muy urgente)] </string>
     <string name="btnSave">Guardar</string>
 
-    <string name="estado">Pendiente/Finalizada</string>
+    <string name="estadoP">Pendiente</string>
+    <string name="estadoF">Finalizada</string>
     <string name="estadoDescripcion">Estado de la tarea [Pendiente/Finalizada] </string>
     <string name="btnCancel">Cancelar</string>
 </resources>
