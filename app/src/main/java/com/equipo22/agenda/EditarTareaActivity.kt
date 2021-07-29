@@ -11,7 +11,8 @@ class EditarTareaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
     private lateinit var btnSave: Button
     private lateinit var btnCancel: Button
-
+    private lateinit var txtTitle: EditText
+    private lateinit var txtHour: EditText
 
     var tareaprevia:Array<String> = arrayOf("Tarea 1","Tarea 2")
     var frecuencia:Array<String> = arrayOf("Una sola vez","Todos los Lunes","Todos los Martes")
@@ -26,6 +27,15 @@ class EditarTareaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
         val spinner: Spinner = findViewById(R.id.tareaPrevia)
         val spinner2: Spinner = findViewById(R.id.frecuencia)
+        txtTitle = findViewById(R.id.titulo)
+        txtHour = findViewById(R.id.descripcion)
+        val title = intent.getStringExtra("Titulo")
+        val hour = intent.getStringExtra("Horario")
+
+        if (title != null && hour != null) {
+            txtTitle.setText(title)
+            txtHour.setText(hour)
+        }
 
         ArrayAdapter(this, android.R.layout.simple_spinner_item, tareaprevia)
             .also { adapter ->
