@@ -10,6 +10,10 @@
     <string name="contentDes">Descripción</string>
     <string name="emailPlaceholder">Correo electrónico</string>
 
+    <string name="resetPassTitle">Restablecer contraseña</string>
+    <string name="btnSendEmail">Enviar</string>
+    <string name="emailRequired">Ingrese su dirección de correo electrónico</string>
+
     <string name="btnAdd">Agregar Tarea</string>
     <string name="btnEdit">Editar Tarea</string>
     <string name="btnShow">Ver Tareas</string>
