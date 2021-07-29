@@ -21,6 +21,7 @@ Se basa en aplicaciones ya existentes como lo son Google Calendar,Microsoft To D
 
 - Detalle Tarea
      - Es la pantalla encargada de mostrar todas las tareas del usuario
+          - Al seleccionar una tarea nos lleva a editar la tarea 
      
 - Nueva Tarea
      - Es la pantalla encargada de la creacion de una nueva tarea
