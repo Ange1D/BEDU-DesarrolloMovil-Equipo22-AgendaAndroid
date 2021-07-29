@@ -1,5 +1,5 @@
 <resources>
-    <string name="appName">Agenda</string>
+    <string name="appName">Chrono Master</string>
     <string name="activityMainLogIn">Log In</string>
     <string name="activitySignUpTitle">Sign Up</string>
     <string name="usrPlaceholder">Usuario</string>
