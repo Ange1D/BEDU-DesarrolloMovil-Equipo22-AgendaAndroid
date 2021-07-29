@@ -8,7 +8,9 @@
     android:paddingVertical="16dp"
     android:background="@drawable/style_border_edittext"
     android:layout_margin="8dp"
-    android:elevation="10dp">
+    android:elevation="10dp"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

@@ -6,16 +6,20 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class TareasRecyclerAdapter(val tareas: List<String>, val horarios: List<String>) :
+class TareasRecyclerAdapter(val tareas: List<Tarea>, var itemClickListener: ItemClickListener) :
     RecyclerView.Adapter<TareasRecyclerAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val title = view.findViewById<TextView>(R.id.txtTitle)
         private val hour = view.findViewById<TextView>(R.id.txtHour)
 
-        fun bind(tarea: String, horario: String) {
-            title.text = tarea
-            hour.text = horario
+        fun bind(tarea: Tarea) {
+            title.text = tarea.titulo
+            hour.text = tarea.horario
+
+            itemView.setOnClickListener {
+                itemClickListener.onItemClick(tarea)
+            }
         }
     }
 
@@ -28,9 +32,8 @@ class TareasRecyclerAdapter(val tareas: List<String>, val horarios: List<String>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tarea = tareas[position]
-        val horario = horarios[position]
 
-        holder.bind(tarea, horario)
+        holder.bind(tarea)
     }
 
     override fun getItemCount(): Int {
