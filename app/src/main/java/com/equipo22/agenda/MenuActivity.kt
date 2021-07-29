@@ -9,7 +9,6 @@ class MenuActivity : AppCompatActivity() {
 
     private lateinit var btnShow: Button
     private lateinit var btnAdd: Button
-    private lateinit var btnEdit: Button
     private lateinit var btnConfig: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +17,6 @@ class MenuActivity : AppCompatActivity() {
 
         btnShow = findViewById(R.id.btnShow)
         btnAdd = findViewById(R.id.btnAdd)
-        btnEdit = findViewById(R.id.btnEdit)
         btnConfig = findViewById(R.id.btnConfig)
 
         btnAdd.setOnClickListener {
@@ -26,10 +24,6 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btnEdit.setOnClickListener {
-            val intent = Intent(this, EditarTareaActivity::class.java)
-            startActivity(intent)
-        }
         
         btnShow.setOnClickListener {
             val intent = Intent(this, VerTareasActivity::class.java)
