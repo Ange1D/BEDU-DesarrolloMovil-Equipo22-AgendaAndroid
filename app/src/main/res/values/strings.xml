@@ -21,10 +21,10 @@
 
     <string name="titulo">Titulo</string>
     <string name="tituloDescripcion">Ingrese el título de la tarea</string>
-    <string name="fecha">DD/MM/AAAA</string>
+    <string name="fecha">Fecha</string>
     <string name="fechaInicioDescripcion">Ingrese la fecha de inicio</string>
     <string name="fechaFinDescripcion">Ingrese la fecha de finalización</string>
-    <string name="hora">HH:00</string>
+    <string name="hora">Hora</string>
     <string name="horaInicioDescripcion">Ingrese la hora de inicio </string>
     <string name="horaFinDescripcion">Ingrese la hora de finalización </string>
     <string name="objetivo">Objetivo</string>
@@ -33,7 +33,7 @@
     <string name="descripcionDescripcion">Descripcion de la tarea</string>
     <string name="requisitos">Requisitos</string>
     <string name="requisitosDescripcion">Requisitos para considerar la tarea "Finalizada</string>
-    <string name="tareaPrevia">TareaPrevia</string>
+    <string name="tareaPrevia">Tarea Previa</string>
     <string name="tareapreviaDescripcion">Si es necesario completar otra tarea antes </string>
     <string name="frecuencia">Frecuencia</string>
     <string name="frecuenciaDescripcion">cada cuantos dias se repetira</string>

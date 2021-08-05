@@ -14,7 +14,7 @@ class EditarTareaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     private lateinit var txtTitle: EditText
     private lateinit var txtHour: EditText
 
-    var tareaprevia:Array<String> = arrayOf("Tarea 1","Tarea 2")
+    var tareaprevia = listOf("Tarea 1","Tarea 2")
     var frecuencia:Array<String> = arrayOf("Una sola vez","Todos los Lunes","Todos los Martes")
 
 
@@ -25,8 +25,8 @@ class EditarTareaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         btnSave = findViewById(R.id.btnSave)
         btnCancel = findViewById(R.id.btnCancel)
 
-        val spinner: Spinner = findViewById(R.id.tareaPrevia)
-        val spinner2: Spinner = findViewById(R.id.frecuencia)
+        val spinner:AutoCompleteTextView = findViewById(R.id.tareaPrevia)
+        val spinner2: AutoCompleteTextView = findViewById(R.id.frecuencia)
         txtTitle = findViewById(R.id.titulo)
         txtHour = findViewById(R.id.descripcion)
         val title = intent.getStringExtra("Titulo")
@@ -37,57 +37,19 @@ class EditarTareaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             txtHour.setText(hour)
         }
 
-        ArrayAdapter(this, android.R.layout.simple_spinner_item, tareaprevia)
-            .also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
-        }
+        val previaAdapter = ArrayAdapter(this, R.layout.dropdown_item, tareaprevia)
+        spinner.setAdapter(previaAdapter)
 
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                Toast.makeText(applicationContext ,tareaprevia[position] , Toast.LENGTH_LONG).show()
-            }
-        }
-
-        ArrayAdapter(this, android.R.layout.simple_spinner_item, frecuencia)
-            .also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spinner2.adapter = adapter
-            }
-
-        spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                Toast.makeText(applicationContext ,frecuencia[position] , Toast.LENGTH_LONG).show()
-            }
-        }
-
-
+        val frecuenciaAdapter = ArrayAdapter(this, R.layout.dropdown_item, frecuencia)
+        spinner2.setAdapter(previaAdapter)
 
         btnSave.setOnClickListener {
-            val intent = Intent(this, MenuActivity::class.java)
+            val intent = Intent(this, VerTareasActivity::class.java)
             startActivity(intent)
         }
 
         btnCancel.setOnClickListener {
-            val intent = Intent(this, MenuActivity::class.java)
+            val intent = Intent(this, VerTareasActivity::class.java)
             startActivity(intent)
         }
     }
@@ -109,6 +71,8 @@ class EditarTareaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         }
     }
 
+
+
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         showDialog("No seleccionaste idioma","Vuelve a desplegar la lista y asegúrate de elegir correctamente a alguna")
         Toast.makeText(applicationContext, "No idioma" , Toast.LENGTH_LONG).show()
@@ -126,5 +90,4 @@ class EditarTareaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             .create()
             .show()
     }
-
 }
