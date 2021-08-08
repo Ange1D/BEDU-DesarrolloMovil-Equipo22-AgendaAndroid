@@ -18,6 +18,7 @@ class VerListadoFragment: Fragment() {
     private lateinit var mAdapter: TareasRecyclerAdapter
     private var listener: (Tarea) -> Unit = {
         TareaManagementActivity.tareaSeleccionada = it
+        TareaManagementActivity.tareaSeleccionadaIndex = TareaManagementActivity.tareas.indexOf(it)
         (activity as TareaManagementActivity).navigateTo(DetallesTareaFragment(), false)
     }
 
@@ -27,8 +28,9 @@ class VerListadoFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_ver_listado, container, false)
+        TareaManagementActivity.SHOWING_FRAGMENT = "VerListado"
 
-        mAdapter = TareasRecyclerAdapter(requireActivity(), (activity as TareaManagementActivity).setTareas(), listener)
+        mAdapter = TareasRecyclerAdapter(requireActivity(), TareaManagementActivity.tareas, listener)
         recyclerTareas = view.findViewById(R.id.recyclerTareas)
         recyclerTareas.layoutManager = horizontalLinearLayoutManager
         recyclerTareas.adapter = mAdapter

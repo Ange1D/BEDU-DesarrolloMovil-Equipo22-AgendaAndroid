@@ -20,18 +20,15 @@
                 android:id="@+id/tituloInput_layout"
                 style="@style/TextInput"
                 android:hint="@string/titulo"
-                app:startIconDrawable="@drawable/ic_title">
+                app:startIconDrawable="@drawable/ic_title"
+                app:helperText="@string/tituloDescripcion">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/titulo"
+                    android:id="@+id/txtTitulo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextView"
-                android:text="@string/tituloDescripcion" />
         </LinearLayout>
 
         <LinearLayout
@@ -43,19 +40,15 @@
                 android:id="@+id/fechaInicio_layout"
                 style="@style/TextInput"
                 android:hint="@string/fecha"
-                app:startIconDrawable="@drawable/ic_calendar">
+                app:startIconDrawable="@drawable/ic_calendar"
+                app:helperText="@string/fechaInicioDescripcion">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fechaInicio"
+                    android:id="@+id/txtFecha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none|date" />
             </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextView"
-                android:text="@string/fechaInicioDescripcion" />
         </LinearLayout>
 
         <LinearLayout
@@ -67,91 +60,15 @@
                 android:id="@+id/horaInicio_layout"
                 style="@style/TextInput"
                 android:hint="@string/hora"
-                app:startIconDrawable="@drawable/ic_time">
+                app:startIconDrawable="@drawable/ic_time"
+                app:helperText="@string/horaInicioDescripcion">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/horaInicio"
+                    android:id="@+id/txtHora"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none|time" />
             </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextView"
-                android:text="@string/horaInicioDescripcion" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fechaFin_layout"
-                style="@style/TextInput"
-                android:hint="@string/fecha"
-                app:startIconDrawable="@drawable/ic_calendar">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fechaFin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="none|date" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextView"
-                android:text="@string/fechaFinDescripcion" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/horaFin_layout"
-                style="@style/TextInput"
-                android:hint="@string/hora"
-                app:startIconDrawable="@drawable/ic_time">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/horaFin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="none|time" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextView"
-                android:text="@string/horaFinDescripcion" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/objetivo_layout"
-                style="@style/TextInput"
-                android:hint="@string/objetivo"
-                app:startIconDrawable="@drawable/ic_meta">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/objetivo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextView"
-                android:text="@string/objetivoDescripcion" />
         </LinearLayout>
 
         <LinearLayout
@@ -163,43 +80,15 @@
                 android:id="@+id/descripcion_layout"
                 style="@style/TextInput"
                 android:hint="@string/descripcion"
-                app:startIconDrawable="@drawable/ic_desc">
+                app:startIconDrawable="@drawable/ic_desc"
+                app:helperText="@string/descripcionDescripcion">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/descripcion"
+                    android:id="@+id/txtDescripcion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextView"
-                android:text="@string/descripcionDescripcion" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/requisitos_layout"
-                style="@style/TextInput"
-                android:hint="@string/requisitos"
-                app:startIconDrawable="@drawable/ic_done">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/requisitos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextView"
-                android:text="@string/requisitosDescripcion" />
         </LinearLayout>
 
         <LinearLayout
@@ -209,18 +98,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/DropDown"
-                android:hint="@string/tareaPrevia">
+                android:hint="@string/tareaPrevia"
+                app:helperText="@string/tareapreviaDescripcion">
 
                 <AutoCompleteTextView
-                    android:id="@+id/tareaPrevia"
+                    android:id="@+id/txtTareaPrevia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextView"
-                android:text="@string/tareapreviaDescripcion" />
         </LinearLayout>
 
         <LinearLayout
@@ -230,18 +116,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/DropDown"
-                android:hint="@string/frecuencia">
+                android:hint="@string/frecuencia"
+                app:helperText="@string/frecuenciaDescripcion">
 
                 <AutoCompleteTextView
-                    android:id="@+id/frecuencia"
+                    android:id="@+id/txtFrecuencia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextView"
-                android:text="@string/frecuenciaDescripcion" />
         </LinearLayout>
 
         <LinearLayout
@@ -253,19 +136,15 @@
                 android:id="@+id/prioridad_layout"
                 style="@style/DropDown"
                 android:hint="@string/prioridad"
-                app:startIconDrawable="@drawable/ic_add">
+                app:startIconDrawable="@drawable/ic_add"
+                app:helperText="@string/prioridadDescripcion">
 
                 <AutoCompleteTextView
-                    android:id="@+id/prioridad"
+                    android:id="@+id/txtPrioridad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextView"
-                android:text="@string/prioridadDescripcion" />
         </LinearLayout>
 
         <RadioGroup
@@ -293,7 +172,6 @@
                 android:onClick="onRadioButtonClicked"
                 android:text="@string/estadoF" />
         </RadioGroup>
-
 
         <TextView
             android:id="@+id/estadoDescripcion"

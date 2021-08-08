@@ -3,333 +3,198 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/screen_bg">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <EditText
-            android:id="@+id/titulo"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tituloInput_layout"
+                style="@style/TextInput"
+                android:hint="@string/titulo"
+                app:startIconDrawable="@drawable/ic_title"
+                app:helperText="@string/tituloDescripcion">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtTitulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fechaInicio_layout"
+                style="@style/TextInput"
+                android:hint="@string/fecha"
+                app:startIconDrawable="@drawable/ic_calendar"
+                app:helperText="@string/fechaInicioDescripcion">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtFecha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none|date" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/horaInicio_layout"
+                style="@style/TextInput"
+                android:hint="@string/hora"
+                app:startIconDrawable="@drawable/ic_time"
+                app:helperText="@string/horaInicioDescripcion">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtHora"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none|time" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/descripcion_layout"
+                style="@style/TextInput"
+                android:hint="@string/descripcion"
+                app:startIconDrawable="@drawable/ic_desc"
+                app:helperText="@string/descripcionDescripcion">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtDescripcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/DropDown"
+                android:hint="@string/tareaPrevia"
+                app:helperText="@string/tareapreviaDescripcion">
+
+                <AutoCompleteTextView
+                    android:id="@+id/txtTareaPrevia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/DropDown"
+                android:hint="@string/frecuencia"
+                app:helperText="@string/frecuenciaDescripcion">
+
+                <AutoCompleteTextView
+                    android:id="@+id/txtFrecuencia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/prioridad_layout"
+                style="@style/DropDown"
+                android:hint="@string/prioridad"
+                app:startIconDrawable="@drawable/ic_add"
+                app:helperText="@string/prioridadDescripcion">
+
+                <AutoCompleteTextView
+                    android:id="@+id/txtPrioridad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/estado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:autofillHints="@string/titulo"
-            android:background="@drawable/style_border_edittext"
-            android:drawableStart="@drawable/ic_title"
-            android:ems="10"
-            android:hint="@string/titulo"
-            android:inputType="text"
             android:layout_marginTop="10dp"
-            android:nextFocusDown="@id/fechaInicio"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/prioridadnDescripcion">
+
+            <RadioButton
+                android:id="@+id/rb_pendiente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/estadoP" />
+
+            <RadioButton
+                android:id="@+id/rb_finalizado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/estadoF" />
+        </RadioGroup>
 
         <TextView
-            android:id="@+id/tituloDescripcion"
+            android:id="@+id/estadoDescripcion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/tituloDescripcion"
+            android:text="@string/estadoDescripcion"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/titulo"
-            app:layout_constraintTop_toBottomOf="@+id/titulo" />
+            app:layout_constraintStart_toStartOf="@+id/estado"
+            app:layout_constraintTop_toBottomOf="@+id/estado" />
 
-        <EditText
-            android:id="@+id/fechaInicio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="@string/fecha"
-            android:background="@drawable/style_border_edittext"
-            android:drawableStart="@drawable/ic_calendar"
-            android:ems="10"
-            android:hint="@string/fecha"
-            android:inputType="date"
-            android:layout_marginTop="10dp"
-            android:nextFocusDown="@id/horaInicio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloDescripcion" />
+        <Button
+            android:id="@+id/btnSave"
+            style="@style/Button"
+            android:text="@string/btnSave"
+            app:cornerRadius="20dp" />
 
-        <TextView
-            android:id="@+id/fechaInicioDescripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/fechaInicioDescripcion"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/fechaInicio"
-            app:layout_constraintTop_toBottomOf="@+id/fechaInicio" />
-
-        <EditText
-            android:id="@+id/horaInicio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="@string/hora"
-            android:background="@drawable/style_border_edittext"
-            android:drawableStart="@drawable/ic_time"
-            android:ems="10"
-            android:hint="@string/hora"
-            android:inputType="time"
-            android:layout_marginTop="10dp"
-            android:nextFocusDown="@id/fechaFin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fechaInicioDescripcion" />
-
-        <TextView
-            android:id="@+id/horaInicioDescripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/horaInicioDescripcion"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/horaInicio"
-            app:layout_constraintTop_toBottomOf="@+id/horaInicio" />
-
-        <EditText
-            android:id="@+id/fechaFin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="@string/fecha"
-            android:background="@drawable/style_border_edittext"
-            android:drawableStart="@drawable/ic_calendar"
-            android:ems="10"
-            android:hint="@string/fecha"
-            android:inputType="date"
-            android:layout_marginTop="10dp"
-            android:nextFocusDown="@id/horaFin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horaInicioDescripcion" />
-
-        <TextView
-            android:id="@+id/fechaFinDescripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/fechaFinDescripcion"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/fechaFin"
-            app:layout_constraintTop_toBottomOf="@+id/fechaFin" />
-
-        <EditText
-            android:id="@+id/horaFin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="@string/hora"
-            android:background="@drawable/style_border_edittext"
-            android:drawableStart="@drawable/ic_time"
-            android:ems="10"
-            android:hint="@string/hora"
-            android:inputType="time"
-            android:layout_marginTop="10dp"
-            android:nextFocusDown="@id/objetivo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fechaFinDescripcion" />
-
-        <TextView
-            android:id="@+id/horaFinDescripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/horaFinDescripcion"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/horaFin"
-            app:layout_constraintTop_toBottomOf="@+id/horaFin" />
-
-        <EditText
-            android:id="@+id/objetivo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="@string/objetivo"
-            android:background="@drawable/style_border_edittext"
-            android:drawableStart="@drawable/ic_meta"
-            android:ems="10"
-            android:hint="@string/objetivo"
-            android:inputType="text"
-            android:layout_marginTop="10dp"
-            android:nextFocusDown="@id/descripcion"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horaFinDescripcion" />
-
-        <TextView
-            android:id="@+id/objetivoDescripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/objetivoDescripcion"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/objetivo"
-            app:layout_constraintTop_toBottomOf="@+id/objetivo" />
-
-        <EditText
-            android:id="@+id/descripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="@string/descripcion"
-            android:background="@drawable/style_border_edittext"
-            android:drawableStart="@drawable/ic_desc"
-            android:ems="10"
-            android:hint="@string/descripcion"
-            android:inputType="text"
-            android:layout_marginTop="10dp"
-            android:nextFocusDown="@id/requisitos"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/objetivoDescripcion" />
-
-        <TextView
-            android:id="@+id/descripcionDescripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/descripcionDescripcion"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/descripcion"
-            app:layout_constraintTop_toBottomOf="@+id/descripcion" />
-
-        <EditText
-            android:id="@+id/requisitos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="@string/requisitos"
-            android:background="@drawable/style_border_edittext"
-            android:drawableStart="@drawable/ic_done"
-            android:ems="10"
-            android:hint="@string/requisitos"
-            android:inputType="text"
-            android:layout_marginTop="10dp"
-            android:nextFocusDown="@id/tareaPrevia"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descripcionDescripcion" />
-
-        <TextView
-            android:id="@+id/requisitosDescripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/requisitosDescripcion"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/requisitos"
-            app:layout_constraintTop_toBottomOf="@+id/requisitos" />
-
-
-        <Spinner
-            android:id="@+id/tareaPrevia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/requisitosDescripcion"
-            app:layout_constraintTop_toBottomOf="@+id/requisitosDescripcion" />
-
-        <TextView
-            android:id="@+id/tareaPreviaDescripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/tareapreviaDescripcion"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tareaPrevia"
-            app:layout_constraintTop_toBottomOf="@+id/tareaPrevia" />
-
-
-        <Spinner
-            android:id="@+id/frecuencia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tareaPreviaDescripcion"
-            app:layout_constraintTop_toBottomOf="@+id/tareaPreviaDescripcion" />
-
-        <TextView
-            android:id="@+id/frecuenciaDescripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/frecuenciaDescripcion"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/frecuencia"
-            app:layout_constraintTop_toBottomOf="@+id/frecuencia" />
-
-
-        <EditText
-            android:id="@+id/prioridad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="@string/prioridad"
-            android:background="@drawable/style_border_edittext"
-            android:drawableStart="@drawable/ic_add"
-            android:ems="10"
-            android:hint="@string/prioridad"
-            android:inputType="number"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frecuenciaDescripcion" />
-
-        <TextView
-            android:id="@+id/prioridadnDescripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/prioridadDescripcion"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/prioridad"
-            app:layout_constraintTop_toBottomOf="@+id/prioridad" />
-
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/turkish"
-        android:text="@string/btnSave"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"
-        app:cornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prioridadnDescripcion" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/Button"
+            android:text="@string/btnCancel"
+            app:cornerRadius="20dp" />
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>
