@@ -12,16 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/ChronoMasterTheme">
         <activity android:name=".tareas.TareaManagementActivity"
-            android:label="@string/btnShow"/>
+            android:label="@string/btnShow"
+            android:theme="@style/ChronoMasterThemeActionBar"/>
         <activity android:name=".ResetPassActivity" />
         <activity android:name=".ConfiguracionActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
