@@ -1,25 +1,25 @@
 package com.equipo22.agenda
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class TareasRecyclerAdapter(val tareas: List<Tarea>, var itemClickListener: ItemClickListener) :
-    RecyclerView.Adapter<TareasRecyclerAdapter.ViewHolder>() {
+class TareasRecyclerAdapter(
+    private val context: Context,
+    private val tareas: MutableList<Tarea>,
+    private val clickListener: (Tarea) -> Unit
+    ) : RecyclerView.Adapter<TareasRecyclerAdapter.ViewHolder>() {
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         private val title = view.findViewById<TextView>(R.id.txtTitle)
-        private val hour = view.findViewById<TextView>(R.id.txtHour)
+        private val description = view.findViewById<TextView>(R.id.txtDescription)
 
-        fun bind(tarea: Tarea) {
+        fun bind(tarea: Tarea, context: Context) {
             title.text = tarea.titulo
-            hour.text = tarea.horario
-
-            itemView.setOnClickListener {
-                itemClickListener.onItemClick(tarea)
-            }
+            description.text = tarea.descripcion
         }
     }
 
@@ -32,8 +32,9 @@ class TareasRecyclerAdapter(val tareas: List<Tarea>, var itemClickListener: Item
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tarea = tareas[position]
+        holder.bind(tarea, context)
 
-        holder.bind(tarea)
+        holder.view.setOnClickListener { clickListener(tarea) }
     }
 
     override fun getItemCount(): Int {

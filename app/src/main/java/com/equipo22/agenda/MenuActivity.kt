@@ -4,11 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.equipo22.agenda.tareas.TareaManagementActivity
 
 class MenuActivity : AppCompatActivity() {
 
     private lateinit var btnShow: Button
-    private lateinit var btnAdd: Button
     private lateinit var btnConfig: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,17 +16,10 @@ class MenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu)
 
         btnShow = findViewById(R.id.btnShow)
-        btnAdd = findViewById(R.id.btnAdd)
         btnConfig = findViewById(R.id.btnConfig)
-
-        btnAdd.setOnClickListener {
-            val intent = Intent(this, AgregarTareaActivity::class.java)
-            startActivity(intent)
-        }
-
         
         btnShow.setOnClickListener {
-            val intent = Intent(this, VerTareasActivity::class.java)
+            val intent = Intent(this, TareaManagementActivity::class.java)
             startActivity(intent)
         }
 
