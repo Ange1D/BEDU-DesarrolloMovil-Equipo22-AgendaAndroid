@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="515dp"
             android:layout_gravity="center"
-            android:src="@drawable/dumy_image" />
+            android:src="@drawable/ic_done" />
 
         <TextView
             android:id="@+id/txtTitle"
