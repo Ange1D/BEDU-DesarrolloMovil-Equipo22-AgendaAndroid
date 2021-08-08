@@ -4,6 +4,7 @@
     <string name="activitySignUpTitle">Sign Up</string>
     <string name="usrPlaceholder">Usuario</string>
     <string name="passPlaceholder">Password</string>
+    <string name="passPlaceholderCfrm">Confirmar Password</string>
     <string name="lostPass">¿Olvidaste la contraseña?</string>
     <string name="btnLogIn">Iniciar sesión</string>
     <string name="btnSignUp">Registrarse</string>

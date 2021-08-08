@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/screen_bg"
-    tools:context=".SignupActivity">
+    tools:context=".SignupFragment">
 
     <ImageView
         android:id="@+id/appLogo"
@@ -20,7 +20,25 @@
         app:layout_constraintVertical_chainStyle="spread"
         app:srcCompat="@drawable/chronomaster01" />
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signUpName"
+        style="@style/ChronoMasterTheme.TextInputLayout"
+        android:hint="@string/usrPlaceholder"
+        app:layout_constraintBottom_toTopOf="@+id/signUpEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appLogo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/layout_text_usr"
+            style="@style/ChronoMasterTheme.TextInputLayout.EditText"
+            android:drawableStart="@drawable/ic_user"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- <EditText
         android:id="@+id/signUpName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,9 +53,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appLogo" />
+        app:layout_constraintTop_toBottomOf="@+id/appLogo" /> -->
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signUpEmail"
+        style="@style/ChronoMasterTheme.TextInputLayout"
+        android:hint="@string/emailPlaceholder"
+        app:layout_constraintBottom_toTopOf="@+id/signUpPass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/layout_text_email"
+            style="@style/ChronoMasterTheme.TextInputLayout.EditText"
+            android:drawableStart="@drawable/ic_email"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- <EditText
         android:id="@+id/signUpEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,9 +87,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpName" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpName" /> -->
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signUpPass"
+        style="@style/ChronoMasterTheme.TextInputLayout"
+        android:hint="@string/emailPlaceholder"
+        app:layout_constraintBottom_toTopOf="@+id/signUpPass2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEmail">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/layout_text_pass"
+            style="@style/ChronoMasterTheme.TextInputLayout.EditText"
+            android:drawableStart="@drawable/ic_email"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- <EditText
         android:id="@+id/signUpPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,9 +120,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpEmail" /> -->
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signUpPass2"
+        style="@style/ChronoMasterTheme.TextInputLayout"
+        android:hint="@string/emailPlaceholder"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignUp2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpPass">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/layout_text_pass2"
+            style="@style/ChronoMasterTheme.TextInputLayout.EditText"
+            android:drawableStart="@drawable/ic_email"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- <EditText
         android:id="@+id/signUpPass2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,13 +147,13 @@
         android:background="@drawable/style_border_edittext"
         android:drawableStart="@drawable/ic_password"
         android:ems="10"
-        android:hint="@string/passPlaceholder"
+        android:hint="@string/passPlaceholderCfrm"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/btnSignUp2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpPass" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpPass" /> -->
 
     <Button
         android:id="@+id/btnSignUp2"
