@@ -4,20 +4,27 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 
-class ResetPassActivity : AppCompatActivity() {
-    private lateinit var btnSend: Button
-    private lateinit var txtEmailSnd: TextView
+class ResetPassFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_reset_pass)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        btnSend = findViewById(R.id.btnSend)
-        txtEmailSnd = findViewById(R.id.txtEmail)
+        val view = inflater.inflate(R.layout.reset_pass_fragment, container, false)
+
+        val btnSend = view.findViewById<MaterialButton>(R.id.btnSend)
+        val txtEmailSnd = view.findViewById<TextInputEditText>(R.id.txtEmail_input)
 
         btnSend.isEnabled = false
 
@@ -39,8 +46,14 @@ class ResetPassActivity : AppCompatActivity() {
 
         btnSend.setOnClickListener {
             Toast.makeText(
-                applicationContext,
-                "La liga para restablecer la contraseña ha sido enviada", Toast.LENGTH_LONG).show()
+                context,
+                "La liga para restablecer la contraseña ha sido enviada", Toast.LENGTH_LONG
+            ).show()
         }
+
+
+        return view
     }
+
+
 }

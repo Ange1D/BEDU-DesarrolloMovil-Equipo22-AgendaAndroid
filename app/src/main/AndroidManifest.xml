@@ -13,7 +13,7 @@
         android:theme="@style/ChronoMasterTheme">
         <activity android:name=".tareas.TareaManagementActivity"
             android:label="@string/btnShow"/>
-        <activity android:name=".ResetPassActivity" />
+        <activity android:name=".ResetPassFragment" />
         <activity android:name=".ConfiguracionActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".MainActivity">
