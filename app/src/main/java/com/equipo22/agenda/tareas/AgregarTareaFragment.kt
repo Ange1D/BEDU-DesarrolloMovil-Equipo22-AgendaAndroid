@@ -4,21 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import com.equipo22.agenda.R
 import com.equipo22.agenda.Tarea
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 
-class AgregarTareaFragment: Fragment() {
+class AgregarTareaFragment : Fragment() {
     private lateinit var txtTitulo: TextInputEditText
     private lateinit var txtFecha: TextInputEditText
     private lateinit var txtHora: TextInputEditText
     private lateinit var txtDescripcion: TextInputEditText
-    private lateinit var txtTareaPrevia: TextInputEditText
-    private lateinit var txtFrecuencia: TextInputEditText
-    private lateinit var txtPrioridad: TextInputEditText
+    private lateinit var txtTareaPrevia: AutoCompleteTextView
+    private lateinit var txtFrecuencia: AutoCompleteTextView
+    private lateinit var txtPrioridad: AutoCompleteTextView
     private lateinit var rbPendiente: RadioButton
     private lateinit var rbFinalizada: RadioButton
     private lateinit var bttnSave: Button
@@ -30,6 +33,10 @@ class AgregarTareaFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_agregar_tarea, container, false)
+        TareaManagementActivity.SHOWING_FRAGMENT = "AgregarTarea"
+        TareaManagementActivity.tareasMenu.findItem(R.id.action_add).isVisible = false
+        TareaManagementActivity.tareasMenu.findItem(R.id.action_edit).isVisible = false
+        TareaManagementActivity.tareasMenu.findItem(R.id.action_delete).isVisible = false
         var estado = ""
 
         txtTitulo = view.findViewById(R.id.txtTitulo)
@@ -39,47 +46,56 @@ class AgregarTareaFragment: Fragment() {
         txtTareaPrevia = view.findViewById(R.id.txtTareaPrevia)
         txtFrecuencia = view.findViewById(R.id.txtFrecuencia)
         txtPrioridad = view.findViewById(R.id.txtPrioridad)
+
+        txtTareaPrevia.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.titulosTareas))
+        txtFrecuencia.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.frecuencia))
+        txtPrioridad.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.prioridad))
+
         rbPendiente = view.findViewById(R.id.rb_pendiente)
         rbFinalizada = view.findViewById(R.id.rb_finalizado)
         bttnSave = view.findViewById(R.id.btnSave)
         bttnCancel = view.findViewById(R.id.btnCancel)
-
-        txtTitulo.setText(TareaManagementActivity.tareaSeleccionada.titulo)
-        txtFecha.setText(TareaManagementActivity.tareaSeleccionada.fecha)
-        txtHora.setText(TareaManagementActivity.tareaSeleccionada.hora)
-        txtDescripcion.setText(TareaManagementActivity.tareaSeleccionada.descripcion)
-        txtTareaPrevia.setText(TareaManagementActivity.tareaSeleccionada.tareaPrevia)
-        txtFrecuencia.setText(TareaManagementActivity.tareaSeleccionada.frecuencia)
-        txtPrioridad.setText(TareaManagementActivity.tareaSeleccionada.prioridad)
-        if (TareaManagementActivity.tareaSeleccionada.estado == resources.getString(R.string.estadoP)) {
-            rbPendiente.isChecked = true
-            rbFinalizada.isChecked = false
-        } else if (TareaManagementActivity.tareaSeleccionada.estado == resources.getString(R.string.estadoF)) {
-            rbPendiente.isChecked = false
-            rbFinalizada.isChecked = true
-        }
         rbPendiente.setOnClickListener {
-            estado=resources.getString(R.string.estadoP)
+            estado = resources.getString(R.string.estadoP)
         }
         rbFinalizada.setOnClickListener {
-            estado=resources.getString(R.string.estadoF)
+            estado = resources.getString(R.string.estadoF)
         }
 
         bttnSave.setOnClickListener {
-            TareaManagementActivity.tareas.set(
-                TareaManagementActivity.tareaSeleccionadaIndex,
-                Tarea(
-                    txtTitulo.text.toString(),
-                    txtFecha.text.toString(),
-                    txtHora.text.toString(),
-                    txtDescripcion.text.toString(),
-                    txtTareaPrevia.text.toString(),
-                    txtFrecuencia.text.toString(),
-                    txtPrioridad.text.toString().toInt(),
-                    estado
+            if (
+                txtTitulo.text.toString().isNotEmpty() &&
+                txtFecha.text.toString().isNotEmpty() &&
+                txtHora.text.toString().isNotEmpty() &&
+                txtDescripcion.text.toString().isNotEmpty() &&
+                txtTareaPrevia.text.toString().isNotEmpty() &&
+                txtFrecuencia.text.toString().isNotEmpty() &&
+                txtPrioridad.text.toString().isNotEmpty() &&
+                estado != ""
+            ) {
+                TareaManagementActivity.tareas.add(
+                    Tarea(
+                        txtTitulo.text.toString(),
+                        txtFecha.text.toString(),
+                        txtHora.text.toString(),
+                        txtDescripcion.text.toString(),
+                        txtTareaPrevia.text.toString(),
+                        txtFrecuencia.text.toString(),
+                        txtPrioridad.text.toString().toInt(),
+                        estado
+                    )
                 )
-            )
-            (activity as TareaManagementActivity).navigateTo(VerListadoFragment(), false)
+                TareaManagementActivity.titulosTareas.add(txtTitulo.text.toString())
+                (activity as TareaManagementActivity).navigateTo(VerListadoFragment(), false)
+            } else {
+                MaterialAlertDialogBuilder((activity as TareaManagementActivity))
+                    .setTitle(resources.getString(R.string.incomplete_data_title))
+                    .setMessage(resources.getString(R.string.incomplete_data_description))
+                    .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
+
+                    }
+                    .show()
+            }
         }
         bttnCancel.setOnClickListener {
             (activity as TareaManagementActivity).onBackPressed()
