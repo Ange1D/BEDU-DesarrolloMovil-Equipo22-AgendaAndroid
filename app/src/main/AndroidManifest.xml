@@ -11,17 +11,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/ChronoMasterTheme">
-        <activity android:name=".tareas.TareaManagementActivity"
-            android:label="@string/btnShow"/>
-        <activity android:name=".ResetPassFragment" />
-        <activity android:name=".ConfiguracionActivity" />
-        <activity android:name=".MenuActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".tareas.TareaManagementActivity"
+            android:label="@string/btnShow"
+            android:theme="@style/ChronoMasterThemeActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ConfiguracionActivity" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".MainActivity">
+
         </activity>
     </application>
 

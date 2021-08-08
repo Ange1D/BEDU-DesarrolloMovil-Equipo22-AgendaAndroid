@@ -11,8 +11,11 @@ import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import com.equipo22.agenda.R
 import com.equipo22.agenda.Tarea
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 
 class AgregarTareaFragment : Fragment() {
     private lateinit var txtTitulo: TextInputEditText
@@ -38,6 +41,38 @@ class AgregarTareaFragment : Fragment() {
         TareaManagementActivity.tareasMenu.findItem(R.id.action_edit).isVisible = false
         TareaManagementActivity.tareasMenu.findItem(R.id.action_delete).isVisible = false
         var estado = ""
+        val datePicker =
+            MaterialDatePicker.Builder.datePicker()
+                .setTitleText(resources.getString(R.string.fecha))
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build()
+        datePicker.addOnPositiveButtonClickListener {
+            when {
+                txtFecha.hasFocus() -> {
+                    val fechaSeleccionada = setFecha(datePicker.headerText)
+
+                    txtFecha.setText(
+                        fechaSeleccionada
+                    )
+                }
+                else -> {  }
+            }
+        }
+        val timePicker =
+            MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_12H)
+                .setHour(12)
+                .setMinute(0)
+                .setTitleText(resources.getString(R.string.hora))
+                .build()
+        timePicker.addOnPositiveButtonClickListener {
+            when {
+                txtHora.hasFocus() -> {
+                    txtHora.setText(setHora(timePicker.hour.toString(), timePicker.minute.toString()))
+                }
+                else -> {  }
+            }
+        }
 
         txtTitulo = view.findViewById(R.id.txtTitulo)
         txtFecha = view.findViewById(R.id.txtFecha)
@@ -50,6 +85,20 @@ class AgregarTareaFragment : Fragment() {
         txtTareaPrevia.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.titulosTareas))
         txtFrecuencia.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.frecuencia))
         txtPrioridad.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.prioridad))
+        txtFecha.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus)
+                datePicker.show((activity as TareaManagementActivity).supportFragmentManager, resources.getString(R.string.fecha))
+        }
+        txtFecha.setOnClickListener {
+            datePicker.show((activity as TareaManagementActivity).supportFragmentManager, resources.getString(R.string.fecha))
+        }
+        txtHora.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus)
+                timePicker.show((activity as TareaManagementActivity).supportFragmentManager, resources.getString(R.string.hora))
+        }
+        txtHora.setOnClickListener {
+            timePicker.show((activity as TareaManagementActivity).supportFragmentManager, resources.getString(R.string.hora))
+        }
 
         rbPendiente = view.findViewById(R.id.rb_pendiente)
         rbFinalizada = view.findViewById(R.id.rb_finalizado)
@@ -102,5 +151,47 @@ class AgregarTareaFragment : Fragment() {
         }
 
         return view
+    }
+
+    fun setFecha(fecha: String): String{
+        var nuevaFecha:String = fecha
+        if (fecha.toCharArray().size < 11) {
+            nuevaFecha = "0$nuevaFecha"
+        }
+
+        val dia = nuevaFecha.substring(0, 2)
+        var mes = nuevaFecha.substring(3, 6)
+        when (mes) {
+            "ene" -> mes = "Enero"
+            "feb" -> mes = "Febrero"
+            "mar" -> mes = "Marzo"
+            "abr" -> mes = "Abril"
+            "may" -> mes = "Mayo"
+            "jun" -> mes = "Junio"
+            "jul" -> mes = "Julio"
+            "ago" -> mes = "Agosto"
+            "sep" -> mes = "Septiembre"
+            "oct" -> mes = "Octubre"
+            "nov" -> mes = "Noviembre"
+            "dic" -> mes = "Diciembre"
+        }
+        val anno = nuevaFecha.substring(7)
+        nuevaFecha = "$dia/$mes/$anno"
+
+        return nuevaFecha
+    }
+
+    fun setHora(hora: String, minuto: String): String {
+        var horaReal = ""
+        var nuevaHora = hora
+        var nuevoMinuto = minuto
+        if (hora.toCharArray().size<2)
+            nuevaHora = "0$hora"
+        if (minuto.toCharArray().size<2)
+            nuevoMinuto = "0$minuto"
+
+        horaReal = "$nuevaHora:$nuevoMinuto hrs."
+
+        return horaReal
     }
 }
