@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/appLogo">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/layout_text_usr"
+            android:id="@+id/input_text_usr"
             style="@style/ChronoMasterTheme.TextInputLayout.EditText"
             android:drawableStart="@drawable/ic_user"
             android:inputType="text"/>
@@ -49,7 +49,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/layout_text_pass"
+            android:id="@+id/input_text_pass"
             style="@style/ChronoMasterTheme.TextInputLayout.EditText"
             android:drawableStart="@drawable/ic_password"
             android:inputType="text" />
