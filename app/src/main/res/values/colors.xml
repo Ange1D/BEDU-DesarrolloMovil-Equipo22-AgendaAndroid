@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="primaryColor">#8c5055</color>
+    <color name="primaryLightColor">#be7d81</color>
+    <color name="primaryDarkColor">#5c262c</color>
+    <color name="secondaryColor">#14cba8</color>
+    <color name="secondaryLightColor">#64ffd9</color>
+    <color name="secondaryDarkColor">#009979</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#000000</color>
     <color name="screen_bg">#FFEEFF</color>
+
     <color name="turkish">#14CBA8</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>

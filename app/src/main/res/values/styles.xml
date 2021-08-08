@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Estilo general de la app -->
+    <style name="ChronoMasterTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryLightColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
+        <item name="colorBackgroundFloating">@color/screen_bg</item>
+    </style>
+    <!-- Estilo de botones -->
+    <style name="ChronoMasterTheme.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/secondaryColor</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+    <!-- Estilo de input layouts -->
+    <style name="ChronoMasterTheme.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="hintTextColor">?attr/colorPrimaryVariant</item>
+        <item name="android:textColorHint">?attr/colorPrimary</item>
+        <item name="android:layout_marginStart">48dp</item>
+        <item name="android:layout_marginEnd">48dp</item>
+
+    </style>
+
+    <!-- Estilo de text inputs -->
+    <style name="ChronoMasterTheme.TextInputLayout.EditText" parent="ChronoMasterTheme.TextInputLayout">
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@drawable/style_border_edittext</item>
+        <item name="iconTint">?attr/colorPrimary</item>
+    </style>
+</resources>
