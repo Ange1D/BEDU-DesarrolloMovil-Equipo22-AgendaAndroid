@@ -43,7 +43,7 @@
     <string name="btnCancel">Cancelar</string>
 
     <string name="delete_dialog_title">¿Borrar tarea?</string>
-    <string name="delete_dialog_description">¿Está seguro que desea eliminar la tarea %1$s?<br/>
+    <string name="delete_dialog_description">¿Está seguro que desea eliminar la tarea %1$s?<br />
     Presione Aceptar para borrar</string>
     <string name="accept">Aceptar</string>
 
@@ -51,4 +51,11 @@
     <string name="incomplete_data_description">Todos los campos deben ser llenados para crear una tarea.</string>
 
     <string name="bienvenido">Bienvenido</string>
+
+    <string name="changePassword">Cambiar Contraseña</string>
+    <string name="longPass">Almenos 8 caracteres</string>
+    <string name="oldPass">Contraseña actual</string>
+    <string name="newPass">Nueva contraseña</string>
+    <string name="save">Guardar cambios</string>
+    <string name="errorPass">Debe completar la contraseña</string>
 </resources>
