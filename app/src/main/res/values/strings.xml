@@ -49,4 +49,6 @@
 
     <string name="incomplete_data_title">Faltan datos</string>
     <string name="incomplete_data_description">Todos los campos deben ser llenados para crear una tarea.</string>
+
+    <string name="bienvenido">Bienvenido</string>
 </resources>

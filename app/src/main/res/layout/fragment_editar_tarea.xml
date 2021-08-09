@@ -20,7 +20,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tituloInput_layout"
-                style="@style/TextInput"
+                style="@style/ChronoMasterTheme.OutlinedTextInputLayout"
                 android:hint="@string/titulo"
                 app:startIconDrawable="@drawable/ic_title"
                 app:helperText="@string/tituloDescripcion">
@@ -40,7 +40,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/fechaInicio_layout"
-                style="@style/TextInput"
+                style="@style/ChronoMasterTheme.OutlinedTextInputLayout"
                 android:hint="@string/fecha"
                 app:startIconDrawable="@drawable/ic_calendar"
                 app:helperText="@string/fechaInicioDescripcion">
@@ -60,7 +60,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/horaInicio_layout"
-                style="@style/TextInput"
+                style="@style/ChronoMasterTheme.OutlinedTextInputLayout"
                 android:hint="@string/hora"
                 app:startIconDrawable="@drawable/ic_time"
                 app:helperText="@string/horaInicioDescripcion">
@@ -80,7 +80,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/descripcion_layout"
-                style="@style/TextInput"
+                style="@style/ChronoMasterTheme.OutlinedTextInputLayout"
                 android:hint="@string/descripcion"
                 app:startIconDrawable="@drawable/ic_desc"
                 app:helperText="@string/descripcionDescripcion">
@@ -99,7 +99,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/DropDown"
+                style="@style/ChronoMasterTheme.DropDown"
                 android:hint="@string/tareaPrevia"
                 app:helperText="@string/tareapreviaDescripcion">
 
@@ -117,7 +117,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/DropDown"
+                style="@style/ChronoMasterTheme.DropDown"
                 android:hint="@string/frecuencia"
                 app:helperText="@string/frecuenciaDescripcion">
 
@@ -136,7 +136,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/prioridad_layout"
-                style="@style/DropDown"
+                style="@style/ChronoMasterTheme.DropDown"
                 android:hint="@string/prioridad"
                 app:startIconDrawable="@drawable/ic_add"
                 app:helperText="@string/prioridadDescripcion">
@@ -189,13 +189,13 @@
 
         <Button
             android:id="@+id/btnSave"
-            style="@style/Button"
+            style="@style/ChronoMasterTheme.Button"
             android:text="@string/btnSave"
             app:cornerRadius="20dp" />
 
         <Button
             android:id="@+id/btnCancel"
-            style="@style/Button"
+            style="@style/ChronoMasterTheme.Button"
             android:text="@string/btnCancel"
             app:cornerRadius="20dp" />
     </LinearLayout>

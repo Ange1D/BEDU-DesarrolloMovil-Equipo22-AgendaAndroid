@@ -94,9 +94,9 @@ class TareaManagementActivity : AppCompatActivity() {
                     .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
                         onBackPressed()
                         tareas.removeAt(tareaSeleccionadaIndex)
-                        titulosTareas.removeAt(tareaSeleccionadaIndex)
+                        titulosTareas.removeAt(tareaSeleccionadaIndex + 1)
                     }
-                    .setNeutralButton(resources.getString(R.string.btnCancel)) { dialog, which ->
+                    .setNegativeButton(resources.getString(R.string.btnCancel)) { dialog, which ->
                     }
                     .show()
             }

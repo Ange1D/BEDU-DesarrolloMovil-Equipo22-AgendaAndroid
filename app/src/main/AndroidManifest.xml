@@ -11,11 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/ChronoMasterTheme">
-        <activity android:name=".tareas.TareaManagementActivity"
-            android:label="@string/btnShow"/>
-        <activity android:name=".ResetPassFragment" />
+        <activity
+            android:name=".tareas.TareaManagementActivity"
+            android:label="@string/btnShow"
+            android:theme="@style/ChronoMasterThemeActionBar">
+        </activity>
         <activity android:name=".ConfiguracionActivity" />
-        <activity android:name=".MenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
