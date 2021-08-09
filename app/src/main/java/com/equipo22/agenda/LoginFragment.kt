@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.equipo22.agenda.tareas.TareaManagementActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 
@@ -35,7 +36,7 @@ class LoginFragment : Fragment() {
 
         loginButton.setOnClickListener {
             if (nameInput.text.toString().equals(usr) && (passInput.text.toString().equals(pass))){
-                val intent = Intent(context, MenuActivity::class.java)
+                val intent = Intent(context, TareaManagementActivity::class.java)
                 startActivity(intent)
             }
         }

@@ -73,4 +73,16 @@
         <item name="android:background">@drawable/style_border_edittext</item>
         <item name="iconTint">?attr/colorPrimary</item>
     </style>
+
+
+    <!-- Foto del usuario -->
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- Card -->
+    <style name="ShapeAppearanceOverlay.App.CornerCut" parent="">
+        <item name="cornerSize">15dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
 </resources>
