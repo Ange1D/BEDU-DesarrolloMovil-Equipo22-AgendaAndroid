@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.equipo22.agenda.R
-import com.equipo22.agenda.Tarea
-import com.equipo22.agenda.TareasRecyclerAdapter
+import com.equipo22.agenda.*
+import com.google.android.material.button.MaterialButton
 
 class VerListadoFragment: Fragment() {
     private lateinit var recyclerTareas: RecyclerView
@@ -35,6 +34,14 @@ class VerListadoFragment: Fragment() {
         recyclerTareas.layoutManager = horizontalLinearLayoutManager
         recyclerTareas.adapter = mAdapter
 
+        val btnSetting = view.findViewById<MaterialButton>(R.id.btnSetting)
+
+        btnSetting.setOnClickListener{
+            (activity as TareaManagementActivity).navigateTo(ConfiguracionFragment(), false)
+
+        }
+
         return view
     }
+
 }
