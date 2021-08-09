@@ -49,7 +49,6 @@ class LoginFragment : Fragment() {
             (activity as MainActivity).navigateTo(ResetPassFragment(), false)
         }
 
-
         return view
     }
 }

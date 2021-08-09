@@ -16,19 +16,10 @@ import androidx.fragment.app.Fragment
 //import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var btnLogIn: Button
-    private lateinit var btnSingUp: Button
-    //private lateinit var txtUsr: EditText
-    //private lateinit var txtPass: EditText
-    private lateinit var txtLstPass: TextView
-    //private lateinit var usr: String
-    //private lateinit var pass: String
-
+    //Función que agrega el contenedor a la activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
 
         if (savedInstanceState == null) {
             supportFragmentManager
@@ -38,34 +29,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Función para navegar entre los fragmentos
     fun navigateTo(fragment: Fragment, addToBackstack: Boolean) {
         val transaction = supportFragmentManager
             .beginTransaction()
+            .addToBackStack(null)
             .replace(R.id.fragment_container, fragment)
 
         if (addToBackstack) {
             transaction.addToBackStack(null)
         }
-
         transaction.commit()
     }
-
-        /*btnLogIn = findViewById(R.id.btnLogIn)
-        btnSingUp = findViewById(R.id.btnSignUp)
-        txtLstPass = findViewById(R.id.lostPass)
-
-        txtLstPass.setOnClickListener {
-            val intent = Intent(this, ResetPassActivity::class.java)
-            startActivity(intent)
-        }
-
-        btnSingUp.setOnClickListener {
-            val intent = Intent(this, SignupActivity::class.java)
-            startActivity(intent)
-        }
-
-        btnLogIn.setOnClickListener {
-            val intent = Intent(this, MenuActivity::class.java)
-            startActivity(intent)
-        }*/
-    }
+}
