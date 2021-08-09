@@ -54,7 +54,7 @@
             android:id="@+id/input_text_pass"
             style="@style/ChronoMasterTheme.TextInputLayout.EditText"
             android:drawableStart="@drawable/ic_password"
-            android:inputType="text" />
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
