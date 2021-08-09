@@ -24,38 +24,57 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/personName"
-        style="@style/ChronoMasterTheme.TextInputLayout"
+        android:paddingHorizontal="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:hint="@string/usrPlaceholder"
+        app:helperText="@string/userHelp"
+        app:startIconDrawable="@drawable/ic_user"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appLogo">
+        app:layout_constraintTop_toBottomOf="@+id/appLogo"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_text_usr"
-            style="@style/ChronoMasterTheme.TextInputLayout.EditText"
-            android:drawableStart="@drawable/ic_user"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textPassword"
-        style="@style/ChronoMasterTheme.TextInputLayout"
+        android:paddingHorizontal="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:hint="@string/passPlaceholder"
+        app:helperText="@string/passHelp"
+        app:startIconDrawable="@drawable/ic_password"
+        app:endIconMode="password_toggle"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/btnLogIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/personName"
-        >
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_text_pass"
-            style="@style/ChronoMasterTheme.TextInputLayout.EditText"
-            android:drawableStart="@drawable/ic_password"
-            android:inputType="text" />
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <ImageView
         android:id="@+id/appLogo"

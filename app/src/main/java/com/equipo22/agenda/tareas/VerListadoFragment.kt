@@ -34,12 +34,6 @@ class VerListadoFragment: Fragment() {
         recyclerTareas.layoutManager = horizontalLinearLayoutManager
         recyclerTareas.adapter = mAdapter
 
-        val btnSetting = view.findViewById<MaterialButton>(R.id.btnSetting)
-
-        btnSetting.setOnClickListener{
-            (activity as TareaManagementActivity).navigateTo(ConfiguracionFragment(), false)
-
-        }
 
         return view
     }

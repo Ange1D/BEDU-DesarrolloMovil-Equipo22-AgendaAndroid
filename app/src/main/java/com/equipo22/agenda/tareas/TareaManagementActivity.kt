@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.equipo22.agenda.ConfiguracionFragment
 import com.equipo22.agenda.R
 import com.equipo22.agenda.Tarea
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -101,6 +102,7 @@ class TareaManagementActivity : AppCompatActivity() {
                     .show()
             }
             R.id.action_edit -> navigateTo(EditarTareaFragment(), false)
+            R.id.action_conf -> navigateTo(ConfiguracionFragment(), false)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -155,11 +157,19 @@ class TareaManagementActivity : AppCompatActivity() {
             tareasMenu.findItem(R.id.action_add).isVisible = true
             tareasMenu.findItem(R.id.action_edit).isVisible = false
             tareasMenu.findItem(R.id.action_delete).isVisible = false
+            tareasMenu.findItem(R.id.action_conf).isVisible = true
         } else if (SHOWING_FRAGMENT == "EditarTarea") {
             navigateTo(DetallesTareaFragment(), false)
             tareasMenu.findItem(R.id.action_add).isVisible = false
             tareasMenu.findItem(R.id.action_edit).isVisible = true
             tareasMenu.findItem(R.id.action_delete).isVisible = true
+            tareasMenu.findItem(R.id.action_conf).isVisible = false
+        } else if (SHOWING_FRAGMENT == "Configuracion") {
+            navigateTo(VerListadoFragment(), false)
+            tareasMenu.findItem(R.id.action_add).isVisible = true
+            tareasMenu.findItem(R.id.action_edit).isVisible = false
+            tareasMenu.findItem(R.id.action_delete).isVisible = false
+            tareasMenu.findItem(R.id.action_conf).isVisible = true
         } else {
             super.onBackPressed()
         }

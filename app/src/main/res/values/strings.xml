@@ -58,4 +58,13 @@
     <string name="newPass">Nueva contraseña</string>
     <string name="save">Guardar cambios</string>
     <string name="errorPass">Debe completar la contraseña</string>
+
+    <string name="userHelp">Ingrese su nombre de usuario</string>
+    <string name="passHelp">Ingrese su contraseña</string>
+    <string name="nameIncorrect">usuario incorrecto</string>
+    <string name="passIncorrect">contraseña incorrecta</string>
+
+
+    <string name="correo">Correo electronico</string>
+    <string name="correoHelp">Ingrese su correo electronico</string>
 </resources>

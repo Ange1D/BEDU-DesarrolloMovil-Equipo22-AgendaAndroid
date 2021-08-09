@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Fragmento para registrar un nuevo usuario -->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,154 +8,116 @@
     android:background="@color/screen_bg"
     tools:context=".SignupFragment"
     android:id="@+id/signup_frgmnt">
-
-    <ImageView
-        android:id="@+id/appLogo"
-        android:layout_width="175dp"
-        android:layout_height="173dp"
-        android:contentDescription="@string/contentDes"
-        app:layout_constraintBottom_toTopOf="@+id/signUpName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread"
-        app:srcCompat="@drawable/chronomaster01" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+         android:layout_height="match_parent"
+         android:layout_width="match_parent">
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/signUpName"
-        style="@style/ChronoMasterTheme.TextInputLayout"
-        android:hint="@string/usrPlaceholder"
-        app:layout_constraintBottom_toTopOf="@+id/signUpEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appLogo">
+        <ImageView
+            android:id="@+id/appLogo"
+            android:layout_width="175dp"
+            android:layout_height="173dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/contentDes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread"
+            app:srcCompat="@drawable/chronomaster01" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/layout_text_usr"
-            style="@style/ChronoMasterTheme.TextInputLayout.EditText"
-            android:drawableStart="@drawable/ic_user"
-            android:inputType="text"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:id="@+id/registroLinear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/appLogo">
 
-    <!-- <EditText
-        android:id="@+id/signUpName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autofillHints="@string/usrPlaceholder"
-        android:background="@drawable/style_border_edittext"
-        android:drawableStart="@drawable/ic_user"
-        android:ems="10"
-        android:hint="@string/usrPlaceholder"
-        android:inputType="textPersonName"
-        android:nextFocusDown="@id/textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/signUpEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appLogo" /> -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signUpName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/usrPlaceholder"
+            android:paddingHorizontal="16dp"
+            app:errorEnabled="true"
+            app:helperText="@string/userHelp"
+            app:startIconDrawable="@drawable/ic_user"
+            >
 
-    <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/layout_text_usr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signUpEmail"
-        style="@style/ChronoMasterTheme.TextInputLayout"
-        android:hint="@string/emailPlaceholder"
-        app:layout_constraintBottom_toTopOf="@+id/signUpPass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpName">
+        android:paddingHorizontal="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="@string/correo"
+        app:helperText="@string/correoHelp"
+        app:startIconDrawable="@drawable/ic_email"
+        app:errorEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/layout_text_email"
-            style="@style/ChronoMasterTheme.TextInputLayout.EditText"
-            android:drawableStart="@drawable/ic_email"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- <EditText
-        android:id="@+id/signUpEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autofillHints="@string/emailPlaceholder"
-        android:background="@drawable/style_border_edittext"
-        android:drawableStart="@drawable/ic_email"
-        android:ems="10"
-        android:hint="@string/emailPlaceholder"
-        android:inputType="textEmailAddress"
-        android:nextFocusDown="@id/textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/signUpPass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpName" /> -->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signUpPass"
-        style="@style/ChronoMasterTheme.TextInputLayout"
-        android:hint="@string/emailPlaceholder"
-        app:layout_constraintBottom_toTopOf="@+id/signUpPass2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpEmail">
+        android:paddingHorizontal="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="@string/passPlaceholder"
+        app:helperText="@string/longPass"
+        app:startIconDrawable="@drawable/ic_password"
+        app:endIconMode="password_toggle"
+        app:counterEnabled="true"
+        app:errorEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/layout_text_pass"
-            style="@style/ChronoMasterTheme.TextInputLayout.EditText"
-            android:drawableStart="@drawable/ic_email"
-            android:inputType="text"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
 
-    <!-- <EditText
-        android:id="@+id/signUpPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autofillHints="@string/passPlaceholder"
-        android:background="@drawable/style_border_edittext"
-        android:drawableStart="@drawable/ic_password"
-        android:ems="10"
-        android:hint="@string/passPlaceholder"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/signUpPass2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpEmail" /> -->
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signUpPass2"
-        style="@style/ChronoMasterTheme.TextInputLayout"
-        android:hint="@string/emailPlaceholder"
-        app:layout_constraintBottom_toTopOf="@+id/btnSignUp2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpPass">
+        android:paddingHorizontal="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="@string/passPlaceholder"
+        app:helperText="@string/longPass"
+        app:startIconDrawable="@drawable/ic_password"
+        app:endIconMode="password_toggle"
+        app:counterEnabled="true"
+        app:errorEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/layout_text_pass2"
-            style="@style/ChronoMasterTheme.TextInputLayout.EditText"
-            android:drawableStart="@drawable/ic_email"
-            android:inputType="text"/>
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- <EditText
-        android:id="@+id/signUpPass2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autofillHints="@string/passPlaceholder"
-        android:background="@drawable/style_border_edittext"
-        android:drawableStart="@drawable/ic_password"
-        android:ems="10"
-        android:hint="@string/passPlaceholderCfrm"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/btnSignUp2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpPass" /> -->
+        </LinearLayout>
 
     <Button
         android:id="@+id/btnSignUp2"
@@ -169,6 +131,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpPass2" />
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/registroLinear" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

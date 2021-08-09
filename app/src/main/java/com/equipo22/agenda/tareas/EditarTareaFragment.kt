@@ -40,6 +40,7 @@ class EditarTareaFragment : Fragment() {
         TareaManagementActivity.tareasMenu.findItem(R.id.action_add).isVisible = false
         TareaManagementActivity.tareasMenu.findItem(R.id.action_edit).isVisible = false
         TareaManagementActivity.tareasMenu.findItem(R.id.action_delete).isVisible = false
+        TareaManagementActivity.tareasMenu.findItem(R.id.action_conf).isVisible = false
         var estado = ""
         val datePicker =
             MaterialDatePicker.Builder.datePicker()

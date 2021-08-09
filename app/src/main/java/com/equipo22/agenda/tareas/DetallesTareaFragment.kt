@@ -28,6 +28,7 @@ class DetallesTareaFragment: Fragment() {
         TareaManagementActivity.tareasMenu.findItem(R.id.action_add).isVisible = false
         TareaManagementActivity.tareasMenu.findItem(R.id.action_edit).isVisible = true
         TareaManagementActivity.tareasMenu.findItem(R.id.action_delete).isVisible = true
+        TareaManagementActivity.tareasMenu.findItem(R.id.action_conf).isVisible = false
 
         txtviewTitulo = view.findViewById(R.id.txtviewTitulo)
         txtviewFecha = view.findViewById(R.id.txtviewFecha)
