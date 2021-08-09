@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fragmento para registrar un nuevo usuario -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/screen_bg"
+    tools:context=".SignupFragment"
+    android:id="@+id/signup_frgmnt">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/appLogo"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signUpName"
+            style="@style/ChronoMasterTheme.TextInputLayout"
+            android:hint="@string/usrPlaceholder"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/layout_text_usr"
+                style="@style/ChronoMasterTheme.TextInputLayout.EditText"
+                android:drawableStart="@drawable/ic_user"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signUpEmail"
+            style="@style/ChronoMasterTheme.TextInputLayout"
+            android:hint="@string/emailPlaceholder"
+            android:layout_marginBottom="16dp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/layout_text_email"
+                style="@style/ChronoMasterTheme.TextInputLayout.EditText"
+                android:drawableStart="@drawable/ic_email"
+                android:inputType="textEmailAddress"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signUpPass"
+            style="@style/ChronoMasterTheme.TextInputLayout"
+            android:hint="@string/passPlaceholder"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/layout_text_pass"
+                style="@style/ChronoMasterTheme.TextInputLayout.EditText"
+                android:drawableStart="@drawable/ic_password"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signUpPass2"
+            style="@style/ChronoMasterTheme.TextInputLayout"
+            android:hint="@string/passPlaceholderCfrm"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/layout_text_pass2"
+                style="@style/ChronoMasterTheme.TextInputLayout.EditText"
+                android:drawableStart="@drawable/ic_password"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignUp2"
+            android:layout_gravity="center_horizontal"
+            style="@style/ChronoMasterTheme.Button"
+            android:text="@string/btnSignUp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/appLogo"
+        android:layout_width="175dp"
+        android:layout_height="173dp"
+        android:contentDescription="@string/contentDes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/chronomaster01" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

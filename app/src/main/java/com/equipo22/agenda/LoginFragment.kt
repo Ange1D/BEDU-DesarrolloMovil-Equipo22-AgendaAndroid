@@ -18,6 +18,10 @@ class LoginFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //var usuarios: List<Usuario>
+//        usuarios.add
+//        usuarios[0].nombre = "usuario"
+//        usuarios[0].password = "contraseña"
         usr = "usuario"
         pass = "contraseña"
     }
