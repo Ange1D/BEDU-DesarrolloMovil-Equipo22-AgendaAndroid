@@ -18,6 +18,7 @@ class VerListadoFragment: Fragment() {
     private var listener: (Tarea) -> Unit = {
         TareaManagementActivity.tareaSeleccionada = it
         TareaManagementActivity.tareaSeleccionadaIndex = TareaManagementActivity.tareas.indexOf(it)
+        requireActivity().title = getString(R.string.titleDetalles)
         (activity as TareaManagementActivity).navigateTo(DetallesTareaFragment(), false)
     }
 

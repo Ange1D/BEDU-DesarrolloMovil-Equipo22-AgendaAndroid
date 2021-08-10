@@ -53,6 +53,7 @@ class TareaManagementActivity : AppCompatActivity() {
         setTareas()
 
         if (savedInstanceState == null) {
+            title = getString(R.string.titlePerfil)
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragment_container, VerListadoFragment())
@@ -82,7 +83,9 @@ class TareaManagementActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_add -> navigateTo(AgregarTareaFragment(), false)
+            R.id.action_add -> {
+                title = getString(R.string.titleNew)
+                navigateTo(AgregarTareaFragment(), false)}
             R.id.action_delete -> {
                 MaterialAlertDialogBuilder(this)
                     .setTitle(resources.getString(R.string.delete_dialog_title))
@@ -101,8 +104,12 @@ class TareaManagementActivity : AppCompatActivity() {
                     }
                     .show()
             }
-            R.id.action_edit -> navigateTo(EditarTareaFragment(), false)
-            R.id.action_conf -> navigateTo(ConfiguracionFragment(), false)
+            R.id.action_edit -> {
+                title = getString(R.string.titleEdit)
+                navigateTo(EditarTareaFragment(), false)}
+            R.id.action_conf -> {
+                title = getString(R.string.titleSettings)
+                navigateTo(ConfiguracionFragment(), false)}
         }
         return super.onOptionsItemSelected(item)
     }
@@ -152,25 +159,22 @@ class TareaManagementActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (SHOWING_FRAGMENT == "AgregarTarea" || SHOWING_FRAGMENT == "Detalles") {
+        if (SHOWING_FRAGMENT == "AgregarTarea" || SHOWING_FRAGMENT == "Detalles"
+            || SHOWING_FRAGMENT == "Configuracion") {
+            title = getString(R.string.titlePerfil)
             navigateTo(VerListadoFragment(), false)
             tareasMenu.findItem(R.id.action_add).isVisible = true
             tareasMenu.findItem(R.id.action_edit).isVisible = false
             tareasMenu.findItem(R.id.action_delete).isVisible = false
             tareasMenu.findItem(R.id.action_conf).isVisible = true
         } else if (SHOWING_FRAGMENT == "EditarTarea") {
+            title = getString(R.string.titleDetalles)
             navigateTo(DetallesTareaFragment(), false)
             tareasMenu.findItem(R.id.action_add).isVisible = false
             tareasMenu.findItem(R.id.action_edit).isVisible = true
             tareasMenu.findItem(R.id.action_delete).isVisible = true
             tareasMenu.findItem(R.id.action_conf).isVisible = false
-        } else if (SHOWING_FRAGMENT == "Configuracion") {
-            navigateTo(VerListadoFragment(), false)
-            tareasMenu.findItem(R.id.action_add).isVisible = true
-            tareasMenu.findItem(R.id.action_edit).isVisible = false
-            tareasMenu.findItem(R.id.action_delete).isVisible = false
-            tareasMenu.findItem(R.id.action_conf).isVisible = true
-        } else {
+        }  else {
             super.onBackPressed()
         }
     }

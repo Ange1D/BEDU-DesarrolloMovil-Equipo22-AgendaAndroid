@@ -74,5 +74,11 @@
 
     <string name="reset">La liga para restablecer la contraseña ha sido enviada</string>
 
+    <string name="titlePerfil">Perfil</string>
+    <string name="titleSettings">Configuracion</string>
+    <string name="titleNew">Nueva Tarea</string>
+    <string name="titleEdit">Editar Tarea</string>
+    <string name="titleDetalles">Detalles Tarea</string>
+
 
 </resources>
