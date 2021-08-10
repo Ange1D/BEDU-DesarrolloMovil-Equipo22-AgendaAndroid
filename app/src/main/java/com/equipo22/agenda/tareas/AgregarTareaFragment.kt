@@ -136,7 +136,7 @@ class AgregarTareaFragment : Fragment() {
                     )
                 )
                 TareaManagementActivity.titulosTareas.add(txtTitulo.text.toString())
-                (activity as TareaManagementActivity).navigateTo(VerListadoFragment(), false)
+                (activity as TareaManagementActivity).onBackPressed()
             } else {
                 MaterialAlertDialogBuilder((activity as TareaManagementActivity))
                     .setTitle(resources.getString(R.string.incomplete_data_title))

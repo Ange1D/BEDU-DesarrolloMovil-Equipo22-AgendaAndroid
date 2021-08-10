@@ -7,7 +7,7 @@
         <item name="colorSecondary">@color/secondaryColor</item>
         <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
         <item name="colorBackgroundFloating">@color/screen_bg</item>
-        <item name="android:statusBarColor">@color/primaryDarkColor</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
     <!-- Estilo sin ActionBar de la app -->
     <style name="ChronoMasterTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -16,6 +16,7 @@
         <item name="colorSecondary">@color/secondaryColor</item>
         <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
         <item name="colorBackgroundFloating">@color/screen_bg</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
     <!-- Estilo de botones -->
     <style name="ChronoMasterTheme.Button">
