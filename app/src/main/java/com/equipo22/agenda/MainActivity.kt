@@ -15,8 +15,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
-//import android.widget.Toast
-
 class MainActivity : AppCompatActivity() {
     //Función que agrega el contenedor a la activity
     override fun onCreate(savedInstanceState: Bundle?) {

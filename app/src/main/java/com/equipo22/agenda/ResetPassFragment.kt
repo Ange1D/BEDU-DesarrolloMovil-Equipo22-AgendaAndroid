@@ -64,9 +64,4 @@ class ResetPassFragment : Fragment() {
         return view
     }
 
-//    private fun isValidEmail(email: String): Boolean {
-//        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
-//    }
-
-
 }

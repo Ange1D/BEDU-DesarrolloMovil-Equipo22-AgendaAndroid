@@ -17,16 +17,10 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class LoginFragment : Fragment() {
-    //private lateinit var usr: String
-    //private lateinit var pass: String
     var usuarios: MutableList<Usuario> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //var usuarios: List<Usuario>
-//        usr = "usuario"
-//        pass = "contraseña"
     }
 
     override fun onCreateView(
@@ -141,30 +135,6 @@ class LoginFragment : Fragment() {
             (activity as MainActivity).navigateTo(SignupFragment(), false)
         }
         return view
-
-                //Estas validaciones son redundantes ya que en cualquier caso solo hay dos posibles resultados, acceso o no al sistema
-//                name.error = null
-//                password.error = null
-//                val intent = Intent(context, TareaManagementActivity::class.java)
-//                startActivity(intent)
-//                requireActivity().finish()
-//            } else if (nameInput.text.toString().equals(usr) && (!passInput.text.toString()
-//                    .equals(pass))
-//            ) {
-//                name.error = null
-//                password.error = getString(R.string.passIncorrect)
-//            } else if (!nameInput.text.toString().equals(usr) && (passInput.text.toString()
-//                    .equals(pass))
-//            ) {
-//                name.error = getString(R.string.nameIncorrect)
-//                password.error = null
-//            } else {
-//                name.error = getString(R.string.nameIncorrect)
-//                password.error = getString(R.string.passIncorrect)
-//            }
-//        }
-
-//        }
     }
 }
 
