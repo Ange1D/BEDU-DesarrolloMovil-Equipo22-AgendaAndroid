@@ -39,14 +39,14 @@ class DetallesTareaFragment: Fragment() {
         txtviewPrioridad = view.findViewById(R.id.txtviewPrioridad)
         txtviewEstado = view.findViewById(R.id.txtviewEstado)
 
-        txtviewTitulo.setText("${txtviewTitulo.text}: ${TareaManagementActivity.tareaSeleccionada.titulo}")
-        txtviewFecha.setText("${txtviewFecha.text}: ${TareaManagementActivity.tareaSeleccionada.fecha}")
-        txtviewHora.setText("${txtviewHora.text}: ${TareaManagementActivity.tareaSeleccionada.hora}")
-        txtviewDescripcion.setText("${txtviewDescripcion.text}: ${TareaManagementActivity.tareaSeleccionada.descripcion}")
-        txtviewTareaPrevia.setText("${txtviewTareaPrevia.text}: ${TareaManagementActivity.tareaSeleccionada.tareaPrevia}")
-        txtviewFrecuencia.setText("${txtviewFrecuencia.text}: ${TareaManagementActivity.tareaSeleccionada.frecuencia}")
-        txtviewPrioridad.setText("${txtviewPrioridad.text}: ${TareaManagementActivity.tareaSeleccionada.prioridad}")
-        txtviewEstado.setText("${txtviewEstado.text}: ${TareaManagementActivity.tareaSeleccionada.estado}")
+        txtviewTitulo.text = "${txtviewTitulo.text}: ${TareaManagementActivity.tareaSeleccionada.titulo}"
+        txtviewFecha.text = "${txtviewFecha.text}: ${TareaManagementActivity.tareaSeleccionada.fecha}"
+        txtviewHora.text = "${txtviewHora.text}: ${TareaManagementActivity.tareaSeleccionada.hora}"
+        txtviewDescripcion.text = "${txtviewDescripcion.text}: ${TareaManagementActivity.tareaSeleccionada.descripcion}"
+        txtviewTareaPrevia.text = "${txtviewTareaPrevia.text}: ${TareaManagementActivity.tareaSeleccionada.tareaPrevia}"
+        txtviewFrecuencia.text = "${txtviewFrecuencia.text}: ${TareaManagementActivity.tareaSeleccionada.frecuencia}"
+        txtviewPrioridad.text = "${txtviewPrioridad.text}: ${TareaManagementActivity.tareaSeleccionada.prioridad}"
+        txtviewEstado.text = "${txtviewEstado.text}: ${TareaManagementActivity.tareaSeleccionada.estado}"
 
         return view
     }

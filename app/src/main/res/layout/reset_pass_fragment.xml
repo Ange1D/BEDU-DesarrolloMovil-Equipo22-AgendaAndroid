@@ -22,37 +22,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
-        android:id="@+id/emailRequired"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/emailRequired"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/btnSend"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtEmail"
-        style="@style/ChronoMasterTheme.TextInputLayout"
+        android:paddingHorizontal="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="@string/emailPlaceholder"
+        app:helperText="@string/emailRequired"
+        app:startIconDrawable="@drawable/ic_email"
+        app:errorEnabled="true"
         android:layout_marginTop="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/emailRequired"
+        app:layout_constraintBottom_toTopOf="@+id/btnSend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lostPassTitle"
-        >
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtEmail_input"
-            style="@style/ChronoMasterTheme.TextInputLayout.EditText"
-            android:drawableStart="@drawable/ic_email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </com.google.android.material.textfield.TextInputLayout>
+
 
 
     <com.google.android.material.button.MaterialButton
@@ -63,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailRequired" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
 
 

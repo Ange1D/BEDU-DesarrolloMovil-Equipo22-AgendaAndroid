@@ -67,4 +67,12 @@
 
     <string name="correo">Correo electronico</string>
     <string name="correoHelp">Ingrese su correo electronico</string>
+    <string name="registro">Registrado correctamente</string>
+    <string name="correoIncorrect">No es un correo valido</string>
+    <string name="passShort">La contraseña debe tener almenos 8 caracteres</string>
+    <string name="passCompare">Las contraseña no coincide</string>
+
+    <string name="reset">La liga para restablecer la contraseña ha sido enviada</string>
+
+
 </resources>
