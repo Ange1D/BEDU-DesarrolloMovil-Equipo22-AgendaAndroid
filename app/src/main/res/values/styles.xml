@@ -22,7 +22,7 @@
     <style name="ChronoMasterTheme.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:backgroundTint">@color/secondaryColor</item>
+        <item name="android:backgroundTint">?attr/colorSecondary</item>
         <item name="android:textColor">@color/secondaryTextColor</item>
         <item name="cornerRadius">20dp</item>
         <item name="android:textAllCaps">true</item>
@@ -33,7 +33,7 @@
     <!-- Estilo de input layouts -->
     <style name="ChronoMasterTheme.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="boxStrokeWidth">0dp</item>
-        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="hintTextColor">?attr/colorPrimaryVariant</item>

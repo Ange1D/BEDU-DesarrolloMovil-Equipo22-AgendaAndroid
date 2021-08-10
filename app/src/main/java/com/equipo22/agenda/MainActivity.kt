@@ -3,6 +3,8 @@ package com.equipo22.agenda
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Patterns
 //import android.text.Editable
 //import android.text.TextWatcher
 //import android.view.View
@@ -40,5 +42,9 @@ class MainActivity : AppCompatActivity() {
             transaction.addToBackStack(null)
         }
         transaction.commit()
+    }
+
+    fun isValidEmail(email: String): Boolean {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }

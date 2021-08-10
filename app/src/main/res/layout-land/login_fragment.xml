@@ -65,7 +65,7 @@
             android:id="@+id/lostPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lostPass"
+
             android:textColor="@color/black"
             android:layout_gravity="center_horizontal"
             app:layout_constraintBottom_toTopOf="@+id/btnSignUp"

@@ -1,5 +1,6 @@
 package com.equipo22.agenda
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -29,6 +30,7 @@ class ResetPassFragment : Fragment() {
         val txtEmailSnd = view.findViewById<TextInputEditText>(R.id.txtEmail_input)
 
         btnSend.isEnabled = false
+        btnSend.setTextColor(Color.parseColor("#9E9E9E"))
         //Se agrega un Listener al input para habilitar el botón una vez que se ha ingresado una dirección de email
         txtEmailSnd.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
@@ -43,11 +45,12 @@ class ResetPassFragment : Fragment() {
                 before: Int, count: Int
             ) {
                 btnSend.isEnabled = true
+                btnSend.setTextColor(Color.parseColor("#000000"))
             }
         })
         //Se muestra un toast al presionar el botón enviar
         btnSend.setOnClickListener {
-            if(isValidEmail(txtEmailSnd.text.toString())){
+            if((activity as MainActivity).isValidEmail(txtEmailSnd.text.toString())){
                 Toast.makeText(
                     context,
                     R.string.reset, Toast.LENGTH_LONG
@@ -61,9 +64,9 @@ class ResetPassFragment : Fragment() {
         return view
     }
 
-    private fun isValidEmail(email: String): Boolean {
-        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
+//    private fun isValidEmail(email: String): Boolean {
+//        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+//    }
 
 
 }

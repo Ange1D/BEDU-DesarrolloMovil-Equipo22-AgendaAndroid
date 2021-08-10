@@ -119,14 +119,11 @@
 
         </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSignUp2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/turkish"
-        android:text="@string/btnSignUp"
-        android:textColor="@color/black"
-        app:cornerRadius="20dp"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignUp2"
+            android:layout_gravity="center_horizontal"
+            style="@style/ChronoMasterTheme.Button"
+            android:text="@string/btnSignUp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
