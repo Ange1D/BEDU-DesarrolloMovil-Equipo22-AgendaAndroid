@@ -2,6 +2,7 @@ package com.equipo22.agenda
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -41,7 +42,7 @@ class LoginFragment : Fragment() {
         val password = view.findViewById<TextInputLayout>(R.id.textPassword)
 
         loginButton.isEnabled = false
-        loginButton.setTextColor(Color.parseColor("#9E9E9E"))
+        loginButton.setTextColor(resources.getColor(R.color.textDisabled))
         txtLstPass.text = "O"
 
         //Se verifica que los inputs tengan datos y sólo entonces se habilita el botón para el login
@@ -59,7 +60,7 @@ class LoginFragment : Fragment() {
             ) {
                 if (passInput.text.toString().isNotEmpty()) {
                     loginButton.isEnabled = true
-                    loginButton.setTextColor(Color.parseColor("#000000"))
+                    loginButton.setTextColor(resources.getColor(R.color.secondaryTextColor))
                 }
             }
         })
@@ -78,7 +79,7 @@ class LoginFragment : Fragment() {
             ) {
                 if (nameInput.text.toString().isNotEmpty()) {
                     loginButton.isEnabled = true
-                    loginButton.setTextColor(Color.parseColor("#000000"))
+                    loginButton.setTextColor(resources.getColor(R.color.secondaryTextColor))
                 }
             }
         })

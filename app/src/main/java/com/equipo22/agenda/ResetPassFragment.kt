@@ -30,7 +30,7 @@ class ResetPassFragment : Fragment() {
         val txtEmailSnd = view.findViewById<TextInputEditText>(R.id.txtEmail_input)
 
         btnSend.isEnabled = false
-        btnSend.setTextColor(Color.parseColor("#9E9E9E"))
+        btnSend.setTextColor(resources.getColor(R.color.textDisabled))
         //Se agrega un Listener al input para habilitar el botón una vez que se ha ingresado una dirección de email
         txtEmailSnd.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
@@ -45,7 +45,7 @@ class ResetPassFragment : Fragment() {
                 before: Int, count: Int
             ) {
                 btnSend.isEnabled = true
-                btnSend.setTextColor(Color.parseColor("#000000"))
+                btnSend.setTextColor(resources.getColor(R.color.secondaryTextColor))
             }
         })
         //Se muestra un toast al presionar el botón enviar

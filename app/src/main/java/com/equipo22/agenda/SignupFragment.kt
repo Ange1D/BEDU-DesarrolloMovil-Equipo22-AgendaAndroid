@@ -38,7 +38,7 @@ class SignupFragment : Fragment() {
         val passInput2 = view.findViewById<TextInputEditText>(R.id.layout_text_pass2)
 
         signupButton.isEnabled = false
-        signupButton.setTextColor(Color.parseColor("#9E9E9E"))
+        signupButton.setTextColor(resources.getColor(R.color.textDisabled))
 
         //para que el botón de registro sea habilitado se deben cumplir las siguientes condiciones:
         //Todos los campos deben llenarse y las contraseñas deben ser iguales
@@ -58,7 +58,7 @@ class SignupFragment : Fragment() {
                     passInput.text.toString().isNotEmpty() &&
                         passInput2.text.toString().equals(passInput.text.toString())) {
                     signupButton.isEnabled = true
-                    signupButton.setTextColor(Color.parseColor("#000000"))
+                    signupButton.setTextColor(resources.getColor(R.color.secondaryTextColor))
                 }
             }
         })
@@ -79,7 +79,7 @@ class SignupFragment : Fragment() {
                     passInput.text.toString().isNotEmpty() &&
                     passInput2.text.toString().equals(passInput.text.toString())) {
                     signupButton.isEnabled = true
-                    signupButton.setTextColor(Color.parseColor("#000000"))
+                    signupButton.setTextColor(resources.getColor(R.color.secondaryTextColor))
                 }
             }
         })
@@ -100,7 +100,7 @@ class SignupFragment : Fragment() {
                     emailInput.text.toString().isNotEmpty() &&
                     passInput2.text.toString().equals(passInput.text.toString())) {
                     signupButton.isEnabled = true
-                    signupButton.setTextColor(Color.parseColor("#000000"))
+                    signupButton.setTextColor(resources.getColor(R.color.secondaryTextColor))
                 }
             }
         })
@@ -121,7 +121,7 @@ class SignupFragment : Fragment() {
                     emailInput.text.toString().isNotEmpty() &&
                     passInput.text.toString().equals(passInput2.text.toString())) {
                     signupButton.isEnabled = true
-                    signupButton.setTextColor(Color.parseColor("#000000"))
+                    signupButton.setTextColor(resources.getColor(R.color.secondaryTextColor))
                 }
             }
         })
