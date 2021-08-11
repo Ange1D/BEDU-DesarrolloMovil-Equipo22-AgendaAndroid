@@ -95,14 +95,14 @@ class LoginFragment : Fragment() {
             }
             else if (nameInput.text.toString().equals(usuarios[0].nombre) && (!passInput.text.toString().equals(usuarios[0].password))) {
                 //Se cambia el texto de la view
-                txtLstPass.text = "¿Olvidaste la contraseña?"
+                txtLstPass.text = resources.getString(R.string.lostPass)
                 nameInput.text?.clear()
                 passInput.text?.clear()
                 name.error = null
                 password.error = getString(R.string.passIncorrect)
                 Toast.makeText(
                     context,
-                    "Usuario o contraseña de inicio de sesión incorrectos.", Toast.LENGTH_LONG
+                    resources.getString(R.string.msgFailLogin), Toast.LENGTH_LONG
                 ).show()
                 //se agrega el listener a la view (solo en caso de que la contraseña no sea válida)
                 txtLstPass.setOnClickListener {
@@ -116,11 +116,11 @@ class LoginFragment : Fragment() {
                 password.error = null
                 Toast.makeText(
                     context,
-                    "Usuario o contraseña de inicio de sesión incorrectos.", Toast.LENGTH_LONG
+                    resources.getString(R.string.msgFailLogin), Toast.LENGTH_LONG
                 ).show()
             }
             else {
-                txtLstPass.text = "¿Olvidaste la contraseña?"
+                txtLstPass.text = resources.getString(R.string.lostPass)
                 nameInput.text?.clear()
                 passInput.text?.clear()
                 name.error = getString(R.string.nameIncorrect)

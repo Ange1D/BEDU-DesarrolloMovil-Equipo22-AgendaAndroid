@@ -10,6 +10,7 @@
     <string name="btnSignUp">Registrarse</string>
     <string name="contentDes">Descripción</string>
     <string name="emailPlaceholder">Correo electrónico</string>
+    <string name="msgFailLogin">Usuario o contraseña de inicio de sesión incorrectos.</string>
 
     <string name="resetPassTitle">Restablecer contraseña</string>
     <string name="btnSendEmail">Enviar</string>
