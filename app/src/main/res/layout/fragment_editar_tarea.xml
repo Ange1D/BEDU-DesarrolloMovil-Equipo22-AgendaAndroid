@@ -197,6 +197,8 @@
             android:id="@+id/btnCancel"
             style="@style/ChronoMasterTheme.Button"
             android:text="@string/btnCancel"
-            app:cornerRadius="20dp" />
+            app:cornerRadius="20dp"
+            android:layout_marginBottom="100dp"
+            />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

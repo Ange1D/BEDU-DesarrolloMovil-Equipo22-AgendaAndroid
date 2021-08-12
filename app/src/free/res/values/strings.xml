@@ -1,0 +1,6 @@
+<resources>
+    <string name="adsButton">Quitar anuncios</string>
+    <string name="compra_dialog_title">Eliminar anuncios</string>
+    <string name="compra_dialog">¿Está seguro que desea comprar la version premium por $10?</string>
+    <string name="paidOut">Gracias por su compra</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:orientation="horizontal"
+    android:layout_height="100dp"
+    tools:context=".AdsFragment"
+    android:background="@color/white"
+    android:id="@+id/LinearAds">
+
+    <ImageView
+        android:id="@+id/imageAds"
+        android:layout_width="271dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:src="@drawable/ads_becas" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPaid"
+        style="@style/ChronoMasterTheme.Button"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text="@string/adsButton" />
+
+</LinearLayout>

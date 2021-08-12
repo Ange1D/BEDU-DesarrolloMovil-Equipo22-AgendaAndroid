@@ -16,9 +16,31 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions 'price'
+
+    productFlavors{
+        free{
+            dimension "price"
+            resValue "string", "app_name", "Chrono Master Free"
+            applicationIdSuffix ".free"
+            versionNameSuffix "-free"
+        }
+        paid{
+            applicationId "com.equipo22.agenda.paid"
+            dimension "price"
+            resValue "string", "app_name", "Chrono Master Paid"
+            versionNameSuffix "-full"
+        }
+    }
+
     buildTypes {
+        debug{
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
