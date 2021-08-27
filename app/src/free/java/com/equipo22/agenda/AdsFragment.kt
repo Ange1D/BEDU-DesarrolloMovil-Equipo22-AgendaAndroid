@@ -1,6 +1,5 @@
 package com.equipo22.agenda
 
-import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,8 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

@@ -1,15 +1,12 @@
 package com.equipo22.agenda
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.android.material.button.MaterialButton
+import com.equipo22.agenda.databinding.FragmentAdsBinding
+
 
 
 
@@ -20,7 +17,9 @@ class AdsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_ads, container, false)
+        val binding = FragmentAdsBinding.inflate(layoutInflater)
+        val view = binding.root
+        return view
 
     }
 }

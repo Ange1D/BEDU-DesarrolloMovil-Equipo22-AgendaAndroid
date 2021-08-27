@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.equipo22.agenda.databinding.FragmentConfiguracionBinding
 import com.equipo22.agenda.tareas.TareaManagementActivity
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 
 
 class ConfiguracionFragment : Fragment() {
@@ -20,7 +18,8 @@ class ConfiguracionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_configuracion, container, false)
+        val binding = FragmentConfiguracionBinding.inflate(layoutInflater)
+        val view = binding.root
 
         TareaManagementActivity.SHOWING_FRAGMENT = "Configuracion"
         TareaManagementActivity.tareasMenu.findItem(R.id.action_add).isVisible = false
@@ -28,26 +27,21 @@ class ConfiguracionFragment : Fragment() {
         TareaManagementActivity.tareasMenu.findItem(R.id.action_delete).isVisible = false
         TareaManagementActivity.tareasMenu.findItem(R.id.action_conf).isVisible = false
 
-        val oldPassword = view.findViewById<TextInputLayout>(R.id.oldPass)
-        val editOldPassword = view.findViewById<TextInputEditText>(R.id.editOld)
-        val newPassword = view.findViewById<TextInputLayout>(R.id.newPass)
-        val editNewPassword = view.findViewById<TextInputEditText>(R.id.editNewPass)
-        val save = view.findViewById<MaterialButton>(R.id.btnsaveSettings)
 
-        save.setOnClickListener{
+        binding.btnsaveSettings.setOnClickListener{
 
-            if (!(!editOldPassword.text!!.isEmpty() && editOldPassword.text!!.length >= 8)){
-                oldPassword.error = getString(R.string.errorPass)}else{
-                oldPassword.error = null
+            if (!(!binding.editOld.text!!.isEmpty() && binding.editOld.text!!.length >= 8)){
+                binding.oldPass.error = getString(R.string.errorPass)}else{
+                binding.oldPass.error = null
             }
-            if (editNewPassword.text!!.isEmpty() || editNewPassword.text!!.length<8){
-                newPassword.error = getString(R.string.errorPass)}else{
-                newPassword.error = null
+            if (binding.editNewPass.text!!.isEmpty() || binding.editNewPass.text!!.length<8){
+                binding.newPass.error = getString(R.string.errorPass)}else{
+                binding.newPass.error = null
             }
 
-            if( editOldPassword.text!!.length >= 8 && editNewPassword.text!!.length >= 8 ){
-                newPassword.error = null
-                oldPassword.error = null
+            if( binding.editOld.text!!.length >= 8 && binding.editNewPass.text!!.length >= 8 ){
+                binding.newPass.error = null
+                binding.oldPass.error = null
                 Toast.makeText(activity,"Datos guardados",Toast.LENGTH_SHORT).show()
             }
 

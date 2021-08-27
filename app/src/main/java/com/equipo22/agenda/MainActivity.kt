@@ -1,25 +1,19 @@
 package com.equipo22.agenda
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
-//import android.text.Editable
-//import android.text.TextWatcher
-//import android.view.View
-//import android.text.Editable
-//import android.text.TextWatcher
-import android.widget.Button
-//import android.widget.EditText
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.equipo22.agenda.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     //Función que agrega el contenedor a la activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         if (savedInstanceState == null) {
             supportFragmentManager

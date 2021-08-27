@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.equipo22.agenda.ConfiguracionFragment
 import com.equipo22.agenda.R
 import com.equipo22.agenda.Tarea
+import com.equipo22.agenda.databinding.ActivityTareaManagementBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class TareaManagementActivity : AppCompatActivity() {
@@ -48,7 +48,9 @@ class TareaManagementActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tarea_management)
+        val binding = ActivityTareaManagementBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         setTareas()
 

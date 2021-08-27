@@ -1,20 +1,17 @@
 package com.equipo22.agenda
 
-import android.graphics.Color
+
 import android.os.Bundle
 import android.text.Editable
-import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import com.equipo22.agenda.databinding.ResetPassFragmentBinding
+
 
 class ResetPassFragment : Fragment() {
 
@@ -23,16 +20,15 @@ class ResetPassFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.reset_pass_fragment, container, false)
+        val binding = ResetPassFragmentBinding.inflate(layoutInflater)
+        val view = binding.root
 
-        val email = view.findViewById<TextInputLayout>(R.id.txtEmail)
-        val btnSend = view.findViewById<MaterialButton>(R.id.btnSend)
-        val txtEmailSnd = view.findViewById<TextInputEditText>(R.id.txtEmail_input)
 
-        btnSend.isEnabled = false
-        btnSend.setTextColor(resources.getColor(R.color.textDisabled))
+
+        binding.btnSend.isEnabled = false
+        binding.btnSend.setTextColor(resources.getColor(R.color.textDisabled))
         //Se agrega un Listener al input para habilitar el botón una vez que se ha ingresado una dirección de email
-        txtEmailSnd.addTextChangedListener(object : TextWatcher {
+        binding.txtEmailInput.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(
                 s: CharSequence, start: Int,
@@ -44,13 +40,13 @@ class ResetPassFragment : Fragment() {
                 s: CharSequence, start: Int,
                 before: Int, count: Int
             ) {
-                btnSend.isEnabled = true
-                btnSend.setTextColor(resources.getColor(R.color.secondaryTextColor))
+                binding.btnSend.isEnabled = true
+                binding.btnSend.setTextColor(resources.getColor(R.color.secondaryTextColor))
             }
         })
         //Se muestra un toast al presionar el botón enviar
-        btnSend.setOnClickListener {
-            if((activity as MainActivity).isValidEmail(txtEmailSnd.text.toString())){
+        binding.btnSend.setOnClickListener {
+            if((activity as MainActivity).isValidEmail(binding.txtEmailInput.text.toString())){
                 Toast.makeText(
                     context,
                     R.string.reset, Toast.LENGTH_LONG
@@ -58,7 +54,7 @@ class ResetPassFragment : Fragment() {
                 val fm: FragmentManager? = activity?.supportFragmentManager
                 fm?.popBackStack()
             }else{
-                email.error=getString(R.string.correoIncorrect) }
+                binding.txtEmail.error=getString(R.string.correoIncorrect) }
             }
 
         return view

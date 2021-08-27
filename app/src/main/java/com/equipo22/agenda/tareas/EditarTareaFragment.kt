@@ -11,6 +11,7 @@ import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import com.equipo22.agenda.R
 import com.equipo22.agenda.Tarea
+import com.equipo22.agenda.databinding.FragmentEditarTareaBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
@@ -35,7 +36,10 @@ class EditarTareaFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_editar_tarea, container, false)
+
+        val binding = FragmentEditarTareaBinding.inflate(layoutInflater)
+        val view = binding.root
+
         TareaManagementActivity.SHOWING_FRAGMENT = "EditarTarea"
         TareaManagementActivity.tareasMenu.findItem(R.id.action_add).isVisible = false
         TareaManagementActivity.tareasMenu.findItem(R.id.action_edit).isVisible = false
@@ -75,17 +79,17 @@ class EditarTareaFragment : Fragment() {
             }
         }
 
-        txtTitulo = view.findViewById(R.id.txtTitulo)
-        txtFecha = view.findViewById(R.id.txtFecha)
-        txtHora = view.findViewById(R.id.txtHora)
-        txtDescripcion = view.findViewById(R.id.txtDescripcion)
-        txtTareaPrevia = view.findViewById(R.id.txtTareaPrevia)
-        txtFrecuencia = view.findViewById(R.id.txtFrecuencia)
-        txtPrioridad = view.findViewById(R.id.txtPrioridad)
-        rbPendiente = view.findViewById(R.id.rb_pendiente)
-        rbFinalizada = view.findViewById(R.id.rb_finalizado)
-        bttnSave = view.findViewById(R.id.btnSave)
-        bttnCancel = view.findViewById(R.id.btnCancel)
+        txtTitulo = binding.txtTitulo
+        txtFecha = binding.txtFecha
+        txtHora = binding.txtHora
+        txtDescripcion = binding.txtDescripcion
+        txtTareaPrevia = binding.txtTareaPrevia
+        txtFrecuencia = binding.txtFrecuencia
+        txtPrioridad = binding.txtPrioridad
+        rbPendiente = binding.rbPendiente
+        rbFinalizada = binding.rbFinalizado
+        bttnSave = binding.btnSave
+        bttnCancel = binding.btnCancel
 
         txtTitulo.setText(TareaManagementActivity.tareaSeleccionada.titulo)
         txtFecha.setText(TareaManagementActivity.tareaSeleccionada.fecha)
