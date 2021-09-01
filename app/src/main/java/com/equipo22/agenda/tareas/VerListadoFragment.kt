@@ -60,11 +60,12 @@ class VerListadoFragment : Fragment() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val endpoint = retrofit.create(PoemServices::class.java)
-        val call = endpoint.getNumber(poemNumber.toString())
+        val call = endpoint.getPoem(poemNumber)
 
         call.enqueue(object : Callback<Poem> {
             override fun onResponse(call: Call<Poem>, response: Response<Poem>) {
                 val quote = response.body()
+                Log.e("Respuesta","${response.body().toString()}")
 
                 binding.txtQuoteOfTheDay.text = "${quote?.eng}"
             }
