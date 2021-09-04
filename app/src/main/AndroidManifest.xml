@@ -16,7 +16,8 @@
             android:label="@string/btnShow"
             android:theme="@style/ChronoMasterThemeActionBar">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

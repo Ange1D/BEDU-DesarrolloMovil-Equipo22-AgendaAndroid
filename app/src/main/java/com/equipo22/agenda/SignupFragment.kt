@@ -7,142 +7,153 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.equipo22.agenda.databinding.SignupFragmentBinding
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class SignupFragment : Fragment() {
 
+    private lateinit var binding: SignupFragmentBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        //Se infla la activity con el fragmento de signup
+        binding = SignupFragmentBinding.inflate(layoutInflater)
+        val view = binding.root
 
+        //Se inicializa el estado del botón
+        with (binding) {
+            btnSignUp.isEnabled = false
+            btnSignUp.setTextColor(ContextCompat.getColor(requireContext(), R.color.textDisabled))
 
-        val view = inflater.inflate(R.layout.signup_fragment, container, false)
-
-        val signupButton = view.findViewById<MaterialButton>(R.id.btnSignUp2)
-        val name = view.findViewById<TextInputLayout>(R.id.signUpName)
-        val nameInput = view.findViewById<TextInputEditText>(R.id.layout_text_usr)
-        val email = view.findViewById<TextInputLayout>(R.id.signUpEmail)
-        val emailInput = view.findViewById<TextInputEditText>(R.id.layout_text_email)
-        val pass1 = view.findViewById<TextInputLayout>(R.id.signUpPass)
-        val passInput = view.findViewById<TextInputEditText>(R.id.layout_text_pass)
-        val pass2 = view.findViewById<TextInputLayout>(R.id.signUpPass2)
-        val passInput2 = view.findViewById<TextInputEditText>(R.id.layout_text_pass2)
-
-        signupButton.isEnabled = false
-        signupButton.setTextColor(resources.getColor(R.color.textDisabled))
-
-        //para que el botón de registro sea habilitado se deben cumplir las siguientes condiciones:
-        //Todos los campos deben llenarse y las contraseñas deben ser iguales
-        nameInput.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
-
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                if (emailInput.text.toString().isNotEmpty() &&
-                    passInput.text.toString().isNotEmpty() &&
-                        passInput2.text.toString().equals(passInput.text.toString())) {
-                    signupButton.isEnabled = true
-                    signupButton.setTextColor(resources.getColor(R.color.secondaryTextColor))
+            //para que el botón de registro sea habilitado se deben cumplir las siguientes condiciones:
+            //Todos los campos deben llenarse y las contraseñas deben ser iguales
+            inputTextUsr.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable) {}
+                override fun beforeTextChanged(
+                    s: CharSequence, start: Int,
+                    count: Int, after: Int
+                ) {
                 }
-            }
-        })
 
-        emailInput.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
-
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                if (nameInput.text.toString().isNotEmpty() &&
-                    passInput.text.toString().isNotEmpty() &&
-                    passInput2.text.toString().equals(passInput.text.toString())) {
-                    signupButton.isEnabled = true
-                    signupButton.setTextColor(resources.getColor(R.color.secondaryTextColor))
+                override fun onTextChanged(
+                    s: CharSequence, start: Int,
+                    before: Int, count: Int
+                ) {
+                    if (layoutTextEmail.text.toString().isNotEmpty() &&
+                        inputTextPass.text.toString().isNotEmpty() &&
+                        layoutTextPass2.text.toString().equals(inputTextPass.text.toString())) {
+                        btnSignUp.isEnabled = true
+                        btnSignUp.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondaryTextColor))
+                    }
                 }
-            }
-        })
+            })
 
-        passInput.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
-
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                if (nameInput.text.toString().isNotEmpty() &&
-                    emailInput.text.toString().isNotEmpty() &&
-                    passInput2.text.toString().equals(passInput.text.toString())) {
-                    signupButton.isEnabled = true
-                    signupButton.setTextColor(resources.getColor(R.color.secondaryTextColor))
+            layoutTextEmail.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable) {}
+                override fun beforeTextChanged(
+                    s: CharSequence, start: Int,
+                    count: Int, after: Int
+                ) {
                 }
-            }
-        })
 
-        passInput2.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
-
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                if (nameInput.text.toString().isNotEmpty() &&
-                    emailInput.text.toString().isNotEmpty() &&
-                    passInput.text.toString().equals(passInput2.text.toString())) {
-                    signupButton.isEnabled = true
-                    signupButton.setTextColor(resources.getColor(R.color.secondaryTextColor))
+                override fun onTextChanged(
+                    s: CharSequence, start: Int,
+                    before: Int, count: Int
+                ) {
+                    if (inputTextUsr.text.toString().isNotEmpty() &&
+                        inputTextPass.text.toString().isNotEmpty() &&
+                        layoutTextPass2.text.toString().equals(inputTextPass.text.toString())) {
+                        btnSignUp.isEnabled = true
+                        btnSignUp.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondaryTextColor))
+                    }
                 }
-            }
-        })
-        //Al presionar el botón se valida la dirección de correo y la longitud de la contraseña
-        signupButton.setOnClickListener {
+            })
 
-            if (!(activity as MainActivity).isValidEmail(emailInput.text.toString())) {
-                email.error=getString(R.string.correoIncorrect)
-            }
-            else if (passInput.text!!.length < 8) {
-                pass1.error=getString(R.string.passShort)
-            }
-            else{
-                name.error=null
-                email.error=null
-                pass1.error=null
-                pass2.error=null
-                Toast.makeText(
-                    context,
-                    R.string.registro, Toast.LENGTH_LONG
-                ).show()
-                val fm: FragmentManager? = activity?.supportFragmentManager
-                fm?.popBackStack()
+            inputTextPass.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable) {}
+                override fun beforeTextChanged(
+                    s: CharSequence, start: Int,
+                    count: Int, after: Int
+                ) {
+                }
+
+                override fun onTextChanged(
+                    s: CharSequence, start: Int,
+                    before: Int, count: Int
+                ) {
+                    if (inputTextUsr.text.toString().isNotEmpty() &&
+                        layoutTextEmail.text.toString().isNotEmpty() &&
+                        layoutTextPass2.text.toString().equals(inputTextPass.text.toString())) {
+                        btnSignUp.isEnabled = true
+                        btnSignUp.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondaryTextColor))
+                    }
+                }
+            })
+
+            layoutTextPass2.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable) {}
+                override fun beforeTextChanged(
+                    s: CharSequence, start: Int,
+                    count: Int, after: Int
+                ) {
+                }
+
+                override fun onTextChanged(
+                    s: CharSequence, start: Int,
+                    before: Int, count: Int
+                ) {
+                    if (inputTextUsr.text.toString().isNotEmpty() &&
+                        layoutTextEmail.text.toString().isNotEmpty() &&
+                        inputTextPass.text.toString().equals(layoutTextPass2.text.toString())) {
+                        btnSignUp.isEnabled = true
+                        btnSignUp.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondaryTextColor))
+                    }
+                }
+            })
+            //-----------------------------------------------------------------------------------------
+            //Al presionar el botón se valida la dirección de correo y la longitud de la contraseña
+            btnSignUp.setOnClickListener {
+                //Se valida la nomenclatura del email
+                if (!(activity as MainActivity).isValidEmail(layoutTextEmail.text.toString())) {
+                    signUpEmail.error = getString(R.string.correoIncorrect)
+                }
+                //Se valida que el password tenga al menos 8 caracteres de largo
+                else if (inputTextPass.text!!.length < 8) {
+                    textPassword.error = getString(R.string.passShort)
+                }
+                //Si los datos son correctos, se muestra el Toast con el mensaje
+                else{
+                    personName.error = null
+                    signUpEmail.error = null
+                    textPassword.error = null
+                    signUpPass2.error = null
+                    Toast.makeText(
+                        context,
+                        R.string.registro, Toast.LENGTH_LONG
+                    ).show()
+                    val fm: FragmentManager? = activity?.supportFragmentManager
+                    fm?.popBackStack()
+                }
             }
         }
+
+
+
         return view
     }
+
+    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val logo = binding.appLogo
+        ViewCompat.setTransitionName(logo, "logo")
+
+    }*/
 }

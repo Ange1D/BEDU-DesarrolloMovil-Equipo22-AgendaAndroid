@@ -8,10 +8,14 @@ import androidx.fragment.app.Fragment
 import com.equipo22.agenda.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     //Función que agrega el contenedor a la activity
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.ChronoMasterTheme)
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
@@ -35,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         }
         transaction.commit()
     }
-
+    //Función para validar que las direcciones de correo electrónico tengan la nomenclatura correcta
     fun isValidEmail(email: String): Boolean {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }

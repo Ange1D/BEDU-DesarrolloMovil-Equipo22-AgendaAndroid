@@ -5,6 +5,7 @@ plugins {
 
 android {
     compileSdkVersion 30
+    buildToolsVersion "30.0.3"
 
     buildFeatures{
         viewBinding true
@@ -20,9 +21,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    flavorDimensions 'price'
+    //LAS LINEAS COMENTADAS SON PARA CUANDO SE QUIERE GENERAR EL ARCHIVO APK
 
-    productFlavors{
+    //flavorDimensions 'price'
+
+    /*productFlavors{
         free{
             dimension "price"
             resValue "string", "app_name", "Chrono Master Free"
@@ -35,16 +38,17 @@ android {
             resValue "string", "app_name", "Chrono Master Paid"
             versionNameSuffix "-full"
         }
-    }
+    }*/
 
     buildTypes {
-        debug{
+        /*debug{
             applicationIdSuffix ".debug"
             debuggable true
-        }
+        }*/
         release {
-            minifyEnabled true
-            shrinkResources true
+            //minifyEnabled true
+            minifyEnabled false
+            //shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

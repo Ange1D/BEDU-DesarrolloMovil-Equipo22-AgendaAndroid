@@ -92,5 +92,9 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+    <!-- Pantalla inicial -->
+    <style name="SplashTheme" parent="ChronoMasterTheme">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
 
 </resources>
