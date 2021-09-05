@@ -31,9 +31,14 @@ class DetallesTareaFragment: Fragment() {
         binding.txtviewHora.text = "${binding.txtviewHora.text}: ${TareaManagementActivity.tareaSeleccionada.hora}"
         binding.txtviewDescripcion.text = "${binding.txtviewDescripcion.text}: ${TareaManagementActivity.tareaSeleccionada.descripcion}"
         binding.txtviewTareaPrevia.text = "${binding.txtviewTareaPrevia.text}: ${TareaManagementActivity.tareaSeleccionada.tareaPrevia}"
-        binding.txtviewFrecuencia.text = "${binding.txtviewFrecuencia.text}: ${TareaManagementActivity.tareaSeleccionada.frecuencia}"
+        binding.txtviewFrecuencia.text = "${binding.txtviewFrecuencia.text}: ${TareaManagementActivity.tareaSeleccionada.repetir}"
         binding.txtviewPrioridad.text = "${binding.txtviewPrioridad.text}: ${TareaManagementActivity.tareaSeleccionada.prioridad}"
-        binding.txtviewEstado.text = "${binding.txtviewEstado.text}: ${TareaManagementActivity.tareaSeleccionada.estado}"
+        binding.txtviewEstado.text = "${binding.txtviewEstado.text}: ${
+            if (TareaManagementActivity.tareaSeleccionada.estado)
+                getString(R.string.estadoF)
+            else
+                getString(R.string.estadoP)
+        }"
 
         return view
     }

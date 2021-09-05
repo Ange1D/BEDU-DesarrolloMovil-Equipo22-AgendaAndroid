@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.equipo22.agenda.room.Tarea
 
 class TareasRecyclerAdapter(
     private val context: Context,
@@ -15,11 +16,11 @@ class TareasRecyclerAdapter(
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         private val title = view.findViewById<TextView>(R.id.txtTitle)
-        private val description = view.findViewById<TextView>(R.id.txtDescription)
+        private val dateHour = view.findViewById<TextView>(R.id.txtDateHour)
 
         fun bind(tarea: Tarea, context: Context) {
             title.text = tarea.titulo
-            description.text = tarea.descripcion
+            dateHour.text = "${tarea.fecha}\t\t\t${tarea.hora}"
         }
     }
 
@@ -41,4 +42,12 @@ class TareasRecyclerAdapter(
         return tareas.size
     }
 
+    fun removeItem(tarea: Tarea) {
+        tareas.let {
+            val position = it.indexOf(tarea)
+            tareas.remove(tarea)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, tareas.size)
+        }
+    }
 }

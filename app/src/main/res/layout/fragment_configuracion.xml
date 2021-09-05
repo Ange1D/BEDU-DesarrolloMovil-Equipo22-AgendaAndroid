@@ -75,6 +75,13 @@
             android:text="@string/save"
             android:layout_gravity="center"/>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogOut"
+            style="@style/ChronoMasterTheme.Button"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            android:text="@string/cerrerSesion"/>
+
 
     </LinearLayout>
 

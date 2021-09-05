@@ -80,6 +80,7 @@
     <string name="titleNew">Nueva Tarea</string>
     <string name="titleEdit">Editar Tarea</string>
     <string name="titleDetalles">Detalles Tarea</string>
+    <string name="cerrerSesion">Cerrar Sesión</string>
 
 
 </resources>

@@ -1,11 +1,14 @@
 package com.equipo22.agenda
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.equipo22.agenda.MainActivity.Companion.IS_LOGGED
+import com.equipo22.agenda.MainActivity.Companion.preferences
 import com.equipo22.agenda.databinding.FragmentConfiguracionBinding
 import com.equipo22.agenda.tareas.TareaManagementActivity
 
@@ -45,6 +48,15 @@ class ConfiguracionFragment : Fragment() {
                 Toast.makeText(activity,"Datos guardados",Toast.LENGTH_SHORT).show()
             }
 
+        }
+
+        binding.btnLogOut.setOnClickListener {
+            preferences.edit()
+                .putBoolean(IS_LOGGED, false)
+                .apply()
+            val logOut = Intent(requireActivity(), MainActivity::class.java)
+            startActivity(logOut)
+            requireActivity().finish()
         }
 
         return  view

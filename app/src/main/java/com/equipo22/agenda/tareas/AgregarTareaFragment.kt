@@ -1,26 +1,24 @@
 package com.equipo22.agenda.tareas
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import com.equipo22.agenda.R
-import com.equipo22.agenda.Tarea
+import com.equipo22.agenda.room.Tarea
 import com.equipo22.agenda.databinding.FragmentAgregarTareaBinding
+import com.equipo22.agenda.room.TareaDB
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import java.util.concurrent.Executors
 
 class AgregarTareaFragment : Fragment() {
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,28 +28,22 @@ class AgregarTareaFragment : Fragment() {
         val binding = FragmentAgregarTareaBinding.inflate(layoutInflater)
         val view = binding.root
 
+        binding.rbPendiente.isChecked = true
+        binding.rbFinalizado.isChecked = false
         TareaManagementActivity.SHOWING_FRAGMENT = "AgregarTarea"
         TareaManagementActivity.tareasMenu.findItem(R.id.action_add).isVisible = false
         TareaManagementActivity.tareasMenu.findItem(R.id.action_edit).isVisible = false
         TareaManagementActivity.tareasMenu.findItem(R.id.action_delete).isVisible = false
         TareaManagementActivity.tareasMenu.findItem(R.id.action_conf).isVisible = false
-        var estado = ""
+        var estado = false
         val datePicker =
             MaterialDatePicker.Builder.datePicker()
                 .setTitleText(resources.getString(R.string.fecha))
                 .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
                 .build()
         datePicker.addOnPositiveButtonClickListener {
-            when {
-                binding.txtFecha.hasFocus() -> {
-                    val fechaSeleccionada = setFecha(datePicker.headerText)
-
-                    binding.txtFecha.setText(
-                        fechaSeleccionada
-                    )
-                }
-                else -> {  }
-            }
+            val fechaSeleccionada = setFecha(datePicker.headerText)
+            binding.txtFecha.setText(fechaSeleccionada)
         }
         val timePicker =
             MaterialTimePicker.Builder()
@@ -61,66 +53,54 @@ class AgregarTareaFragment : Fragment() {
                 .setTitleText(resources.getString(R.string.hora))
                 .build()
         timePicker.addOnPositiveButtonClickListener {
-            when {
-                binding.txtHora.hasFocus() -> {
-                    binding.txtHora.setText(setHora(timePicker.hour.toString(), timePicker.minute.toString()))
-                }
-                else -> {  }
-            }
+            binding.txtHora.setText(setHora(timePicker.hour.toString(), timePicker.minute.toString()))
         }
 
 
         binding.txtTareaPrevia.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.titulosTareas))
         binding.txtFrecuencia.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.frecuencia))
         binding.txtPrioridad.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.prioridad))
-        binding.txtFecha.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus)
-                datePicker.show((activity as TareaManagementActivity).supportFragmentManager, resources.getString(R.string.fecha))
-        }
         binding.txtFecha.setOnClickListener {
             datePicker.show((activity as TareaManagementActivity).supportFragmentManager, resources.getString(R.string.fecha))
-        }
-        binding.txtHora.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus)
-                timePicker.show((activity as TareaManagementActivity).supportFragmentManager, resources.getString(R.string.hora))
         }
         binding.txtHora.setOnClickListener {
             timePicker.show((activity as TareaManagementActivity).supportFragmentManager, resources.getString(R.string.hora))
         }
 
-
         binding.rbPendiente.setOnClickListener {
-            estado = resources.getString(R.string.estadoP)
+            if (binding.rbPendiente.isChecked)
+                estado = false
         }
         binding.rbFinalizado.setOnClickListener {
-            estado = resources.getString(R.string.estadoF)
+            if (binding.rbFinalizado.isChecked)
+                estado = true
         }
 
         binding.btnSave.setOnClickListener {
             if (
                 binding.txtTitulo.text.toString().isNotEmpty() &&
                 binding.txtFecha.text.toString().isNotEmpty() &&
-                binding.txtHora.text.toString().isNotEmpty() &&
-                binding.txtDescripcion.text.toString().isNotEmpty() &&
-                binding.txtTareaPrevia.text.toString().isNotEmpty() &&
-                binding.txtFrecuencia.text.toString().isNotEmpty() &&
-                binding.txtPrioridad.text.toString().isNotEmpty() &&
-                estado != ""
+                binding.txtHora.text.toString().isNotEmpty()
             ) {
-                TareaManagementActivity.tareas.add(
-                    Tarea(
-                        binding.txtTitulo.text.toString(),
-                        binding.txtFecha.text.toString(),
-                        binding.txtHora.text.toString(),
-                        binding.txtDescripcion.text.toString(),
-                        binding.txtTareaPrevia.text.toString(),
-                        binding.txtFrecuencia.text.toString(),
-                        binding.txtPrioridad.text.toString().toInt(),
-                        estado
-                    )
+                val tarea = Tarea(
+                    titulo = binding.txtTitulo.text.toString(),
+                    fecha = binding.txtFecha.text.toString(),
+                    hora = binding.txtHora.text.toString(),
+                    descripcion = if (binding.txtDescripcion.text.toString().isEmpty()) "" else binding.txtDescripcion.text.toString(),
+                    tareaPrevia = if (binding.txtTareaPrevia.text.toString().isEmpty()) "Ninguna" else binding.txtTareaPrevia.text.toString(),
+                    repetir = if (binding.txtFrecuencia.text.toString().isEmpty()) "Nunca" else binding.txtFrecuencia.text.toString(),
+                    prioridad = if (binding.txtPrioridad.text.toString().isEmpty()) 5 else binding.txtPrioridad.text.toString().toInt(),
+                    estado = estado
                 )
-                TareaManagementActivity.titulosTareas.add(binding.txtTitulo.text.toString())
-                (activity as TareaManagementActivity).onBackPressed()
+                Executors.newSingleThreadExecutor().execute {
+                    TareaDB.getInstance(requireContext())
+                        ?.tareaDAO()
+                        ?.insertTarea(tarea)
+
+                    Handler(Looper.getMainLooper()).post {
+                        (activity as TareaManagementActivity).onBackPressed()
+                    }
+                }
             } else {
                 MaterialAlertDialogBuilder((activity as TareaManagementActivity))
                     .setTitle(resources.getString(R.string.incomplete_data_title))

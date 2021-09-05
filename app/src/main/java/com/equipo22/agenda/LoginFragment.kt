@@ -5,18 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.Toast
-import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
-import androidx.core.util.Pair
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import com.equipo22.agenda.MainActivity.Companion.IS_LOGGED
+import com.equipo22.agenda.MainActivity.Companion.preferences
 import com.equipo22.agenda.databinding.LoginFragmentBinding
 import com.equipo22.agenda.tareas.TareaManagementActivity
 
@@ -34,10 +30,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = LoginFragmentBinding.inflate(layoutInflater)
-
         val view = binding.root
-
-        //val view = inflater.inflate(R.layout.login_fragment, container, false)
 
         usuarios.add(Usuario("usuario", "mailito@neo.com", "contraseña"))
 
@@ -96,6 +89,9 @@ class LoginFragment : Fragment() {
             ) {
                 val intent = Intent(context, TareaManagementActivity::class.java)
                 startActivity(intent)
+                preferences.edit()
+                    .putBoolean(IS_LOGGED, true)
+                    .apply()
                 requireActivity().finish()
             }
             else if (binding.inputTextUsr.text.toString().equals(usuarios[0].nombre) && (!binding.inputTextPass.text.toString().equals(usuarios[0].password))) {

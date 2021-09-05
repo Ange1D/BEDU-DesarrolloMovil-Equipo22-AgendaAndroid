@@ -49,7 +49,9 @@
                     android:id="@+id/txtFecha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none|date" />
+                    android:inputType="none|date"
+                    android:clickable="true"
+                    android:focusable="false"/>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -69,7 +71,9 @@
                     android:id="@+id/txtHora"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none|time" />
+                    android:inputType="none|time"
+                    android:clickable="true"
+                    android:focusable="false"/>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 

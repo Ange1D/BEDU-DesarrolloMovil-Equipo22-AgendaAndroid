@@ -1,6 +1,8 @@
 package com.equipo22.agenda.tareas
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,24 +11,32 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.equipo22.agenda.*
 import com.equipo22.agenda.databinding.FragmentVerListadoBinding
+import com.equipo22.agenda.room.Tarea
+import com.equipo22.agenda.room.TareaDB
+import com.equipo22.agenda.tareas.TareaManagementActivity.Companion.titulosTareas
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.Executors
 import kotlin.random.Random
 import kotlin.random.nextInt
 
 class VerListadoFragment : Fragment() {
+    companion object {
+        lateinit var tareas: MutableList<Tarea>
+        lateinit var mAdapter: TareasRecyclerAdapter
+    }
+
     private lateinit var binding: FragmentVerListadoBinding
     private val baseURL = "https://api-thirukkural.vercel.app/"
 
     private val horizontalLinearLayoutManager =
         LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-    private lateinit var mAdapter: TareasRecyclerAdapter
     private var listener: (Tarea) -> Unit = {
         TareaManagementActivity.tareaSeleccionada = it
-        TareaManagementActivity.tareaSeleccionadaIndex = TareaManagementActivity.tareas.indexOf(it)
+        TareaManagementActivity.tareaSeleccionadaIndex = it.id
         requireActivity().title = getString(R.string.titleDetalles)
         (activity as TareaManagementActivity).navigateTo(DetallesTareaFragment(), false)
     }
@@ -41,11 +51,20 @@ class VerListadoFragment : Fragment() {
 
         TareaManagementActivity.SHOWING_FRAGMENT = "VerListado"
 
-        mAdapter =
-            TareasRecyclerAdapter(requireActivity(), TareaManagementActivity.tareas, listener)
+        Executors.newSingleThreadExecutor().execute {
+            tareas = TareaDB.getInstance(requireContext())
+                ?.tareaDAO()
+                ?.getAllTareas() as MutableList<Tarea>
+            for (tarea in tareas) {
+                titulosTareas.add(tarea.titulo)
+            }
+        }
 
-        binding.recyclerTareas.layoutManager = horizontalLinearLayoutManager
-        binding.recyclerTareas.adapter = mAdapter
+        Handler(Looper.getMainLooper()).post {
+            mAdapter = TareasRecyclerAdapter(requireActivity(), tareas, listener)
+            binding.recyclerTareas.layoutManager = horizontalLinearLayoutManager
+            binding.recyclerTareas.adapter = mAdapter
+        }
 
         loadPoem()
 
@@ -75,5 +94,14 @@ class VerListadoFragment : Fragment() {
             }
 
         })
+    }
+
+    override fun onResume() {
+        titulosTareas.clear()
+        titulosTareas.add("Ninguna")
+        for (tarea in tareas) {
+            titulosTareas.add(tarea.titulo)
+        }
+        super.onResume()
     }
 }
