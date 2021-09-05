@@ -192,6 +192,13 @@
             app:layout_constraintTop_toBottomOf="@+id/estado" />
 
         <Button
+            android:id="@+id/btnOpenCamera"
+            android:text="@string/camera"
+            style="@style/ChronoMasterTheme.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
             android:id="@+id/btnSave"
             style="@style/ChronoMasterTheme.Button"
             android:text="@string/btnSave"

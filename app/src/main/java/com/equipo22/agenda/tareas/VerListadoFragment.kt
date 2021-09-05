@@ -26,12 +26,12 @@ import kotlin.random.nextInt
 class VerListadoFragment : Fragment() {
     companion object {
         lateinit var tareas: MutableList<Tarea>
-        lateinit var mAdapter: TareasRecyclerAdapter
+
     }
 
     private lateinit var binding: FragmentVerListadoBinding
     private val baseURL = "https://api-thirukkural.vercel.app/"
-
+    lateinit var mAdapter: TareasRecyclerAdapter
     private val horizontalLinearLayoutManager =
         LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
     private var listener: (Tarea) -> Unit = {

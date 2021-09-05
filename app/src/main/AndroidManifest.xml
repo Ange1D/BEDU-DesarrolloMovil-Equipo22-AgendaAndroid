@@ -2,7 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.equipo22.agenda">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
@@ -12,10 +19,14 @@
         android:supportsRtl="true"
         android:theme="@style/ChronoMasterTheme">
         <activity
+            android:name=".tareas.CameraActivity"
+            android:exported="true" />
+        <activity
             android:name=".tareas.TareaManagementActivity"
             android:label="@string/btnShow"
-            android:theme="@style/ChronoMasterThemeActionBar"/>
-        <activity android:name=".MainActivity"
+            android:theme="@style/ChronoMasterThemeActionBar" />
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

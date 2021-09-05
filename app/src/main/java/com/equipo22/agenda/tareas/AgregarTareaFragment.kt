@@ -1,5 +1,6 @@
 package com.equipo22.agenda.tareas
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -115,6 +116,10 @@ class AgregarTareaFragment : Fragment() {
             (activity as TareaManagementActivity).onBackPressed()
         }
 
+        binding.btnOpenCamera.setOnClickListener{
+            openCamera()
+        }
+
         return view
     }
 
@@ -158,5 +163,11 @@ class AgregarTareaFragment : Fragment() {
         horaReal = "$nuevaHora:$nuevoMinuto hrs."
 
         return horaReal
+    }
+
+    private fun openCamera(){
+        val intent = Intent(activity, CameraActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
     }
 }

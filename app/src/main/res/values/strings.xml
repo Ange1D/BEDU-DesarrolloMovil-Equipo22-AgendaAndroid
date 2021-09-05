@@ -82,5 +82,7 @@
     <string name="titleDetalles">Detalles Tarea</string>
     <string name="cerrerSesion">Cerrar Sesión</string>
 
+    <string name="camera">Abrir cámara</string>
+
 
 </resources>
