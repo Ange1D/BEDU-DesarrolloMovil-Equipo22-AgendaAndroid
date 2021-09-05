@@ -21,6 +21,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.Executors
 
 class EditarTareaFragment : Fragment() {
@@ -57,7 +59,7 @@ class EditarTareaFragment : Fragment() {
                 .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
                 .build()
         datePicker.addOnPositiveButtonClickListener {
-            val fechaSeleccionada = setFecha(datePicker.headerText)
+            val fechaSeleccionada = setFecha(it)
             binding.txtFecha.setText(fechaSeleccionada)
         }
         val timePicker =
@@ -161,32 +163,13 @@ class EditarTareaFragment : Fragment() {
         return view
     }
 
-    fun setFecha(fecha: String): String{
-        var nuevaFecha:String = fecha
-        if (fecha.toCharArray().size < 11) {
-            nuevaFecha = "0$nuevaFecha"
-        }
+    fun setFecha(dateTimeStamp: Long): String{
+        val offsetFromUTC = TimeZone.getDefault().getOffset(Date().time) * -1
+        val dateFormat = SimpleDateFormat("dd/MMMM/yyyy", Locale.getDefault())
 
-        val dia = nuevaFecha.substring(0, 2)
-        var mes = nuevaFecha.substring(3, 6)
-        when (mes) {
-            "ene" -> mes = "Enero"
-            "feb" -> mes = "Febrero"
-            "mar" -> mes = "Marzo"
-            "abr" -> mes = "Abril"
-            "may" -> mes = "Mayo"
-            "jun" -> mes = "Junio"
-            "jul" -> mes = "Julio"
-            "ago" -> mes = "Agosto"
-            "sep" -> mes = "Septiembre"
-            "oct" -> mes = "Octubre"
-            "nov" -> mes = "Noviembre"
-            "dic" -> mes = "Diciembre"
-        }
-        val anno = nuevaFecha.substring(7)
-        nuevaFecha = "$dia/$mes/$anno"
-
-        return nuevaFecha
+        return (
+                dateFormat.format((dateTimeStamp + offsetFromUTC))
+                )
     }
 
     fun setHora(hora: String, minuto: String): String {
