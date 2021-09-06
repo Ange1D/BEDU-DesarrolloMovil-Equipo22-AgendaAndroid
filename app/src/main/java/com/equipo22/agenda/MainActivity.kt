@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
+import android.view.View
+import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
 import com.equipo22.agenda.databinding.ActivityMainBinding
 import com.equipo22.agenda.tareas.TareaManagementActivity
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
                 .beginTransaction()
                 .add(R.id.fragment_container, LoginFragment())
                 .commit()
+
         }
     }
 
@@ -46,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         if (addToBackstack) {
             transaction.addToBackStack(null)
         }
+
         transaction.commit()
     }
     //Función para validar que las direcciones de correo electrónico tengan la nomenclatura correcta
