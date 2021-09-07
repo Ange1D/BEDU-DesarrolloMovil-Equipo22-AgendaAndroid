@@ -3,20 +3,20 @@
 ## Es una aplicación móvil que nos ayudara a organizar nuestras actividades, eventos y tareas.
 
 
-Se basa en aplicaciones ya existentes como lo son Google Calendar,Microsoft To Do, etc.
+Se basa en aplicaciones ya existentes como lo son Google Calendar, Microsoft To Do, etc.
 
 ###### El mockup inicial de nuestra aplicación es el siguiente
 
 ![mockup aplicacion](https://github.com/Ange1D/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/blob/master/mockup.JPG)
 
 
-###### Se realizaron algunos cambios con recpecto al mockup, utilizando componentes de Material Design.
+###### Se realizaron algunos cambios con respecto al mockup, utilizando componentes de Material Design.
 
 ![pantallas aplicacion](https://github.com/Ange1D/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/blob/master/pantallas.jpg)
 
 - Bienvenida.
      - Es la pantalla encargada del Login del usuario.
-       - Nos llevara al menu de la aplicación.
+       - Nos llevará al menú de la aplicación.
        - Tambien es la encargada de dirigirnos al Registro.
        - Mediante esta pantalla es posible acceder a restablecer la contraseña.
 
@@ -24,7 +24,7 @@ Se basa en aplicaciones ya existentes como lo son Google Calendar,Microsoft To D
      - Es la pantalla encargada del registro del usuario.
      
 - Restablecer contraseña.
-     - Es la pantalla encargada de enviar un correo para restablcer la contraseña.
+     - Es la pantalla encargada de enviar un correo para restablecer la contraseña.
      
 - Perfil
      - Es la pantalla encargada de mostrar las tareas del usuario.
@@ -38,17 +38,17 @@ Se basa en aplicaciones ya existentes como lo son Google Calendar,Microsoft To D
 - Detalle Tarea.
      - Es la pantalla encargada de mostrar los detalles de una tarea seleccionada.
           - Desde esta pantalla podemos editar la tarea.
-          - Tambien podemos eliminar la tarea(Muestra un dialogo). 
+          - Tambien podemos eliminar la tarea (Muestra un dialogo). 
      
 - Editar Tarea.
      - Es la pantalla encargada de editar la tarea seleccionada por el usuario.   
 
-- Configuracion.
+- Configuración.
      - Es la pantalla encargada de las configuraciones de la aplicacion. 
 
 
 
-## Se puedes descargar el archivo APK o ABB de la aplicacion mediante los sigueintes enlaces: 
+## Se puede descargar el archivo APK o ABB de la aplicacion mediante los siguientes enlaces: 
 
 - ![FREE CHRONO MASTER](https://github.com/Ange1D/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/releases/tag/v0.7-free)
 
