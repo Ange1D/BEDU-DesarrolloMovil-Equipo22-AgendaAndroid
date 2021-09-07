@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
     fun navigateTo(fragment: Fragment, addToBackstack: Boolean) {
         val transaction = supportFragmentManager
             .beginTransaction()
+            .setCustomAnimations(R.animator.intro_down, R.animator.nada, R.animator.nada, R.animator.exit_up)
             .addToBackStack(null)
             .replace(R.id.fragment_container, fragment)
 

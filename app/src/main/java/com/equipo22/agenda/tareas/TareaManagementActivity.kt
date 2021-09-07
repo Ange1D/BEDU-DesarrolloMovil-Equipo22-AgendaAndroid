@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.transition.Slide
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.equipo22.agenda.ConfiguracionFragment
 import com.equipo22.agenda.R
 import com.equipo22.agenda.room.Tarea
@@ -60,7 +64,7 @@ class TareaManagementActivity : AppCompatActivity() {
             title = getString(R.string.titlePerfil)
             supportFragmentManager
                 .beginTransaction()
-                .add(R.id.fragment_container, VerListadoFragment())
+                .setCustomAnimations(R.animator.intro_down, R.animator.nada, R.animator.nada, R.animator.exit_up)
                 .commit()
         }
     }
@@ -68,6 +72,7 @@ class TareaManagementActivity : AppCompatActivity() {
     fun navigateTo(fragment: Fragment, addToBackstack: Boolean) {
         val transaction = supportFragmentManager
             .beginTransaction()
+            .setCustomAnimations(R.animator.intro_down, R.animator.nada, R.animator.nada, R.animator.exit_up)
             .replace(R.id.fragment_container, fragment)
 
         if (addToBackstack) {

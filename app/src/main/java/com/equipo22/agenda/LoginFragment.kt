@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,10 @@ import com.equipo22.agenda.tareas.TareaManagementActivity
 class LoginFragment : Fragment() {
     var usuarios: MutableList<Usuario> = ArrayList()
     private lateinit var binding: LoginFragmentBinding
-    private var started: Boolean = false
+    companion object {
+        var started: Boolean = false
+    }
+
 
     /*override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,6 +93,7 @@ class LoginFragment : Fragment() {
                 if (inputTextUsr.text.toString() == usuarios[0].nombre && (inputTextPass.text.toString() == usuarios[0].password)
                 ) {
                     val intent = Intent(context, TareaManagementActivity::class.java)
+                    
                     startActivity(intent)
                     preferences.edit()
                         .putBoolean(IS_LOGGED, true)
@@ -155,9 +160,10 @@ class LoginFragment : Fragment() {
             }
         }
 
-
         return view
     }
+
+
 
     private fun intro () {
         with (binding) {
