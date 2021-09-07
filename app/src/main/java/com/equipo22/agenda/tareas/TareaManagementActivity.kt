@@ -64,7 +64,7 @@ class TareaManagementActivity : AppCompatActivity() {
             title = getString(R.string.titlePerfil)
             supportFragmentManager
                 .beginTransaction()
-                .setCustomAnimations(R.animator.intro_down, R.animator.nada, R.animator.nada, R.animator.exit_up)
+                .add(R.id.fragment_container, VerListadoFragment())
                 .commit()
         }
     }
