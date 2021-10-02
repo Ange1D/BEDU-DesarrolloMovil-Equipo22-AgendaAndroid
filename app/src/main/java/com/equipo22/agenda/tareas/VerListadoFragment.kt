@@ -27,8 +27,7 @@ import kotlin.random.nextInt
 
 class VerListadoFragment : Fragment() {
     companion object {
-        lateinit var tareas: MutableList<Tarea>
-
+        var tareas = mutableListOf<Tarea>()
     }
 
     private lateinit var binding: FragmentVerListadoBinding
