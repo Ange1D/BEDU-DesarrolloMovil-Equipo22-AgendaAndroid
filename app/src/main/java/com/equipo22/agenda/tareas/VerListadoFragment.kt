@@ -14,6 +14,8 @@ import com.equipo22.agenda.databinding.FragmentVerListadoBinding
 import com.equipo22.agenda.room.Tarea
 import com.equipo22.agenda.room.TareaDB
 import com.equipo22.agenda.tareas.TareaManagementActivity.Companion.titulosTareas
+import com.equipo22.agenda.utils.finishedTareasPercentage
+import com.equipo22.agenda.utils.getNumberOfTareas
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -67,6 +69,8 @@ class VerListadoFragment : Fragment() {
         }
 
         loadPoem()
+        binding.txtTotalTareas.text = getString(R.string.totalTateas, getNumberOfTareas(tareas).toString())
+        binding.txtFinishedTareas.text = getString(R.string.finishedTareas, finishedTareasPercentage(tareas).toString())
 
         return view
     }
@@ -102,6 +106,8 @@ class VerListadoFragment : Fragment() {
         for (tarea in tareas) {
             titulosTareas.add(tarea.titulo)
         }
+        binding.txtTotalTareas.text = getString(R.string.totalTateas, getNumberOfTareas(tareas).toString())
+        binding.txtFinishedTareas.text = getString(R.string.finishedTareas, finishedTareasPercentage(tareas).toString())
         super.onResume()
     }
 }

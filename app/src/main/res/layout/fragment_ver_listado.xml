@@ -31,6 +31,32 @@
 
 
         <TextView
+            android:id="@+id/txtTotalTareas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/totalTateas"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtQuoteOfTheDay" />
+
+        <TextView
+            android:id="@+id/txtFinishedTareas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/finishedTareas"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTotalTareas" />
+
+        <TextView
             android:id="@+id/txtQuoteOfTheDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,7 +76,7 @@
             android:layout_marginHorizontal="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtQuoteOfTheDay"
+            app:layout_constraintTop_toBottomOf="@+id/txtFinishedTareas"
             app:layout_constraintVertical_bias="0.344"
             android:layout_marginBottom="100dp">
 
