@@ -7,8 +7,12 @@ internal fun getNumberOfTareas(tareas: List<Tarea>?):Int {
 }
 
 internal fun finishedTareasPercentage(tareas: List<Tarea>?): Float {
-    val finishedTareas = tareas!!.count{!it.estado}
-    val totalTareas = tareas?.size
+    return if (tareas.isNullOrEmpty()) {
+        0F
+    } else {
+        val finishedTareas = tareas!!.count { !it.estado }
+        val totalTareas = tareas?.size
 
-    return ( (totalTareas - finishedTareas) / totalTareas.toFloat() ) * 100F
+        ((totalTareas - finishedTareas) / totalTareas.toFloat()) * 100F
+    }
 }
