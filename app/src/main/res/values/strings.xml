@@ -61,6 +61,8 @@
     <string name="newPass">Nueva contraseña</string>
     <string name="save">Guardar cambios</string>
     <string name="errorPass">Debe completar la contraseña</string>
+    <string name="errorEmail">Correo electronico no valido</string>
+    <string name="sendEmail">Solicitar cambio de contraseña</string>
 
     <string name="userHelp">Ingrese su nombre de usuario</string>
     <string name="passHelp">Ingrese su contraseña</string>
@@ -85,6 +87,15 @@
     <string name="cerrerSesion">Cerrar Sesión</string>
 
     <string name="camera">Abrir cámara</string>
+
+    <string name="change">La liga para cambiar la contraseña ha sido enviada</string>
+
+    <string name="error_notification">Si no puede ver la notificacion revise los permisos de la aplicacion</string>
+    <string name="channel_recordatorios">recordatorios</string>
+    <string name="recordatorios_description">Notificaciones para recordar las tareas</string>
+    <string name="tryNotification">Probar Notificacion</string>
+    <string name="notification_title">Recordatorio</string>
+    <string name="notification_body">Tareas pendientes</string>
 
 
 </resources>

@@ -1,20 +1,32 @@
 package com.equipo22.agenda
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.equipo22.agenda.MainActivity.Companion.IS_LOGGED
 import com.equipo22.agenda.MainActivity.Companion.preferences
 import com.equipo22.agenda.databinding.FragmentConfiguracionBinding
 import com.equipo22.agenda.tareas.TareaManagementActivity
-
+import com.equipo22.agenda.tareas.VerListadoFragment
+import com.equipo22.agenda.utils.getNumberOfTareas
 
 class ConfiguracionFragment : Fragment() {
 
+    val CHANNEL_RECORDATORIOS = "RECORDATORIOS"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,19 +45,11 @@ class ConfiguracionFragment : Fragment() {
 
         binding.btnsaveSettings.setOnClickListener{
 
-            if (!(!binding.editOld.text!!.isEmpty() && binding.editOld.text!!.length >= 8)){
-                binding.oldPass.error = getString(R.string.errorPass)}else{
-                binding.oldPass.error = null
-            }
-            if (binding.editNewPass.text!!.isEmpty() || binding.editNewPass.text!!.length<8){
-                binding.newPass.error = getString(R.string.errorPass)}else{
-                binding.newPass.error = null
-            }
-
-            if( binding.editOld.text!!.length >= 8 && binding.editNewPass.text!!.length >= 8 ){
-                binding.newPass.error = null
-                binding.oldPass.error = null
-                Toast.makeText(activity,"Datos guardados",Toast.LENGTH_SHORT).show()
+            if(isValidEmail(binding.inputEmail.text.toString())){
+                binding.layoutEmail.error = null
+                Toast.makeText(activity,R.string.change,Toast.LENGTH_SHORT).show()
+            }else{
+                binding.layoutEmail.error = getString(R.string.errorEmail)
             }
 
         }
@@ -59,7 +63,61 @@ class ConfiguracionFragment : Fragment() {
             requireActivity().finish()
         }
 
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setNotificationChannel()
+        }
+
+
+        binding.btnTry.setOnClickListener {
+            touchNotification()
+        }
+
         return  view
+    }
+
+
+    private fun touchNotification(){
+
+        //Un PendingIntent para dirigirnos a una actividad pulsando la notificación
+        val intent = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+
+
+        val msg=" "+getString(R.string.notification_body)
+        val builder = NotificationCompat.Builder(requireContext(), CHANNEL_RECORDATORIOS)
+            .setSmallIcon(R.drawable.chronomaster01)
+            .setContentTitle(getString(R.string.notification_title))
+            .setContentText(getNumberOfTareas(VerListadoFragment.tareas).toString() + msg )
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+
+        with(NotificationManagerCompat.from(requireContext())) {
+            notify(30, builder.build())
+        }
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun setNotificationChannel(){
+        val name = getString(R.string.channel_recordatorios)
+        val descriptionText = getString(R.string.recordatorios_description)
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(CHANNEL_RECORDATORIOS, name, importance).apply {
+            description = descriptionText
+        }
+
+        val notificationManager: NotificationManager =
+            requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        notificationManager.createNotificationChannel(channel)
+    }
+
+    fun isValidEmail(email: String): Boolean {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
 
