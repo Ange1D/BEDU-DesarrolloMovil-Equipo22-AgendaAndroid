@@ -59,11 +59,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onStart() {
+        super.onStart()
         if (preferences.getBoolean(IS_LOGGED, false)) {
             val isLogged = Intent(this, TareaManagementActivity::class.java)
             startActivity(isLogged)
             this.finish()
         }
-        super.onStart()
     }
 }

@@ -8,6 +8,7 @@
     <string name="lostPass">¿Olvidaste la contraseña?</string>
     <string name="btnLogIn">Iniciar sesión</string>
     <string name="btnSignUp">Registrarse</string>
+    <string name="btnGoogle">Signin with Google</string>
     <string name="contentDes">Descripción</string>
     <string name="emailPlaceholder">Correo electrónico</string>
     <string name="msgFailLogin">Usuario o contraseña de inicio de sesión incorrectos.</string>

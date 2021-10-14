@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.transition.TransitionManager
+//import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +19,8 @@ import com.equipo22.agenda.tareas.TareaManagementActivity
 
 
 class LoginFragment : Fragment() {
-    var usuarios: MutableList<Usuario> = ArrayList()
+    //Esta variable ya no es necesaria
+    //var usuarios: MutableList<Usuario> = ArrayList()
     private lateinit var binding: LoginFragmentBinding
     companion object {
         var started: Boolean = false
@@ -37,7 +38,8 @@ class LoginFragment : Fragment() {
         binding = LoginFragmentBinding.inflate(layoutInflater)
         val view = binding.root
 
-        usuarios.add(Usuario("usuario", "mailito@neo.com", "contraseña"))
+
+        //usuarios.add(Usuario("usuario", "mailito@neo.com", "contraseña"))
 
         with (binding) {
             btnLogIn.isEnabled = false
@@ -47,7 +49,7 @@ class LoginFragment : Fragment() {
             started = true
 
             //Se verifica que los inputs tengan datos y sólo entonces se habilita el botón para el login
-            inputTextUsr.addTextChangedListener(object : TextWatcher {
+            etEmail.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable) {}
                 override fun beforeTextChanged(
                     s: CharSequence, start: Int,
@@ -60,7 +62,7 @@ class LoginFragment : Fragment() {
                     before: Int, count: Int
                 ) {
                     with (binding) {
-                        if (inputTextUsr.text.toString().isNotEmpty()) {
+                        if (etEmail.text.toString().isNotEmpty()) {
                             btnLogIn.isEnabled = true
                             btnLogIn.setTextColor(ContextCompat.getColor(context!!, R.color.secondaryTextColor))
                         }
@@ -90,7 +92,8 @@ class LoginFragment : Fragment() {
             //--------------------------------------------------------------------------------
             //listener del botón de login
             btnLogIn.setOnClickListener {
-                if (inputTextUsr.text.toString() == usuarios[0].nombre && (inputTextPass.text.toString() == usuarios[0].password)
+                //TODA ESTA LÓGICA DEBE SER MODIFICADA
+                /*if (etEmail.text.toString() == usuarios[0].nombre && (inputTextPass.text.toString() == usuarios[0].password)
                 ) {
                     val intent = Intent(context, TareaManagementActivity::class.java)
                     
@@ -100,12 +103,12 @@ class LoginFragment : Fragment() {
                         .apply()
                     requireActivity().finish()
                 }
-                else if (inputTextUsr.text.toString() == usuarios[0].nombre && (inputTextPass.text.toString() != usuarios[0].password)) {
+                else if (etEmail.text.toString() == usuarios[0].nombre && (inputTextPass.text.toString() != usuarios[0].password)) {
                     //Se cambia el texto de la view
-                    lostPass.text = getString(R.string.lostPass)
-                    inputTextUsr.text?.clear()
+                    //lostPass.text = getString(R.string.lostPass)
+                    etEmail.text?.clear()
                     inputTextPass.text?.clear()
-                    personName.error = null
+                    tilEmail.error = null
                     textPassword.error = getString(R.string.passIncorrect)
 
                     Toast.makeText(
@@ -113,15 +116,15 @@ class LoginFragment : Fragment() {
                         resources.getString(R.string.msgFailLogin), Toast.LENGTH_LONG
                     ).show()
                     //se agrega el listener a la view (solo en caso de que la contraseña no sea válida)
-                    lostPass.setOnClickListener {
-                        (activity as MainActivity).navigateTo(ResetPassFragment(), false)
-                    }
+//                    lostPass.setOnClickListener {
+//                        (activity as MainActivity).navigateTo(ResetPassFragment(), false)
+//                    }
                 }
-                else if (inputTextUsr.text.toString() != usuarios[0].nombre && (inputTextPass.text.toString() == usuarios[0].password)) {
+                else if (etEmail.text.toString() != usuarios[0].nombre && (inputTextPass.text.toString() == usuarios[0].password)) {
 
-                    inputTextUsr.text?.clear()
+                    etEmail.text?.clear()
                     inputTextPass.text?.clear()
-                    personName.error = getString(R.string.nameIncorrect)
+                    tilEmail.error = getString(R.string.nameIncorrect)
                     textPassword.error = null
 
                     Toast.makeText(
@@ -131,36 +134,41 @@ class LoginFragment : Fragment() {
                 }
                 else {
 
-                    lostPass.text = getString(R.string.lostPass)
-                    inputTextUsr.text?.clear()
+                    //lostPass.text = getString(R.string.lostPass)
+                    etEmail.text?.clear()
                     inputTextPass.text?.clear()
-                    personName.error = getString(R.string.nameIncorrect)
+                    tilEmail.error = getString(R.string.nameIncorrect)
                     textPassword.error = getString(R.string.passIncorrect)
                     //se agrega el listener a la view (solo en caso de que la contraseña no sea válida)
-                    lostPass.setOnClickListener {
-                        (activity as MainActivity).navigateTo(ResetPassFragment(), false)
+//                    lostPass.setOnClickListener {
+//                        (activity as MainActivity).navigateTo(ResetPassFragment(), false)
+//
+//                    }
 
-                    }
-
-                }
+                }*/
             }
             //Listener del botón de signup
             btnSignUp.setOnClickListener {
-                //(activity as MainActivity).navigateTo(SignupFragment(), false)
+                //ESTA FUNCIONALIDAD DEBE SER MODIFICADA
+                /*
                 (activity as MainActivity).supportFragmentManager
                     .beginTransaction()
                     .addSharedElement(appLogo, appLogo.transitionName)
-                    .addSharedElement(personName, personName.transitionName)
-                    .addSharedElement(inputTextUsr, inputTextUsr.transitionName)
+                    .addSharedElement(tilEmail, tilEmail.transitionName)
+                    .addSharedElement(etEmail, etEmail.transitionName)
                     .addSharedElement(inputTextPass, inputTextPass.transitionName)
                     .addSharedElement(textPassword, textPassword.transitionName)
                     .addToBackStack(null)
                     .replace(R.id.fragment_container, SignupFragment())
-                    .commit()
+                    .commit()*/
             }
         }
-
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        intro()
     }
 
 
@@ -174,23 +182,20 @@ class LoginFragment : Fragment() {
                 }
             }
             AnimatorInflater.loadAnimator(context, R.animator.intro_down).apply {
-                setTarget(btnLogIn)
+                setTarget(btnsNative)
                 start()
             }
+
             AnimatorInflater.loadAnimator(context, R.animator.intro_down).apply {
-                setTarget(lostPass)
-                start()
-            }
-            AnimatorInflater.loadAnimator(context, R.animator.intro_down).apply {
-                setTarget(btnSignUp)
+                setTarget(btnGoogle)
                 start()
             }
             AnimatorInflater.loadAnimator(context, R.animator.intro_appear).apply {
-                setTarget(inputTextUsr)
+                setTarget(etEmail)
                 start()
             }
             AnimatorInflater.loadAnimator(context, R.animator.intro_appear).apply {
-                setTarget(personName)
+                setTarget(tilEmail)
                 start()
             }
             AnimatorInflater.loadAnimator(context, R.animator.intro_appear).apply {
@@ -202,8 +207,6 @@ class LoginFragment : Fragment() {
                 start()
             }
         }
-
     }
-
 }
 
