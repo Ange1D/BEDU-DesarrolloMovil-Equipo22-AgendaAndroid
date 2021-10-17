@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.NavController
@@ -107,8 +108,13 @@ class PrincipalActivity : AppCompatActivity() {
                 .show()
             return false
         } else {
-            return item.onNavDestinationSelected(findNavController(R.id.nav_host_fragment))
-                    || super.onOptionsItemSelected(item)
+            return try {
+                (item.onNavDestinationSelected(findNavController(R.id.nav_host_fragment))
+                        || super.onOptionsItemSelected(item))
+            } catch (e: Exception) {
+                Log.e("Error No Identificado", "Error extraño no identificado. Implementar Crashlytics para identificarlo:", e)
+                false
+            }
         }
     }
 
