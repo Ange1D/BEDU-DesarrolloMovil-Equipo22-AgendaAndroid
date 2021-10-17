@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/screen_bg"
-    tools:context=".tareas.TareaManagementActivity">
+    android:background="@color/screen_bg">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/appLogo"
@@ -27,8 +26,6 @@
             android:scaleType="centerCrop"
             android:layout_margin="10dp"
             />
-
-
 
         <TextView
             android:id="@+id/txtTotalTareas"
@@ -83,11 +80,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerTareas"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 tools:listitem="@layout/item_tarea_layout" />
-
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.core.widget.NestedScrollView>

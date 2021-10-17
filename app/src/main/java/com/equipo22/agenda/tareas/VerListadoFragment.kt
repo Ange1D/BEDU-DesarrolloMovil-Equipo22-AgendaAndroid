@@ -8,12 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.equipo22.agenda.*
+import com.equipo22.agenda.apiServices.Poem
+import com.equipo22.agenda.apiServices.PoemServices
 import com.equipo22.agenda.databinding.FragmentVerListadoBinding
 import com.equipo22.agenda.room.Tarea
 import com.equipo22.agenda.room.TareaDB
-import com.equipo22.agenda.tareas.TareaManagementActivity.Companion.titulosTareas
+import com.equipo22.agenda.room.TareasRecyclerAdapter
+import com.equipo22.agenda.PrincipalActivity.Companion.titulosTareas
 import com.equipo22.agenda.utils.finishedTareasPercentage
 import com.equipo22.agenda.utils.getNumberOfTareas
 import retrofit2.Call
@@ -30,16 +34,15 @@ class VerListadoFragment : Fragment() {
         var tareas = mutableListOf<Tarea>()
     }
 
-    private lateinit var binding: FragmentVerListadoBinding
+    val binding by lazy { FragmentVerListadoBinding.inflate(layoutInflater) }
     private val baseURL = "https://api-thirukkural.vercel.app/"
     lateinit var mAdapter: TareasRecyclerAdapter
     private val horizontalLinearLayoutManager =
         LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
     private var listener: (Tarea) -> Unit = {
-        TareaManagementActivity.tareaSeleccionada = it
-        TareaManagementActivity.tareaSeleccionadaIndex = it.id
+        PrincipalActivity.tareaSeleccionada = it
         requireActivity().title = getString(R.string.titleDetalles)
-        (activity as TareaManagementActivity).navigateTo(DetallesTareaFragment(), false)
+        findNavController().navigate(VerListadoFragmentDirections.actionVerListadoFragmentToDetallesTareaFragment(it))
     }
 
     override fun onCreateView(
@@ -47,10 +50,9 @@ class VerListadoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentVerListadoBinding.inflate(layoutInflater)
         val view = binding.root
 
-        TareaManagementActivity.SHOWING_FRAGMENT = "VerListado"
+        PrincipalActivity.SHOWING_FRAGMENT = "VerListado"
 
         Executors.newSingleThreadExecutor().execute {
             tareas = TareaDB.getInstance(requireContext())
@@ -107,6 +109,7 @@ class VerListadoFragment : Fragment() {
         }
         binding.txtTotalTareas.text = getString(R.string.totalTateas, getNumberOfTareas(tareas).toString())
         binding.txtFinishedTareas.text = getString(R.string.finishedTareas, finishedTareasPercentage(tareas).toString())
+
         super.onResume()
     }
 }

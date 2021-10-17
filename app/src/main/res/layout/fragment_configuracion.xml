@@ -4,77 +4,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ConfiguracionFragment">
+    tools:context=".tareas.ConfiguracionFragment"
+    android:background="@color/screen_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="30dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/changePassword"
-            android:layout_marginStart="24dp"/>
-
-
-
-
-
+            android:layout_marginStart="24dp"
+            android:text="@string/changePassword" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_email"
-            android:paddingHorizontal="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:hint="@string/correo"
-            app:helperText="@string/correoHelp"
-            app:startIconDrawable="@drawable/ic_email"
+            android:paddingHorizontal="16dp"
             app:errorEnabled="true"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:helperText="@string/correoHelp"
+            app:startIconDrawable="@drawable/ic_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_email"
-                android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.button.MaterialButton
-            android:layout_marginTop="16dp"
             android:id="@+id/btnsaveSettings"
             style="@style/ChronoMasterTheme.Button"
-            android:text="@string/sendEmail"
-            android:layout_gravity="center"/>
-
-
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="@string/sendEmail" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnTry"
             style="@style/ChronoMasterTheme.Button"
-            android:layout_marginTop="16dp"
             android:layout_gravity="center"
-            android:text="@string/tryNotification"/>
+            android:layout_marginTop="16dp"
+            android:text="@string/tryNotification" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/error_notification"
-            />
-
+            android:text="@string/error_notification" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogOut"
             style="@style/ChronoMasterTheme.Button"
-            android:layout_marginTop="16dp"
             android:layout_gravity="center"
-            android:text="@string/cerrerSesion"/>
-
+            android:layout_marginTop="16dp"
+            android:text="@string/cerrerSesion" />
     </LinearLayout>
-
-
 </FrameLayout>

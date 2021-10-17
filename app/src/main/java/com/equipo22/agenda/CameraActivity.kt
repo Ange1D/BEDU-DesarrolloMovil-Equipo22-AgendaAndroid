@@ -1,4 +1,4 @@
-package com.equipo22.agenda.tareas
+package com.equipo22.agenda
 
 import android.Manifest
 import android.content.Intent
@@ -128,7 +128,7 @@ class CameraActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this, TareaManagementActivity::class.java)
+        val intent = Intent(this, PrincipalActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
         finish()

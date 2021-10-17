@@ -1,4 +1,4 @@
-package com.equipo22.agenda
+package com.equipo22.agenda.room
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.equipo22.agenda.room.Tarea
+import com.equipo22.agenda.R
 
 class TareasRecyclerAdapter(
     private val context: Context,

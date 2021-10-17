@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/83083/Documents/Braulio/Becas/BecaSantanderBEDU-DesarrolloEnAndoid/Etapa03/AndroidAvanzado/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/app/src/main/res/drawable/ic_config.xml" value="0.2203125" />
+        <entry key="..\:/Users/83083/Documents/Braulio/Becas/BecaSantanderBEDU-DesarrolloEnAndoid/Etapa03/AndroidAvanzado/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/app/src/main/res/layout-land/activity_login.xml" value="0.23802083333333332" />
+        <entry key="..\:/Users/83083/Documents/Braulio/Becas/BecaSantanderBEDU-DesarrolloEnAndoid/Etapa03/AndroidAvanzado/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/app/src/main/res/layout-land/login_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/83083/Documents/Braulio/Becas/BecaSantanderBEDU-DesarrolloEnAndoid/Etapa03/AndroidAvanzado/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/83083/Documents/Braulio/Becas/BecaSantanderBEDU-DesarrolloEnAndoid/Etapa03/AndroidAvanzado/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/app/src/main/res/layout/activity_principal.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/83083/Documents/Braulio/Becas/BecaSantanderBEDU-DesarrolloEnAndoid/Etapa03/AndroidAvanzado/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/app/src/main/res/layout/fragment_agregar_tarea.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/83083/Documents/Braulio/Becas/BecaSantanderBEDU-DesarrolloEnAndoid/Etapa03/AndroidAvanzado/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/app/src/main/res/layout/fragment_configuracion.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/83083/Documents/Braulio/Becas/BecaSantanderBEDU-DesarrolloEnAndoid/Etapa03/AndroidAvanzado/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/app/src/main/res/layout/fragment_detalles_tarea.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/83083/Documents/Braulio/Becas/BecaSantanderBEDU-DesarrolloEnAndoid/Etapa03/AndroidAvanzado/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/app/src/main/res/layout/fragment_ver_listado.xml" value="0.10152810152810153" />
+        <entry key="..\:/Users/83083/Documents/Braulio/Becas/BecaSantanderBEDU-DesarrolloEnAndoid/Etapa03/AndroidAvanzado/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/app/src/main/res/layout/login_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/83083/Documents/Braulio/Becas/BecaSantanderBEDU-DesarrolloEnAndoid/Etapa03/AndroidAvanzado/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/83083/Documents/Braulio/Becas/BecaSantanderBEDU-DesarrolloEnAndoid/Etapa03/AndroidAvanzado/BEDU-DesarrolloMovil-Equipo22-AgendaAndroid/app/src/main/res/menu/tarea_management_menu.xml" value="0.20416666666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

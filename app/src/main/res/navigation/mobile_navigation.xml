@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/home_dest">
+
+    <fragment
+        android:id="@+id/add_dest"
+        android:name="com.equipo22.agenda.tareas.AgregarTareaFragment"
+        android:label="AgregarTareaFragment" >
+        <action
+            android:id="@+id/action_add_dest_to_home_dest"
+            app:destination="@id/home_dest"
+            app:popUpTo="@id/home_dest" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/details_dest"
+        android:name="com.equipo22.agenda.tareas.DetallesTareaFragment"
+        android:label="DetallesTareaFragment" >
+        <action
+            android:id="@+id/action_detallesTareaFragment_to_editarTareaFragment"
+            app:destination="@id/edit_dest" />
+        <action
+            android:id="@+id/action_details_dest_to_home_dest"
+            app:destination="@id/home_dest"
+            app:popUpTo="@id/home_dest" />
+        <argument
+            android:name="selectedTask"
+            app:argType="com.equipo22.agenda.room.Tarea" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/edit_dest"
+        android:name="com.equipo22.agenda.tareas.EditarTareaFragment"
+        android:label="EditarTareaFragment" >
+        <action
+            android:id="@+id/action_edit_dest_to_home_dest"
+            app:destination="@id/home_dest"
+            app:popUpTo="@id/home_dest" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/home_dest"
+        android:name="com.equipo22.agenda.tareas.VerListadoFragment"
+        android:label="VerListadoFragment" >
+        <action
+            android:id="@+id/action_verListadoFragment_to_detallesTareaFragment"
+            app:destination="@id/details_dest" />
+        <action
+            android:id="@+id/action_verListadoFragment_to_agregarTareaFragment"
+            app:destination="@id/add_dest" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/config_dest"
+        android:name="com.equipo22.agenda.tareas.ConfiguracionFragment"
+        android:label="fragment_configuracion"
+        tools:layout="@layout/fragment_configuracion" />
+</navigation>

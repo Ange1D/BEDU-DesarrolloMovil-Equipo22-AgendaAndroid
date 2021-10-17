@@ -11,11 +11,13 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.RadioButton
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.equipo22.agenda.R
+import com.equipo22.agenda.PrincipalActivity
 import com.equipo22.agenda.room.Tarea
 import com.equipo22.agenda.databinding.FragmentEditarTareaBinding
 import com.equipo22.agenda.room.TareaDB
-import com.equipo22.agenda.tareas.TareaManagementActivity.Companion.tareaSeleccionada
+import com.equipo22.agenda.PrincipalActivity.Companion.tareaSeleccionada
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
@@ -47,11 +49,10 @@ class EditarTareaFragment : Fragment() {
         val binding = FragmentEditarTareaBinding.inflate(layoutInflater)
         val view = binding.root
 
-        TareaManagementActivity.SHOWING_FRAGMENT = "EditarTarea"
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_add).isVisible = false
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_edit).isVisible = false
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_delete).isVisible = false
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_conf).isVisible = false
+        PrincipalActivity.SHOWING_FRAGMENT = "EditarTarea"
+        PrincipalActivity.tareasMenu.findItem(R.id.add_dest).isVisible = false
+        PrincipalActivity.tareasMenu.findItem(R.id.edit_dest).isVisible = false
+        PrincipalActivity.tareasMenu.findItem(R.id.action_delete).isVisible = false
         var estado = false
         val datePicker =
             MaterialDatePicker.Builder.datePicker()
@@ -88,16 +89,16 @@ class EditarTareaFragment : Fragment() {
         txtTitulo.setText(tareaSeleccionada.titulo)
         txtFecha.setText(tareaSeleccionada.fecha)
         txtFecha.setOnClickListener {
-            datePicker.show((activity as TareaManagementActivity).supportFragmentManager, resources.getString(R.string.fecha))
+            datePicker.show((activity as PrincipalActivity).supportFragmentManager, resources.getString(R.string.fecha))
         }
         txtHora.setText(tareaSeleccionada.hora)
         binding.txtHora.setOnClickListener {
-            timePicker.show((activity as TareaManagementActivity).supportFragmentManager, resources.getString(R.string.hora))
+            timePicker.show((activity as PrincipalActivity).supportFragmentManager, resources.getString(R.string.hora))
         }
         txtDescripcion.setText(tareaSeleccionada.descripcion)
-        txtTareaPrevia.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.titulosTareas))
-        txtFrecuencia.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.frecuencia))
-        txtPrioridad.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.prioridad))
+        txtTareaPrevia.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, PrincipalActivity.titulosTareas))
+        txtFrecuencia.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, PrincipalActivity.frecuencia))
+        txtPrioridad.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, PrincipalActivity.prioridad))
 
         if (tareaSeleccionada.estado) {
             rbPendiente.isChecked = false
@@ -139,11 +140,11 @@ class EditarTareaFragment : Fragment() {
                         ?.updateTarea(tarea)
 
                     Handler(Looper.getMainLooper()).post {
-                        (activity as TareaManagementActivity).navigateTo(VerListadoFragment(), false)
+                        (activity as PrincipalActivity).onBackPressed()
                     }
                 }
             } else {
-                MaterialAlertDialogBuilder((activity as TareaManagementActivity))
+                MaterialAlertDialogBuilder((activity as PrincipalActivity))
                     .setTitle(resources.getString(R.string.incomplete_data_title))
                     .setMessage(resources.getString(R.string.incomplete_data_description))
                     .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
@@ -153,11 +154,11 @@ class EditarTareaFragment : Fragment() {
             }
         }
         binding.btnCancel.setOnClickListener {
-            (activity as TareaManagementActivity).onBackPressed()
+            (activity as PrincipalActivity).onBackPressed()
         }
 
         bttnCancel.setOnClickListener {
-            (activity as TareaManagementActivity).onBackPressed()
+            (activity as PrincipalActivity).onBackPressed()
         }
 
         return view

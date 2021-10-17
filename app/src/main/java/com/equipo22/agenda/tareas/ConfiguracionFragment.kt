@@ -1,4 +1,4 @@
-package com.equipo22.agenda
+package com.equipo22.agenda.tareas
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -17,11 +17,12 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.equipo22.agenda.MainActivity.Companion.IS_LOGGED
-import com.equipo22.agenda.MainActivity.Companion.preferences
+import com.equipo22.agenda.LoginActivity
+import com.equipo22.agenda.LoginActivity.Companion.IS_LOGGED
+import com.equipo22.agenda.LoginActivity.Companion.preferences
+import com.equipo22.agenda.R
+import com.equipo22.agenda.PrincipalActivity
 import com.equipo22.agenda.databinding.FragmentConfiguracionBinding
-import com.equipo22.agenda.tareas.TareaManagementActivity
-import com.equipo22.agenda.tareas.VerListadoFragment
 import com.equipo22.agenda.utils.getNumberOfTareas
 
 class ConfiguracionFragment : Fragment() {
@@ -36,18 +37,16 @@ class ConfiguracionFragment : Fragment() {
         val binding = FragmentConfiguracionBinding.inflate(layoutInflater)
         val view = binding.root
 
-        TareaManagementActivity.SHOWING_FRAGMENT = "Configuracion"
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_add).isVisible = false
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_edit).isVisible = false
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_delete).isVisible = false
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_conf).isVisible = false
-
+        PrincipalActivity.SHOWING_FRAGMENT = "Configuracion"
+        PrincipalActivity.tareasMenu.findItem(R.id.add_dest).isVisible = true
+        PrincipalActivity.tareasMenu.findItem(R.id.edit_dest).isVisible = false
+        PrincipalActivity.tareasMenu.findItem(R.id.action_delete).isVisible = false
 
         binding.btnsaveSettings.setOnClickListener{
 
             if(isValidEmail(binding.inputEmail.text.toString())){
                 binding.layoutEmail.error = null
-                Toast.makeText(activity,R.string.change,Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, R.string.change,Toast.LENGTH_SHORT).show()
             }else{
                 binding.layoutEmail.error = getString(R.string.errorEmail)
             }
@@ -58,16 +57,14 @@ class ConfiguracionFragment : Fragment() {
             preferences.edit()
                 .putBoolean(IS_LOGGED, false)
                 .apply()
-            val logOut = Intent(requireActivity(), MainActivity::class.java)
+            val logOut = Intent(requireActivity(), LoginActivity::class.java)
             startActivity(logOut)
             requireActivity().finish()
         }
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             setNotificationChannel()
         }
-
 
         binding.btnTry.setOnClickListener {
             touchNotification()
@@ -76,15 +73,12 @@ class ConfiguracionFragment : Fragment() {
         return  view
     }
 
-
     private fun touchNotification(){
-
         //Un PendingIntent para dirigirnos a una actividad pulsando la notificación
-        val intent = Intent(context, MainActivity::class.java).apply {
+        val intent = Intent(context, LoginActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
-
 
         val msg=" "+getString(R.string.notification_body)
         val builder = NotificationCompat.Builder(requireContext(), CHANNEL_RECORDATORIOS)
@@ -98,7 +92,6 @@ class ConfiguracionFragment : Fragment() {
         with(NotificationManagerCompat.from(requireContext())) {
             notify(30, builder.build())
         }
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -119,6 +112,4 @@ class ConfiguracionFragment : Fragment() {
     fun isValidEmail(email: String): Boolean {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
-
-
 }

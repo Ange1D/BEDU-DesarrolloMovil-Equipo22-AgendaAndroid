@@ -97,6 +97,7 @@
     <string name="tryNotification">Probar Notificacion</string>
     <string name="notification_title">Recordatorio</string>
     <string name="notification_body">Tareas pendientes</string>
+    <string name="home">Inicio</string>
 
 
 </resources>

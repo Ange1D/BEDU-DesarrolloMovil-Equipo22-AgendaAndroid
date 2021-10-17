@@ -19,14 +19,14 @@
         android:supportsRtl="true"
         android:theme="@style/ChronoMasterTheme">
         <activity
-            android:name=".tareas.CameraActivity"
+            android:name=".CameraActivity"
             android:exported="true" />
         <activity
-            android:name=".tareas.TareaManagementActivity"
+            android:name=".PrincipalActivity"
             android:label="@string/btnShow"
             android:theme="@style/ChronoMasterThemeActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

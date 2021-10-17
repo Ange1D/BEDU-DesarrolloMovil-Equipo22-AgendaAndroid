@@ -1,0 +1,222 @@
+package com.equipo22.agenda
+
+import android.animation.AnimatorInflater
+import android.content.Intent
+import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.View
+import com.equipo22.agenda.databinding.ActivityLoginBinding
+import com.equipo22.agenda.utils.Utility
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+
+class LoginActivity : AppCompatActivity() {
+    companion object {
+        const val PREFS_NAME = "com.equipo22.agenda.shared-preferences"
+        const val IS_LOGGED = "IS_LOGGED"
+        const val TAG = "EmailPassword"
+        lateinit var preferences: SharedPreferences
+    }
+
+    private val binding by lazy { ActivityLoginBinding.inflate(layoutInflater) }
+    private lateinit var auth: FirebaseAuth
+    var started: Boolean = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        // Instaciación de Firebase y Auth
+        FirebaseApp.initializeApp(this)
+        auth = Firebase.auth
+
+        setTheme(R.style.ChronoMasterTheme)
+        super.onCreate(savedInstanceState)
+        setContentView(binding.root)
+
+        preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+        if (preferences.getBoolean(IS_LOGGED, false)) {
+            val isLogged = Intent(this, PrincipalActivity::class.java)
+            startActivity(isLogged)
+            this.finish()
+        }
+
+        with(binding) {
+            btnLogIn.isEnabled = false
+            btnSignUp.isEnabled = false
+            btnLogIn.setTextColor(getColor(R.color.textDisabled))
+            btnSignUp.setTextColor(getColor(R.color.textDisabled))
+
+            intro()
+            started = true
+
+            //Se verifica que los inputs tengan datos y sólo entonces se habilita el botón para el login
+            etEmail.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable) {}
+                override fun beforeTextChanged(
+                    s: CharSequence, start: Int,
+                    count: Int, after: Int
+                ) {
+                }
+
+                override fun onTextChanged(
+                    s: CharSequence, start: Int,
+                    before: Int, count: Int
+                ) {
+                    if (etEmail.text.toString().isNotEmpty() && inputTextPass.text.toString()
+                            .isNotEmpty()
+                    ) {
+                        btnLogIn.isEnabled = true
+                        btnSignUp.isEnabled = true
+                        btnLogIn.setTextColor(
+                            getColor(R.color.secondaryTextColor)
+                        )
+                        btnSignUp.setTextColor(
+                            getColor(R.color.secondaryTextColor)
+                        )
+                    }
+                }
+            })
+
+            inputTextPass.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?, start: Int,
+                    count: Int, after: Int
+                ) {
+                }
+
+                override fun onTextChanged(
+                    s: CharSequence?, start: Int,
+                    before: Int, count: Int
+                ) {
+                    if (etEmail.text.toString().isNotEmpty() && inputTextPass.text.toString()
+                            .isNotEmpty()
+                    ) {
+                        btnLogIn.isEnabled = true
+                        btnSignUp.isEnabled = true
+                        btnLogIn.setTextColor(
+                            getColor(R.color.secondaryTextColor)
+                        )
+                        btnSignUp.setTextColor(
+                            getColor(R.color.secondaryTextColor)
+                        )
+                    }
+
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
+            })
+            //--------------------------------------------------------------------------------
+            //listener del botón de login
+            btnLogIn.setOnClickListener {
+                val email = binding.etEmail.text.toString()
+                val password = binding.inputTextPass.text.toString()
+
+                logIn(email, password)
+            }
+            //Listener del botón de signup
+            btnSignUp.setOnClickListener {
+                val email = binding.etEmail.text.toString()
+                val password = binding.inputTextPass.text.toString()
+
+                createAccount(email, password)
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        intro()
+    }
+
+    private fun logIn(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "logInSucces")
+                    val user = auth.currentUser
+                    updateUI(user, null)
+                    val intent = Intent(this, PrincipalActivity::class.java)
+                    startActivity(intent)
+                    preferences.edit()
+                        .putBoolean(IS_LOGGED, true)
+                        .apply()
+                    this.finish()
+                } else {
+                    Log.w(TAG, "failure", task.exception)
+                    updateUI(null, task.exception)
+                }
+            }
+    }
+
+    private fun createAccount(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "createUserWithEmail:success")
+                    val user = auth.currentUser
+                    updateUI(user, null, false)
+                } else {
+                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    updateUI(null, task.exception)
+                }
+            }
+    }
+
+    private fun updateUI(user: FirebaseUser?, exception: Exception?, login: Boolean = true) {
+        if (exception != null) {
+            binding.btnLogIn.visibility = View.VISIBLE
+            Utility.displaySnackBar(
+                binding.root,
+                exception.message.toString(),
+                this,
+                R.color.red
+            )
+        } else {
+            val message = if (login) "Login was succesful" else "Register was successful"
+            Utility.displaySnackBar(binding.root, message, this, R.color.green)
+            binding.btnLogIn.visibility = View.VISIBLE
+        }
+    }
+
+
+    private fun intro() {
+        with(binding) {
+            if (!started) {
+                AnimatorInflater.loadAnimator(baseContext, R.animator.intro_up).apply {
+                    setTarget(appLogo)
+                    start()
+                }
+            }
+            AnimatorInflater.loadAnimator(baseContext, R.animator.intro_down).apply {
+                setTarget(btnsNative)
+                start()
+            }
+
+            AnimatorInflater.loadAnimator(baseContext, R.animator.intro_down).apply {
+                setTarget(btnGoogle)
+                start()
+            }
+            AnimatorInflater.loadAnimator(baseContext, R.animator.intro_appear).apply {
+                setTarget(etEmail)
+                start()
+            }
+            AnimatorInflater.loadAnimator(baseContext, R.animator.intro_appear).apply {
+                setTarget(tilEmail)
+                start()
+            }
+            AnimatorInflater.loadAnimator(baseContext, R.animator.intro_appear).apply {
+                setTarget(inputTextPass)
+                start()
+            }
+            AnimatorInflater.loadAnimator(baseContext, R.animator.intro_appear).apply {
+                setTarget(textPassword)
+                start()
+            }
+        }
+    }
+}

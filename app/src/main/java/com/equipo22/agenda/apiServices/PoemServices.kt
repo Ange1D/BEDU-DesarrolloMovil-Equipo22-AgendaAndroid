@@ -1,4 +1,4 @@
-package com.equipo22.agenda
+package com.equipo22.agenda.apiServices
 
 import retrofit2.Call
 import retrofit2.http.GET

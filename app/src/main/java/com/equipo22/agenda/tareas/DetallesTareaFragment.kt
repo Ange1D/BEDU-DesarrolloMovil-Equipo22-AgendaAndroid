@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.equipo22.agenda.R
+import com.equipo22.agenda.PrincipalActivity
 import com.equipo22.agenda.databinding.FragmentDetallesTareaBinding
 
 class DetallesTareaFragment: Fragment() {
-
+    val args: DetallesTareaFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,22 +21,20 @@ class DetallesTareaFragment: Fragment() {
         val binding = FragmentDetallesTareaBinding.inflate(layoutInflater)
         val view = binding.root
 
-        TareaManagementActivity.SHOWING_FRAGMENT = "Detalles"
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_add).isVisible = false
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_edit).isVisible = true
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_delete).isVisible = true
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_conf).isVisible = false
+        PrincipalActivity.SHOWING_FRAGMENT = "Detalles"
+        PrincipalActivity.tareasMenu.findItem(R.id.add_dest).isVisible = false
+        PrincipalActivity.tareasMenu.findItem(R.id.edit_dest).isVisible = true
+        PrincipalActivity.tareasMenu.findItem(R.id.action_delete).isVisible = true
 
-
-        binding.txtviewTitulo.text = "${binding.txtviewTitulo.text}: ${TareaManagementActivity.tareaSeleccionada.titulo}"
-        binding.txtviewFecha.text = "${binding.txtviewFecha.text}: ${TareaManagementActivity.tareaSeleccionada.fecha}"
-        binding.txtviewHora.text = "${binding.txtviewHora.text}: ${TareaManagementActivity.tareaSeleccionada.hora}"
-        binding.txtviewDescripcion.text = "${binding.txtviewDescripcion.text}: ${TareaManagementActivity.tareaSeleccionada.descripcion}"
-        binding.txtviewTareaPrevia.text = "${binding.txtviewTareaPrevia.text}: ${TareaManagementActivity.tareaSeleccionada.tareaPrevia}"
-        binding.txtviewFrecuencia.text = "${binding.txtviewFrecuencia.text}: ${TareaManagementActivity.tareaSeleccionada.repetir}"
-        binding.txtviewPrioridad.text = "${binding.txtviewPrioridad.text}: ${TareaManagementActivity.tareaSeleccionada.prioridad}"
+        binding.txtviewTitulo.text = "${binding.txtviewTitulo.text}: ${args.selectedTask.titulo}"
+        binding.txtviewFecha.text = "${binding.txtviewFecha.text}: ${args.selectedTask.fecha}"
+        binding.txtviewHora.text = "${binding.txtviewHora.text}: ${args.selectedTask.hora}"
+        binding.txtviewDescripcion.text = "${binding.txtviewDescripcion.text}: ${args.selectedTask.descripcion}"
+        binding.txtviewTareaPrevia.text = "${binding.txtviewTareaPrevia.text}: ${args.selectedTask.tareaPrevia}"
+        binding.txtviewFrecuencia.text = "${binding.txtviewFrecuencia.text}: ${args.selectedTask.repetir}"
+        binding.txtviewPrioridad.text = "${binding.txtviewPrioridad.text}: ${args.selectedTask.prioridad}"
         binding.txtviewEstado.text = "${binding.txtviewEstado.text}: ${
-            if (TareaManagementActivity.tareaSeleccionada.estado)
+            if (args.selectedTask.estado)
                 getString(R.string.estadoF)
             else
                 getString(R.string.estadoP)

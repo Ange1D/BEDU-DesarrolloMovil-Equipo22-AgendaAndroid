@@ -9,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import com.equipo22.agenda.CameraActivity
 import com.equipo22.agenda.R
+import com.equipo22.agenda.PrincipalActivity
 import com.equipo22.agenda.databinding.FragmentAgregarTareaBinding
 import com.equipo22.agenda.room.Tarea
 import com.equipo22.agenda.room.TareaDB
@@ -33,11 +35,10 @@ class AgregarTareaFragment : Fragment() {
 
         binding.rbPendiente.isChecked = true
         binding.rbFinalizado.isChecked = false
-        TareaManagementActivity.SHOWING_FRAGMENT = "AgregarTarea"
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_add).isVisible = false
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_edit).isVisible = false
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_delete).isVisible = false
-        TareaManagementActivity.tareasMenu.findItem(R.id.action_conf).isVisible = false
+        PrincipalActivity.SHOWING_FRAGMENT = "AgregarTarea"
+        PrincipalActivity.tareasMenu.findItem(R.id.add_dest).isVisible = false
+        PrincipalActivity.tareasMenu.findItem(R.id.edit_dest).isVisible = false
+        PrincipalActivity.tareasMenu.findItem(R.id.action_delete).isVisible = false
         var estado = false
         val datePicker =
             MaterialDatePicker.Builder.datePicker()
@@ -59,15 +60,14 @@ class AgregarTareaFragment : Fragment() {
             binding.txtHora.setText(setHora(timePicker.hour.toString(), timePicker.minute.toString()))
         }
 
-
-        binding.txtTareaPrevia.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.titulosTareas))
-        binding.txtFrecuencia.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.frecuencia))
-        binding.txtPrioridad.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, TareaManagementActivity.prioridad))
+        binding.txtTareaPrevia.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, PrincipalActivity.titulosTareas))
+        binding.txtFrecuencia.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, PrincipalActivity.frecuencia))
+        binding.txtPrioridad.setAdapter(ArrayAdapter(requireActivity(), R.layout.dropdown_item, PrincipalActivity.prioridad))
         binding.txtFecha.setOnClickListener {
-            datePicker.show((activity as TareaManagementActivity).supportFragmentManager, resources.getString(R.string.fecha))
+            datePicker.show((activity as PrincipalActivity).supportFragmentManager, resources.getString(R.string.fecha))
         }
         binding.txtHora.setOnClickListener {
-            timePicker.show((activity as TareaManagementActivity).supportFragmentManager, resources.getString(R.string.hora))
+            timePicker.show((activity as PrincipalActivity).supportFragmentManager, resources.getString(R.string.hora))
         }
 
         binding.rbPendiente.setOnClickListener {
@@ -101,11 +101,11 @@ class AgregarTareaFragment : Fragment() {
                         ?.insertTarea(tarea)
 
                     Handler(Looper.getMainLooper()).post {
-                        (activity as TareaManagementActivity).onBackPressed()
+                        (activity as PrincipalActivity).onBackPressed()
                     }
                 }
             } else {
-                MaterialAlertDialogBuilder((activity as TareaManagementActivity))
+                MaterialAlertDialogBuilder((activity as PrincipalActivity))
                     .setTitle(resources.getString(R.string.incomplete_data_title))
                     .setMessage(resources.getString(R.string.incomplete_data_description))
                     .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
@@ -115,7 +115,7 @@ class AgregarTareaFragment : Fragment() {
             }
         }
         binding.btnCancel.setOnClickListener {
-            (activity as TareaManagementActivity).onBackPressed()
+            (activity as PrincipalActivity).onBackPressed()
         }
 
         binding.btnOpenCamera.setOnClickListener{

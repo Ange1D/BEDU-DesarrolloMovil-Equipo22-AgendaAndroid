@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Fragmento para ingresar al sistema -->
+<!-- Activity de Login/Register -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/screen_bg"
-    tools:context=".LoginFragment"
+    tools:context=".LoginActivity"
     android:id="@+id/login_frmnt">
 
     <ImageView
@@ -16,17 +16,16 @@
         android:layout_height="173dp"
         android:contentDescription="@string/contentDes"
         app:srcCompat="@drawable/chronomaster01"
-        android:layout_marginTop="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/til_email"/>
+        app:layout_constraintEnd_toStartOf="@id/btnsNative"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_email"
         android:transitionName="email"
-        android:paddingHorizontal="16dp"
-        android:layout_width="match_parent"
+        android:paddingHorizontal="8dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="@string/emailPlaceholder"
@@ -35,9 +34,9 @@
         app:errorEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/appLogo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/btnsNative"
+        app:layout_constraintEnd_toEndOf="@id/btnsNative"
         app:layout_constraintBottom_toTopOf="@id/textPassword">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -46,15 +45,14 @@
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textPassword"
         android:transitionName="pass"
-        android:paddingHorizontal="16dp"
-        android:layout_width="match_parent"
+        android:paddingHorizontal="8dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="@string/passPlaceholder"
@@ -64,8 +62,8 @@
         app:errorEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintTop_toBottomOf="@id/til_email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/btnsNative"
+        app:layout_constraintEnd_toEndOf="@id/btnsNative"
         app:layout_constraintBottom_toTopOf="@id/btnsNative">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -74,18 +72,18 @@
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:id="@+id/btnsNative"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/textPassword"
         app:layout_constraintBottom_toTopOf="@id/btnGoogle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintStart_toEndOf="@id/appLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="16dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogIn"
@@ -93,18 +91,15 @@
             android:text="@string/btnLogIn"
             android:textColor="@color/textDisabled"
             android:enabled="false"
-            android:layout_marginEnd="4dp" />
+            android:layout_marginEnd="8dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSignUp"
             android:transitionName="reg"
             style="@style/ChronoMasterTheme.Button"
             android:text="@string/btnSignUp"
-            android:layout_marginStart="4dp"/>
-
+            android:layout_marginStart="8dp"/>
     </LinearLayout>
-
-
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="0dp"
@@ -125,6 +120,4 @@
         app:layout_constraintTop_toBottomOf="@id/btnsNative"
         android:layout_marginBottom="16dp"
         />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,13 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_conf"
-        android:title="@string/btnAdd"
-        android:icon="@drawable/ic_config"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_add"
+        android:id="@+id/add_dest"
         android:title="@string/btnAdd"
         android:icon="@drawable/ic_add"
         app:showAsAction="ifRoom" />
@@ -22,7 +16,7 @@
         android:visible="false"/>
 
     <item
-        android:id="@+id/action_edit"
+        android:id="@+id/edit_dest"
         android:title="@string/btnEdit"
         android:icon="@drawable/ic_edit"
         app:showAsAction="ifRoom"
