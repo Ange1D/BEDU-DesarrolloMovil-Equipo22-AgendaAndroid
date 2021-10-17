@@ -20,6 +20,7 @@ import com.equipo22.agenda.room.TareasRecyclerAdapter
 import com.equipo22.agenda.PrincipalActivity.Companion.titulosTareas
 import com.equipo22.agenda.utils.finishedTareasPercentage
 import com.equipo22.agenda.utils.getNumberOfTareas
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,7 +70,15 @@ class VerListadoFragment : Fragment() {
             binding.recyclerTareas.adapter = mAdapter
         }
 
-        loadPoem()
+        try {
+            loadPoem()
+        }catch (e: Exception){
+            FirebaseCrashlytics.getInstance().log("Error al cargar poema")
+            FirebaseCrashlytics.getInstance().recordException(e)
+
+            FirebaseCrashlytics.getInstance().setUserId("Bedu-Crash-Poem")
+            FirebaseCrashlytics.getInstance().setCustomKey("TareasTotales", getNumberOfTareas(tareas))
+        }
         binding.txtTotalTareas.text = getString(R.string.totalTateas, getNumberOfTareas(tareas).toString())
         binding.txtFinishedTareas.text = getString(R.string.finishedTareas, finishedTareasPercentage(tareas).toString())
 

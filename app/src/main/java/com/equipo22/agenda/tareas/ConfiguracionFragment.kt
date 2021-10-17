@@ -24,6 +24,7 @@ import com.equipo22.agenda.R
 import com.equipo22.agenda.PrincipalActivity
 import com.equipo22.agenda.databinding.FragmentConfiguracionBinding
 import com.equipo22.agenda.utils.getNumberOfTareas
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 
 class ConfiguracionFragment : Fragment() {
 
@@ -68,6 +69,18 @@ class ConfiguracionFragment : Fragment() {
 
         binding.btnTry.setOnClickListener {
             touchNotification()
+        }
+
+        binding.btnTryCrash.setOnClickListener {
+
+            try {
+                throw RuntimeException("Prueba Crash")
+            } catch (ex: NullPointerException) {
+                FirebaseCrashlytics.getInstance().setUserId("Bedu-PruebaCrash")
+                FirebaseCrashlytics.getInstance().log("Prueba Provocado")
+                FirebaseCrashlytics.getInstance().recordException(ex)
+            }
+
         }
 
         return  view

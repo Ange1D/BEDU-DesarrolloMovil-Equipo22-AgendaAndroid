@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -62,6 +63,10 @@ android {
 }
 
 dependencies {
+
+    //crashlytics
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.3'
+    implementation 'com.google.firebase:firebase-analytics-ktx:19.0.2'
 
     //CameraX
     implementation "androidx.camera:camera-core:1.0.0-alpha06"

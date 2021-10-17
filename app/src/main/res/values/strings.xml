@@ -99,5 +99,7 @@
     <string name="notification_body">Tareas pendientes</string>
     <string name="home">Inicio</string>
 
+    <string name="tryCrash">Probar Crash</string>
+
 
 </resources>

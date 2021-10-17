@@ -15,6 +15,7 @@ import com.equipo22.agenda.databinding.ActivityPrincipalBinding
 import com.equipo22.agenda.room.Tarea
 import com.equipo22.agenda.room.TareaDB
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import java.util.concurrent.Executors
 
 class PrincipalActivity : AppCompatActivity() {
@@ -112,7 +113,11 @@ class PrincipalActivity : AppCompatActivity() {
                 (item.onNavDestinationSelected(findNavController(R.id.nav_host_fragment))
                         || super.onOptionsItemSelected(item))
             } catch (e: Exception) {
-                Log.e("Error No Identificado", "Error extraño no identificado. Implementar Crashlytics para identificarlo:", e)
+                FirebaseCrashlytics.getInstance().log("Error No Identificado")
+                FirebaseCrashlytics.getInstance().recordException(e)
+
+                FirebaseCrashlytics.getInstance().setUserId("Bedu-Crash-NoIdentificado")
+
                 false
             }
         }
