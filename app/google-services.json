@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "820928699942",
+    "project_id": "agenda-c5fb8",
+    "storage_bucket": "agenda-c5fb8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820928699942:android:79849a7f55df439aa090e7",
+        "android_client_info": {
+          "package_name": "com.equipo22.agenda.free.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820928699942-5qpnmr8lpmvoq004n4k0ftadl7ip8mfn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDD6coXZR3ahEWjOXRfGdlZ4mMn-czy9Qc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "820928699942-5qpnmr8lpmvoq004n4k0ftadl7ip8mfn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

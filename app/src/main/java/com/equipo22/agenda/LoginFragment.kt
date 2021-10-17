@@ -2,9 +2,11 @@ package com.equipo22.agenda
 
 import android.animation.AnimatorInflater
 import android.content.Intent
+import android.graphics.Color.red
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 //import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
@@ -16,14 +18,21 @@ import com.equipo22.agenda.MainActivity.Companion.IS_LOGGED
 import com.equipo22.agenda.MainActivity.Companion.preferences
 import com.equipo22.agenda.databinding.LoginFragmentBinding
 import com.equipo22.agenda.tareas.TareaManagementActivity
+import com.equipo22.agenda.utils.Utility
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class LoginFragment : Fragment() {
     //Esta variable ya no es necesaria
     //var usuarios: MutableList<Usuario> = ArrayList()
     private lateinit var binding: LoginFragmentBinding
+    private lateinit var auth : FirebaseAuth
     companion object {
         var started: Boolean = false
+        private const val TAG = "EmailPassword"
     }
 
 
@@ -38,12 +47,16 @@ class LoginFragment : Fragment() {
         binding = LoginFragmentBinding.inflate(layoutInflater)
         val view = binding.root
 
+        auth = Firebase.auth
+
 
         //usuarios.add(Usuario("usuario", "mailito@neo.com", "contraseña"))
 
         with (binding) {
             btnLogIn.isEnabled = false
+            btnSignUp.isEnabled = false
             btnLogIn.setTextColor(ContextCompat.getColor(requireContext(), R.color.textDisabled))
+            btnSignUp.setTextColor(ContextCompat.getColor(requireContext(), R.color.textDisabled))
 
             intro()
             started = true
@@ -61,12 +74,13 @@ class LoginFragment : Fragment() {
                     s: CharSequence, start: Int,
                     before: Int, count: Int
                 ) {
-                    with (binding) {
-                        if (etEmail.text.toString().isNotEmpty()) {
+                        if (etEmail.text.toString().isNotEmpty() && inputTextPass.text.toString().isNotEmpty()) {
                             btnLogIn.isEnabled = true
+                            btnSignUp.isEnabled = true
                             btnLogIn.setTextColor(ContextCompat.getColor(context!!, R.color.secondaryTextColor))
+                            btnSignUp.setTextColor(ContextCompat.getColor(context!!, R.color.secondaryTextColor))
                         }
-                    }
+
 
                 }
             })
@@ -81,8 +95,22 @@ class LoginFragment : Fragment() {
                     s: CharSequence?, start: Int,
                     before: Int, count: Int
                 ) {
-                    btnLogIn.isEnabled = true
-                    btnLogIn.setTextColor(ContextCompat.getColor(context!!, R.color.secondaryTextColor))
+                    if (etEmail.text.toString().isNotEmpty() && inputTextPass.text.toString().isNotEmpty()) {
+                        btnLogIn.isEnabled = true
+                        btnSignUp.isEnabled = true
+                        btnLogIn.setTextColor(
+                            ContextCompat.getColor(
+                                context!!,
+                                R.color.secondaryTextColor
+                            )
+                        )
+                        btnSignUp.setTextColor(
+                            ContextCompat.getColor(
+                                context!!,
+                                R.color.secondaryTextColor
+                            )
+                        )
+                    }
 
                 }
 
@@ -93,6 +121,18 @@ class LoginFragment : Fragment() {
             //listener del botón de login
             btnLogIn.setOnClickListener {
                 //TODA ESTA LÓGICA DEBE SER MODIFICADA
+
+                val email = binding.etEmail.text.toString()
+                val password = binding.inputTextPass.text.toString()
+
+                logIn(email, password)
+
+
+
+
+
+
+
                 /*if (etEmail.text.toString() == usuarios[0].nombre && (inputTextPass.text.toString() == usuarios[0].password)
                 ) {
                     val intent = Intent(context, TareaManagementActivity::class.java)
@@ -150,6 +190,15 @@ class LoginFragment : Fragment() {
             //Listener del botón de signup
             btnSignUp.setOnClickListener {
                 //ESTA FUNCIONALIDAD DEBE SER MODIFICADA
+                val email = binding.etEmail.text.toString()
+                val password = binding.inputTextPass.text.toString()
+
+                createAccount(email, password)
+
+
+
+
+
                 /*
                 (activity as MainActivity).supportFragmentManager
                     .beginTransaction()
@@ -160,7 +209,8 @@ class LoginFragment : Fragment() {
                     .addSharedElement(textPassword, textPassword.transitionName)
                     .addToBackStack(null)
                     .replace(R.id.fragment_container, SignupFragment())
-                    .commit()*/
+                    .commit()
+                */
             }
         }
         return view
@@ -170,6 +220,60 @@ class LoginFragment : Fragment() {
         super.onResume()
         intro()
     }
+
+    private fun logIn(email: String, password: String) {
+        //updateUI()
+        //Se parece a la funcion de arriba
+        auth.signInWithEmailAndPassword(email,password)
+            .addOnCompleteListener {
+            task ->
+            if(task.isSuccessful){
+                Log.d(TAG, "logInSucces")
+                val user = auth.currentUser
+                updateUI(user,null)
+                val intent = Intent(context, TareaManagementActivity::class.java)
+                startActivity(intent)
+                preferences.edit()
+                    .putBoolean(IS_LOGGED, true)
+                    .apply()
+                requireActivity().finish()
+            }else{
+                Log.w(TAG, "failure", task.exception)
+                updateUI(null,task.exception)
+            }
+        }
+    }
+
+    private fun createAccount(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "createUserWithEmail:success")
+                    val user = auth.currentUser
+                    updateUI(user, null, false)
+                } else {
+                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    updateUI(null, task.exception)
+                }
+            }
+
+
+    }
+
+
+    private fun updateUI(user: FirebaseUser?, exception: Exception?, login : Boolean = true) {
+        if (exception != null) {
+            //binding.loading.visibility = View.GONE
+            binding.btnLogIn.visibility = View.VISIBLE
+            Utility.displaySnackBar(binding.root, exception.message.toString(), this.requireContext(), R.color.red)
+        } else {
+            val message = if(login) "Login was succesful" else "Register was successful"
+            Utility.displaySnackBar(binding.root, message, this.requireContext(), R.color.green)
+            //binding.loading.visibility = View.GONE
+            binding.btnLogIn.visibility = View.VISIBLE
+        }
+    }
+
 
 
 

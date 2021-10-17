@@ -11,6 +11,7 @@ import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
 import com.equipo22.agenda.databinding.ActivityMainBinding
 import com.equipo22.agenda.tareas.TareaManagementActivity
+import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -23,6 +24,11 @@ class MainActivity : AppCompatActivity() {
 
     //Función que agrega el contenedor a la activity
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //Dentro de onCreate
+        FirebaseApp.initializeApp(this)
+
+
         setTheme(R.style.ChronoMasterTheme)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
