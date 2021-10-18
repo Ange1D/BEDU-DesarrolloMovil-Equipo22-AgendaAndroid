@@ -161,7 +161,6 @@ class LoginActivity : AppCompatActivity() {
             preferences.edit()
                 .putBoolean(IS_LOGGED, true)
                 .apply()
-        updateUI(currentUser, null)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -232,8 +231,7 @@ class LoginActivity : AppCompatActivity() {
     private fun updateUI(user: FirebaseUser?, exception: Exception?, login: Boolean = true) {
         Log.d(TAG, user?.email.toString())
 
-        if(user?.email!=null) {
-            if (exception != null) {
+        if (exception != null) {
                 binding.btnLogIn.visibility = View.VISIBLE
                 Utility.displaySnackBar(
                     binding.root,
@@ -241,12 +239,12 @@ class LoginActivity : AppCompatActivity() {
                     this,
                     R.color.red
                 )
-            } else {
+        } else {
                 val message = if (login) "Login was succesful" else "Register was successful"
                 Utility.displaySnackBar(binding.root, message, this, R.color.green)
                 binding.btnLogIn.visibility = View.VISIBLE
-            }
         }
+
     }
 
     private fun startNextAct(){
