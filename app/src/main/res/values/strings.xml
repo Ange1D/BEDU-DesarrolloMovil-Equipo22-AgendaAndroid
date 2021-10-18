@@ -100,6 +100,7 @@
     <string name="home">Inicio</string>
 
     <string name="tryCrash">Probar Crash</string>
+    <string name="default_web_client_id_2" translatable="false">820928699942-5qpnmr8lpmvoq004n4k0ftadl7ip8mfn.apps.googleusercontent.com</string>
 
 
 </resources>
