@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,11 +25,18 @@ import com.equipo22.agenda.R
 import com.equipo22.agenda.PrincipalActivity
 import com.equipo22.agenda.databinding.FragmentConfiguracionBinding
 import com.equipo22.agenda.utils.getNumberOfTareas
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.firebase.ktx.Firebase
 
 class ConfiguracionFragment : Fragment() {
 
     val CHANNEL_RECORDATORIOS = "RECORDATORIOS"
+
+    companion object {
+        private const val TAG = "GoogleAuth"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +50,15 @@ class ConfiguracionFragment : Fragment() {
         PrincipalActivity.tareasMenu.findItem(R.id.add_dest).isVisible = true
         PrincipalActivity.tareasMenu.findItem(R.id.edit_dest).isVisible = false
         PrincipalActivity.tareasMenu.findItem(R.id.action_delete).isVisible = false
+
+        val user = Firebase.auth.currentUser
+        if (user != null) {
+            Log.d(TAG, "User exist successful")
+            // User is signed in
+        } else {
+            Log.d(TAG, "User not logged")
+            // No user is signed in
+        }
 
         binding.btnsaveSettings.setOnClickListener{
 
@@ -58,6 +75,10 @@ class ConfiguracionFragment : Fragment() {
             preferences.edit()
                 .putBoolean(IS_LOGGED, false)
                 .apply()
+
+            Log.d(TAG, user!!.providerId)
+            Firebase.auth.signOut()
+
             val logOut = Intent(requireActivity(), LoginActivity::class.java)
             startActivity(logOut)
             requireActivity().finish()

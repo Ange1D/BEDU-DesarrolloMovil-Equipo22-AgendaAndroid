@@ -11,9 +11,14 @@ import android.util.Log
 import android.view.View
 import com.equipo22.agenda.databinding.ActivityLoginBinding
 import com.equipo22.agenda.utils.Utility
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -23,16 +28,26 @@ class LoginActivity : AppCompatActivity() {
         const val IS_LOGGED = "IS_LOGGED"
         const val TAG = "EmailPassword"
         lateinit var preferences: SharedPreferences
+        private const val RC_SIGN_IN = 9001
     }
 
     private val binding by lazy { ActivityLoginBinding.inflate(layoutInflater) }
     private lateinit var auth: FirebaseAuth
+    private lateinit var googleSignInClient: GoogleSignInClient
     var started: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Instaciación de Firebase y Auth
         FirebaseApp.initializeApp(this)
         auth = Firebase.auth
+
+        // Configure Google Sign In
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+        //End Configure Google
 
         setTheme(R.style.ChronoMasterTheme)
         super.onCreate(savedInstanceState)
@@ -111,6 +126,10 @@ class LoginActivity : AppCompatActivity() {
                 override fun afterTextChanged(s: Editable?) {}
             })
             //--------------------------------------------------------------------------------
+            btnGoogle.setOnClickListener {
+                val signInIntent = googleSignInClient.signInIntent
+                startActivityForResult(signInIntent, RC_SIGN_IN)
+            }
             //listener del botón de login
             btnLogIn.setOnClickListener {
                 val email = binding.etEmail.text.toString()
@@ -133,6 +152,54 @@ class LoginActivity : AppCompatActivity() {
         intro()
     }
 
+    override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        Log.d(TAG,currentUser.toString())
+        if (currentUser!=null)
+            preferences.edit()
+                .putBoolean(IS_LOGGED, true)
+                .apply()
+        updateUI(currentUser, null)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                val account = task.getResult(ApiException::class.java)!!
+                Log.d(TAG, "firebaseAuthWithGoogle: " + account.id)
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
+                // Google Sign In failed, update UI appropriately
+                Log.w(TAG, "Google sign in failed", e)
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithCredential:success")
+                    val user = auth.currentUser
+                    updateUI(user,null)
+                    startNextAct()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+                    updateUI(null, task.exception)
+                }
+            }
+    }
+
     private fun logIn(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -140,12 +207,7 @@ class LoginActivity : AppCompatActivity() {
                     Log.d(TAG, "logInSucces")
                     val user = auth.currentUser
                     updateUI(user, null)
-                    val intent = Intent(this, PrincipalActivity::class.java)
-                    startActivity(intent)
-                    preferences.edit()
-                        .putBoolean(IS_LOGGED, true)
-                        .apply()
-                    this.finish()
+                    startNextAct()
                 } else {
                     Log.w(TAG, "failure", task.exception)
                     updateUI(null, task.exception)
@@ -168,19 +230,32 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI(user: FirebaseUser?, exception: Exception?, login: Boolean = true) {
-        if (exception != null) {
-            binding.btnLogIn.visibility = View.VISIBLE
-            Utility.displaySnackBar(
-                binding.root,
-                exception.message.toString(),
-                this,
-                R.color.red
-            )
-        } else {
-            val message = if (login) "Login was succesful" else "Register was successful"
-            Utility.displaySnackBar(binding.root, message, this, R.color.green)
-            binding.btnLogIn.visibility = View.VISIBLE
+        Log.d(TAG, user?.email.toString())
+
+        if(user?.email!=null) {
+            if (exception != null) {
+                binding.btnLogIn.visibility = View.VISIBLE
+                Utility.displaySnackBar(
+                    binding.root,
+                    exception.message.toString(),
+                    this,
+                    R.color.red
+                )
+            } else {
+                val message = if (login) "Login was succesful" else "Register was successful"
+                Utility.displaySnackBar(binding.root, message, this, R.color.green)
+                binding.btnLogIn.visibility = View.VISIBLE
+            }
         }
+    }
+
+    private fun startNextAct(){
+        val intent = Intent(this, PrincipalActivity::class.java)
+        startActivity(intent)
+        preferences.edit()
+            .putBoolean(IS_LOGGED, true)
+            .apply()
+        this.finish()
     }
 
 
