@@ -9,7 +9,7 @@
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#000000</color>
     <color name="screen_bg">#FFEEFF</color>
-    <color name="textDisabled">#9E9E9E</color>
+    <color name="textDisabled">#F0F0F0</color>
     <color name="btnGoogle">#F0F0F0</color>
 
     <color name="turkish">#14CBA8</color>

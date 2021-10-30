@@ -10,7 +10,7 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('C:\\Users\\Santiago Parra\\AgendaChronoLlave\\debug.keystore')
+            storeFile file('/Users/vogel/AndroidStudioProjects/keystoreAgenda/debug.keystore')
             storePassword 'android'
             keyAlias 'android'
             keyPassword 'android'
