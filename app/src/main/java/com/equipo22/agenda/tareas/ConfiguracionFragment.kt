@@ -91,7 +91,7 @@ class ConfiguracionFragment : Fragment() {
         binding.btnTry.setOnClickListener {
             touchNotification()
         }
-
+        binding.btnTryCrash.visibility=View.GONE
         binding.btnTryCrash.setOnClickListener {
 
             try {
