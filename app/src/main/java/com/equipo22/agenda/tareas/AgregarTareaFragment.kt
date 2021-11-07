@@ -117,7 +117,7 @@ class AgregarTareaFragment : Fragment() {
         binding.btnCancel.setOnClickListener {
             (activity as PrincipalActivity).onBackPressed()
         }
-
+        binding.btnOpenCamera.visibility=View.GONE
         binding.btnOpenCamera.setOnClickListener{
             openCamera()
         }
